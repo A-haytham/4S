@@ -1,10 +1,4 @@
 
-function page() {
-  return (
-    <div>
-      
-    </div>
-  )
+export default function Page() {
+  return <div>contact us page</div>;
 }
-
-export default page

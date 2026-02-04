@@ -54,22 +54,22 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
     });
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-blue-50 to-purple-50 text-slate-900">
+    <section className="relative min-h-screen overflow-hidden bg-linear-to-br from-white via-blue-50 to-purple-50 text-slate-900">
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-40 -left-20 h-96 w-96 rounded-full bg-gradient-to-br from-blue-200/40 to-cyan-200/40 blur-3xl"
+          className="absolute top-40 -left-20 h-96 w-96 rounded-full bg-linear-to-br from-blue-200/40 to-cyan-200/40 blur-3xl"
           animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 -right-20 h-125 w-125 rounded-full bg-gradient-to-br from-purple-200/40 to-pink-200/40 blur-3xl"
+          className="absolute bottom-20 -right-20 h-125 w-125 rounded-full bg-linear-to-br from-purple-200/40 to-pink-200/40 blur-3xl"
           animate={{ x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(15,76,129,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(15,76,129,0.05)_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-16 lg:flex-row rtl:lg:flex-row">
           <motion.div
             initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
@@ -159,35 +159,35 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               >
                 <div className="h-48 w-48" style={{ transformStyle: "preserve-3d" }}>
                   <div
-                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-gradient-to-br from-blue-500/70 to-cyan-500/70 backdrop-blur-sm"
+                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-blue-500/70 to-cyan-500/70 backdrop-blur-sm"
                     style={{ transform: "translateZ(96px)" }}
                   >
                     <Box size={48} className="text-white" />
                   </div>
                   <div
-                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-gradient-to-br from-purple-500/70 to-pink-500/70 backdrop-blur-sm"
+                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-purple-500/70 to-pink-500/70 backdrop-blur-sm"
                     style={{ transform: "translateZ(-96px) rotateY(180deg)" }}
                   >
                     <Layers size={48} className="text-white" />
                   </div>
                   <div
-                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-gradient-to-br from-green-500/70 to-emerald-500/70 backdrop-blur-sm"
+                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-green-500/70 to-emerald-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateY(90deg) translateZ(96px)" }}
                   >
                     <Cpu size={48} className="text-white" />
                   </div>
                   <div
-                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-gradient-to-br from-orange-500/70 to-red-500/70 backdrop-blur-sm"
+                    className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-orange-500/70 to-red-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateY(-90deg) translateZ(96px)" }}
                   >
                     <Network size={48} className="text-white" />
                   </div>
                   <div
-                    className="absolute h-48 w-48 border-2 border-white/50 bg-gradient-to-br from-yellow-500/70 to-orange-500/70 backdrop-blur-sm"
+                    className="absolute h-48 w-48 border-2 border-white/50 bg-linear-to-br from-yellow-500/70 to-orange-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateX(90deg) translateZ(96px)" }}
                   />
                   <div
-                    className="absolute h-48 w-48 border-2 border-white/50 bg-gradient-to-br from-indigo-500/70 to-purple-500/70 backdrop-blur-sm"
+                    className="absolute h-48 w-48 border-2 border-white/50 bg-linear-to-br from-indigo-500/70 to-purple-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateX(-90deg) translateZ(96px)" }}
                   />
                 </div>
@@ -213,20 +213,20 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                     <div
                       className={`absolute h-20 w-20 ${
                         i === 0
-                          ? "bg-gradient-to-br from-blue-400/80 to-cyan-400/80"
+                          ? "bg-linear-to-br from-blue-400/80 to-cyan-400/80"
                           : i === 1
-                            ? "bg-gradient-to-br from-purple-400/80 to-pink-400/80"
-                            : "bg-gradient-to-br from-green-400/80 to-emerald-400/80"
+                            ? "bg-linear-to-br from-purple-400/80 to-pink-400/80"
+                            : "bg-linear-to-br from-green-400/80 to-emerald-400/80"
                       } rounded-lg border border-white/60 backdrop-blur-sm shadow-xl`}
                       style={{ transform: "translateZ(40px)" }}
                     />
                     <div
                       className={`absolute h-20 w-20 ${
                         i === 0
-                          ? "bg-gradient-to-br from-cyan-400/80 to-blue-400/80"
+                          ? "bg-linear-to-br from-cyan-400/80 to-blue-400/80"
                           : i === 1
-                            ? "bg-gradient-to-br from-pink-400/80 to-purple-400/80"
-                            : "bg-gradient-to-br from-emerald-400/80 to-green-400/80"
+                            ? "bg-linear-to-br from-pink-400/80 to-purple-400/80"
+                            : "bg-linear-to-br from-emerald-400/80 to-green-400/80"
                       } rounded-lg border border-white/60 backdrop-blur-sm shadow-xl`}
                       style={{ transform: "translateZ(-40px) rotateY(180deg)" }}
                     />
@@ -251,7 +251,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               {particles.map((particle) => (
                 <motion.div
                   key={particle.id}
-                  className="absolute h-3 w-3 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg"
+                  className="absolute h-3 w-3 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 shadow-lg"
                   style={{ left: `${particle.left}%`, top: `${particle.top}%` }}
                   animate={{
                     y: [0, -40, 0],

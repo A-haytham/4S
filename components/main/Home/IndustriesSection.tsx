@@ -19,7 +19,7 @@ export default function IndustriesSection() {
           {items.map((industry) => (
             <div
               key={industry.title}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0F4C81] to-[#2B7CB3] p-6 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ltr:text-left rtl:text-right"
+              className="group relative overflow-hidden rounded-2xl bg-linear-to-br from-[#0F4C81] to-[#2B7CB3] p-6 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ltr:text-left rtl:text-right"
             >
               <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-white/10" />
               <h3 className="relative z-10 text-lg font-semibold">{industry.title}</h3>

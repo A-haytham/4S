@@ -4,7 +4,16 @@
     "caseStudies": "Case Studies",
     "services": "Services",
     "contact": "Contact",
-    "about": "About"
+    "about": "About",
+    "blog": "Blog",
+    "talkToUs": "Talk to us",
+    "requestDemo": "Request a Demo",
+    "brand": "4S Systems",
+    "tagline": "ERP & Digital Solutions",
+    "language": {
+      "en": "English",
+      "ar": "العربية"
+    }
   },
   "home": {
     "hero": {
@@ -227,17 +236,29 @@
         {
           "title": "Manufacturing Company",
           "description": "Reduced production delays and improved on-time delivery.",
-          "stats": ["-35% lead time", "-28% waste", "99.2% accuracy"]
+          "stats": [
+            "-35% lead time",
+            "-28% waste",
+            "99.2% accuracy"
+          ]
         },
         {
           "title": "Retail Group",
           "description": "Unified inventory across 32 locations and cut stockouts.",
-          "stats": ["12 weeks rollout", "98% adoption", "-60% stockouts"]
+          "stats": [
+            "12 weeks rollout",
+            "98% adoption",
+            "-60% stockouts"
+          ]
         },
         {
           "title": "Distribution Firm",
           "description": "Automated procurement and improved supplier performance.",
-          "stats": ["+45% efficiency", "4.8/5 satisfaction", "18mo ROI"]
+          "stats": [
+            "+45% efficiency",
+            "4.8/5 satisfaction",
+            "18mo ROI"
+          ]
         }
       ]
     },
@@ -263,10 +284,403 @@
       "title": "Ready to Modernize Your Operations?",
       "description": "Join hundreds of businesses that trust 4S Systems for their ERP needs.",
       "buttons": [
-        { "label": "Schedule a Consultation", "variant": "primary" },
-        { "label": "Download the Brochure", "variant": "secondary" }
+        {
+          "label": "Schedule a Consultation",
+          "variant": "primary"
+        },
+        {
+          "label": "Download the Brochure",
+          "variant": "secondary"
+        }
       ]
     }
+  },
+  "solutions": {
+    "hero": {
+      "title": "ERP Solutions Built for Growth",
+      "description": "Unify finance, operations, and people with a modular ERP platform designed for modern businesses."
+    },
+    "overview": {
+      "title": "One Platform. Every Department.",
+      "description": "4S Systems delivers a flexible ERP suite that connects teams, automates workflows, and provides real-time visibility.",
+      "features": [
+        "Cloud-native architecture for maximum flexibility",
+        "Mobile-first design for on-the-go access",
+        "Enterprise-grade security and compliance",
+        "Scalable from 10 to 10,000+ users"
+      ],
+      "cta": "Request a Demo",
+      "cards": [
+        {
+          "title": "Cloud ERP",
+          "description": "Access anywhere, anytime",
+          "icon": "cloud"
+        },
+        {
+          "title": "Data Security",
+          "description": "Bank-level encryption",
+          "icon": "database"
+        },
+        {
+          "title": "Mobile Apps",
+          "description": "iOS & Android native",
+          "icon": "smartphone"
+        },
+        {
+          "title": "API First",
+          "description": "Integrate everything",
+          "icon": "code"
+        }
+      ]
+    },
+    "modules": {
+      "title": "Core ERP Modules",
+      "subtitle": "Choose the modules you need today and expand as you grow.",
+      "clickLabel": "Click to learn more",
+      "features": [
+        "Multi-currency and multi-language support",
+        "Customizable workflows and automation",
+        "Advanced reporting and analytics"
+      ],
+      "items": [
+        {
+          "key": "finance",
+          "title": "Finance & Accounting",
+          "description": "Automate AP/AR, cash flow, and compliance.",
+          "icon": "dollar",
+          "details": {
+            "tagline": "Full visibility into financial performance.",
+            "points": [
+              "Automated invoicing and collections",
+              "Multi-entity and multi-currency accounting",
+              "Budgeting, approvals, and audit trails",
+              "Tax-ready reports and compliance"
+            ]
+          }
+        },
+        {
+          "key": "inventory",
+          "title": "Inventory Management",
+          "description": "Track stock, warehouses, and replenishment in real time.",
+          "icon": "package",
+          "details": {
+            "tagline": "Optimize stock levels across locations.",
+            "points": [
+              "Real-time stock visibility",
+              "Batch/serial tracking and valuation",
+              "Reorder points and demand planning",
+              "Warehouse transfers and pick/pack"
+            ]
+          }
+        },
+        {
+          "key": "sales",
+          "title": "Sales & CRM",
+          "description": "Pipeline visibility with quotes, orders, and customer history.",
+          "icon": "trending",
+          "details": {
+            "tagline": "Close deals faster with full customer context.",
+            "points": [
+              "Lead, opportunity, and pipeline management",
+              "Quotes, orders, and contracts",
+              "Customer 360 and activity timelines",
+              "Forecasting and sales analytics"
+            ]
+          }
+        },
+        {
+          "key": "procurement",
+          "title": "Procurement",
+          "description": "Streamline purchase requests, approvals, and suppliers.",
+          "icon": "cart",
+          "details": {
+            "tagline": "Control spend while improving supplier performance.",
+            "points": [
+              "Purchase requests and approvals",
+              "Supplier management and RFQs",
+              "POs, receipts, and matching",
+              "Spend analytics and compliance"
+            ]
+          }
+        },
+        {
+          "key": "hr",
+          "title": "Human Resources",
+          "description": "Manage people, payroll, and performance from one hub.",
+          "icon": "users",
+          "details": {
+            "tagline": "Centralize employee data and HR workflows.",
+            "points": [
+              "Employee records and onboarding",
+              "Payroll and benefits management",
+              "Time off, attendance, and scheduling",
+              "Performance goals and reviews"
+            ]
+          }
+        },
+        {
+          "key": "manufacturing",
+          "title": "Manufacturing",
+          "description": "Plan production, track costs, and improve efficiency.",
+          "icon": "settings",
+          "details": {
+            "tagline": "Stay on time and on budget across the floor.",
+            "points": [
+              "BOMs, routings, and work orders",
+              "Production scheduling and capacity",
+              "Costing and variance analysis",
+              "Quality checks and traceability"
+            ]
+          }
+        },
+        {
+          "key": "reporting",
+          "title": "Business Intelligence",
+          "description": "Dashboards and KPIs for smarter decisions.",
+          "icon": "chart",
+          "details": {
+            "tagline": "Turn data into action with live insights.",
+            "points": [
+              "Real-time dashboards and KPIs",
+              "Custom reports and drilldowns",
+              "Role-based analytics",
+              "Export and BI integrations"
+            ]
+          }
+        },
+        {
+          "key": "integrations",
+          "title": "Integrations",
+          "description": "Connect with your existing tools and services.",
+          "icon": "zap",
+          "details": {
+            "tagline": "Seamless connectivity across your stack.",
+            "points": [
+              "REST APIs and webhooks",
+              "Prebuilt connectors",
+              "Data sync and automation",
+              "Secure authentication and monitoring"
+            ]
+          }
+        }
+      ],
+      "modal": {
+        "label": "Module Overview",
+        "keyBenefits": "Key Benefits",
+        "requestDemo": "Request a Demo",
+        "talkToSales": "Talk to Sales",
+        "playVideo": "Play video",
+        "duration": "2:15",
+        "videoUrl": "https://www.youtube.com/embed/ysz5S6PUM-U",
+        "cta": "Request a Demo",
+        "secondary": "Close",
+        "closeLabel": "Close modal"
+      }
+    },
+    "integrations": {
+      "title": "Integrations That Fit Your Stack",
+      "description": "Connect 4S Systems with the tools you already use across finance, commerce, and operations.",
+      "categories": [
+        {
+          "title": "Finance & Banking",
+          "items": [
+            "Payment gateways",
+            "Bank feeds",
+            "Tax platforms",
+            "E-invoicing"
+          ]
+        },
+        {
+          "title": "Commerce",
+          "items": [
+            "E-commerce platforms",
+            "POS systems",
+            "Marketplace integrations",
+            "Shipping providers"
+          ]
+        },
+        {
+          "title": "Operations",
+          "items": [
+            "Warehouse management",
+            "Logistics and 3PL",
+            "IoT and barcode",
+            "Quality systems"
+          ]
+        },
+        {
+          "title": "Collaboration",
+          "items": [
+            "Email & calendar",
+            "Slack/Teams",
+            "Document storage",
+            "BI tools"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to See It in Action?",
+      "description": "Schedule a personalized demo with our team.",
+      "button": "Book a Demo"
+    }
+  },
+  "ourservices": {
+    "hero": {
+      "title": "Services That Deliver ERP Success",
+      "description": "From implementation to support, we guide every step of your ERP journey."
+    },
+    "listLabel": "Service {index}",
+    "list": [
+      {
+        "title": "ERP Implementation",
+        "description": "Structured delivery that keeps your rollout on time and on budget.",
+        "process": [
+          "Discovery and requirements alignment",
+          "System configuration and setup",
+          "Data migration and validation",
+          "Launch readiness and handover"
+        ],
+        "cta": "Talk to Implementation"
+      },
+      {
+        "title": "Process Design & Optimization",
+        "description": "Map, standardize, and automate workflows to unlock efficiency.",
+        "process": [
+          "Current-state process mapping",
+          "Gap analysis and improvement plan",
+          "Workflow automation design",
+          "KPI alignment and governance"
+        ],
+        "cta": "Plan My Process"
+      },
+      {
+        "title": "Customization & Integrations",
+        "description": "Tailor ERP modules and connect your existing systems.",
+        "process": [
+          "Module customization roadmap",
+          "API and integration strategy",
+          "Testing and data synchronization",
+          "Security and performance review"
+        ],
+        "cta": "Discuss Integrations"
+      },
+      {
+        "title": "Training & Change Management",
+        "description": "Empower teams to adopt the system confidently.",
+        "process": [
+          "Role-based training plans",
+          "Hands-on workshops and labs",
+          "User adoption playbooks",
+          "Post-go-live enablement"
+        ],
+        "cta": "Book Training"
+      },
+      {
+        "title": "Web & Digital Experiences",
+        "description": "Design and build modern websites that reflect your brand and convert.",
+        "process": [
+          "Discovery and UX planning",
+          "Visual design and content systems",
+          "Responsive development",
+          "Performance and SEO optimization"
+        ],
+        "cta": "Start a Project",
+        "ctaSecondary": "View Portfolio"
+      }
+    ],
+    "bridge": {
+      "title": "Digital Solutions Beyond ERP",
+      "description": "In addition to ERP, we craft modern digital experiences that strengthen your brand and grow demand."
+    },
+    "webBadge": "Web Development",
+    "supportTiers": {
+      "title": "Support Plans",
+      "subtitle": "Choose the support level that fits your needs.",
+      "ctaLabel": "Contact Sales",
+      "tiers": [
+        {
+          "name": "Standard",
+          "price": "Included",
+          "features": [
+            "Business hours support",
+            "Email & ticket system",
+            "Knowledge base access",
+            "Monthly updates"
+          ]
+        },
+        {
+          "name": "Premium",
+          "price": "Custom",
+          "featured": true,
+          "features": [
+            "24/7 support",
+            "Priority response",
+            "Dedicated account manager",
+            "Weekly system reviews"
+          ]
+        },
+        {
+          "name": "Enterprise",
+          "price": "Custom",
+          "features": [
+            "White-glove service",
+            "On-site support available",
+            "Custom SLA",
+            "Direct engineering access"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Need Help Choosing?",
+      "description": "Our team can help you select the right services for your business.",
+      "button": "Talk to an Expert"
+    }
+  },
+  "footer": {
+    "brand": "4S Systems",
+    "description": "ERP solutions that modernize operations, connect teams, and unlock growth.",
+    "columns": [
+      {
+        "title": "Company",
+        "links": [
+          "About Us",
+          "Careers",
+          "News",
+          "Partners"
+        ]
+      },
+      {
+        "title": "Solutions",
+        "links": [
+          "ERP Platform",
+          "Finance Suite",
+          "Manufacturing",
+          "Analytics"
+        ]
+      },
+      {
+        "title": "Services",
+        "links": [
+          "Implementation",
+          "Training",
+          "Support",
+          "Consulting"
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          "+1 (800) 555-0134",
+          "info@4ssystems.com",
+          "Dubai, UAE",
+          "Riyadh, KSA"
+        ]
+      }
+    ],
+    "copyright": "(c) 2026 4S Systems. All rights reserved.",
+    "legal": "Privacy Policy · Terms of Service"
   },
   "notFound": {
     "number": "404",
@@ -315,5 +729,102 @@
     "page-not-found": "Page not found",
     "not-found-desc": "The page you're looking for doesn't exist",
     "go-home": "Go Home"
+  },
+  "about": {
+    "hero": {
+      "title": "About 4S Systems",
+      "description": "We build ERP and digital solutions that help teams operate with clarity, speed, and confidence."
+    },
+    "story": {
+      "title": "Our Story",
+      "content": "For over 15 years, 4S Systems has partnered with organizations across the Middle East to deliver ERP implementations that actually work. We focus on process clarity, data accuracy, and measurable outcomes.",
+      "stats": [
+        {
+          "value": "15+",
+          "label": "Years Experience"
+        },
+        {
+          "value": "500+",
+          "label": "Clients"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction"
+        }
+      ],
+      "recognition": {
+        "title": "Industry Recognition",
+        "subtitle": "Award-winning ERP solutions"
+      },
+      "awards": [
+        "2025 Best ERP Provider",
+        "2024 Innovation Award",
+        "2023 Customer Choice"
+      ]
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "To empower businesses with systems that simplify operations, connect teams, and enable smarter decisions."
+    },
+    "values": {
+      "title": "Our Values",
+      "list": [
+        {
+          "title": "Customer First",
+          "description": "We prioritize customer success in every decision."
+        },
+        {
+          "title": "Innovation",
+          "description": "We continuously evolve to deliver practical, modern solutions."
+        },
+        {
+          "title": "Security & Trust",
+          "description": "We uphold the highest standards of protection and compliance."
+        },
+        {
+          "title": "Excellence",
+          "description": "We commit to quality, reliability, and measurable outcomes."
+        }
+      ]
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Specialists across implementation, engineering, support, and consulting.",
+      "departments": [
+        {
+          "role": "Implementation Specialists",
+          "count": "25+"
+        },
+        {
+          "role": "Software Engineers",
+          "count": "40+"
+        },
+        {
+          "role": "Support Professionals",
+          "count": "15+"
+        },
+        {
+          "role": "Business Consultants",
+          "count": "20+"
+        }
+      ]
+    },
+    "partners": {
+      "title": "Partners & Certifications",
+      "description": "We collaborate with leading technology partners and maintain trusted certifications.",
+      "items": [
+        "Microsoft Partner",
+        "AWS Advanced Partner",
+        "Google Cloud Partner",
+        "ISO 27001 Certified",
+        "SOC 2 Compliant"
+      ]
+    },
+    "cta": {
+      "title": "Join Our Growing Family",
+      "description": "Become part of the 4S Systems success story.",
+      "primary": "Get Started",
+      "secondary": "View Career Opportunities"
+    }
   }
 }

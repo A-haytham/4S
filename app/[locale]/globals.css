@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: "Inter", sans-serif ;
 }
+
+.modal-scroll {
+  scrollbar-width: auto;
+}
+
+@media (min-width: 1024px) {
+  .modal-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .modal-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}

@@ -35,7 +35,7 @@ export default function VideoSection() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#0F4C81] via-[#2B7CB3] to-[#0F4C81] p-1 shadow-2xl">
+            <div className="aspect-video rounded-2xl bg-linear-to-br from-[#0F4C81] via-[#2B7CB3] to-[#0F4C81] p-1 shadow-2xl">
               <div className="relative flex h-full w-full items-center justify-center rounded-2xl bg-black/60">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur">
                   <Play size={28} className="text-white" />

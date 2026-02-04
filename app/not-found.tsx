@@ -32,7 +32,7 @@ const NotFoundPage = async () => {
     if (page.startsWith("/")) return page;
     const map: Record<string, string> = {
       home: "/",
-      solutions: "/our-product",
+      solutions: "/solutions",
       "case-studies": "/case-studies",
       services: "/services",
       contact: "/contact-us",

@@ -43,10 +43,10 @@ export default function HighlightsSection() {
             return (
               <div
                 key={item.title}
-                className={`group flex items-start gap-4 rounded-2xl bg-gradient-to-br ${style.gradient} p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
+                className={`group flex items-start gap-4 rounded-2xl bg-linear-to-br ${style.gradient} p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}
               >
                 <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${style.iconBg} text-white shadow-lg`}
+                  className={`flex w-14 h-14 px-3 items-center justify-center rounded-xl bg-linear-to-br ${style.iconBg} text-white shadow-lg`}
                 >
                   <Icon size={24} />
                 </div>

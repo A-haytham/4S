@@ -33,7 +33,7 @@ export default function ModulesSection() {
   const items = t.raw("items") as ModuleItem[];
 
   return (
-    <section id="solutions" className="bg-gradient-to-b from-gray-50 to-white py-20">
+    <section id="solutions" className="bg-linear-to-br from-gray-50 to-white py-20">
       <div className="mx-auto w-full max-w-6xl px-4 text-center">
         <h2 className="text-3xl font-semibold text-gray-900">{t("title")}</h2>
         <p className="mt-3 text-base text-gray-600">{t("subtitle")}</p>

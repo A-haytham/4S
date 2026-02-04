@@ -35,7 +35,7 @@ export default function TechStackSection() {
   const highlights = t.raw("highlights") as Highlight[];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-[#0F4C81] to-gray-900 py-24">
+    <section className="relative overflow-hidden bg-linear-to-br from-gray-900 via-[#0F4C81] to-gray-900 py-24">
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMTAgNjAgTSAwIDEwIEwgNjAgMTAgTSAyMCAwIEwgMjAgNjAgTSAwIDIwIEwgNjAgMjAgTSAzMCAwIEwgMzAgNjAgTSAwIDMwIEwgNjAgMzAgTSA0MCAwIEwgNDAgNjAgTSAwIDQwIEwgNjAgNDAgTSA1MCAwIEwgNTAgNjAgTSAwIDUwIEwgNjAgNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjAzIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
       <div className="absolute left-1/4 top-0 h-96 w-96 rounded-full bg-[#E67E22]/20 blur-3xl" />
       <div className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full bg-[#2B7CB3]/20 blur-3xl" />
@@ -65,12 +65,12 @@ export default function TechStackSection() {
                 className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-[#E67E22]/50 hover:bg-white/10"
               >
                 <div
-                  className={`absolute inset-0 rounded-xl bg-gradient-to-br ${techInfo.color} opacity-0 transition-opacity group-hover:opacity-10`}
+                  className={`absolute inset-0 rounded-xl bg-linear-to-br ${techInfo.color} opacity-0 transition-opacity group-hover:opacity-10`}
                 />
 
                 <div className="relative mb-4">
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${techInfo.color} transition-transform group-hover:scale-110`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br ${techInfo.color} transition-transform group-hover:scale-110`}
                   >
                     <Icon className="h-6 w-6 text-white" />
                   </div>
@@ -96,7 +96,7 @@ export default function TechStackSection() {
                 className="rounded-xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm"
               >
                 <div
-                  className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${highlight.color}`}
+                  className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-linear-to-br ${highlight.color}`}
                 >
                   <Icon className="h-6 w-6 text-white" />
                 </div>

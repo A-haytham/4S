@@ -19,9 +19,9 @@ export default function ReasonsSection() {
           {items.map((reason) => (
             <div
               key={reason.title}
-              className="rounded-2xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ltr:text-left rtl:text-right"
+              className="rounded-2xl border border-gray-100 bg-linear-to-br from-gray-50 to-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ltr:text-left rtl:text-right"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#0F4C81] to-[#2B7CB3] text-white shadow-lg rtl:ml-auto">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-[#0F4C81] to-[#2B7CB3] text-white shadow-lg rtl:ml-auto">
                 <CheckCircle size={22} />
               </div>
               <h3 className="text-base font-semibold text-gray-900">{reason.title}</h3>

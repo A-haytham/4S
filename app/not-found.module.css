@@ -11,7 +11,7 @@
     linear-gradient(135deg, #ffffff 0%, #f5f7fb 45%, #eaf2ff 100%);
   position: relative;
   overflow: hidden;
-  font-family: Inter;
+  font-family: "Inter", sans-serif;
 }
 
 .wrapper::before {

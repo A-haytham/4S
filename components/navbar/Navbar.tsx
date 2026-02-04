@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Link } from "../../i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -20,9 +21,16 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-linear-to-br from-[#0F4C81] to-[#2B7CB3] text-white text-sm font-semibold">
-            4S
-          </div>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/4s-logo.svg"
+              alt="4S Technology"
+              width={40}
+              height={40}
+              className="rounded-lg object-contain"
+              priority
+            />
+          </Link>
           <div className="leading-tight">
             <p className="text-base font-semibold text-gray-900">{t("brand")}</p>
             <p className="text-xs text-gray-500">{t("tagline")}</p>

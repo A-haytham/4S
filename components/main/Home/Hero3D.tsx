@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Box, Cpu, Layers, Network, Sparkles } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 
 const particles = [
   { id: 0, left: 24, top: 28, floatX: -6, duration: 4.6, delay: 0.2 },
@@ -22,24 +23,13 @@ const particles = [
   { id: 14, left: 66, top: 52, floatX: 5, duration: 4.5, delay: 0.2 },
 ];
 
-type HeroCopy = {
-  trustBadge: string;
-  headline: string;
-  subHeadline: string;
-  description: string;
-  ctaPrimary: string;
-  ctaSecondary: string;
-};
-
 export type Hero3DProps = {
-  locale: string;
-  t: {
-    hero: HeroCopy;
-  };
   onPageChange?: (page: string) => void;
 };
 
-export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
+export default function Hero3D({ onPageChange }: Hero3DProps) {
+  const t = useTranslations("home.hero");
+  const locale = useLocale();
   const isRTL = locale === "ar";
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -80,12 +70,12 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="flex flex-col items-center gap-16 lg:flex-row rtl:lg:flex-row">
           <motion.div
             initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className={`${isRTL ? "lg:order-2 text-right" : "lg:order-1 text-left"}`}
+            className="w-full text-left rtl:text-right lg:w-1/2"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -94,7 +84,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
               className="mb-6 inline-flex items-center rounded-full border border-blue-200 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 text-sm font-medium text-[#0F4C81]"
             >
               <Sparkles size={16} className={isRTL ? "ml-2" : "mr-2"} />
-              {t.hero.trustBadge}
+              {t("trustBadge")}
             </motion.div>
 
             <motion.h1
@@ -103,7 +93,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
               transition={{ delay: 0.3 }}
               className="mb-4 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl lg:text-6xl"
             >
-              {t.hero.headline}
+              {t("headline")}
             </motion.h1>
 
             <motion.h2
@@ -112,7 +102,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
               transition={{ delay: 0.4 }}
               className="mb-6 text-3xl font-bold text-transparent sm:text-4xl lg:text-5xl bg-clip-text bg-gradient-to-r from-[#0F4C81] via-[#2B7CB3] to-[#E67E22]"
             >
-              {t.hero.subHeadline}
+              {t("subHeadline")}
             </motion.h2>
 
             <motion.p
@@ -121,7 +111,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
               transition={{ delay: 0.5 }}
               className="mb-8 max-w-xl text-lg leading-relaxed text-gray-600"
             >
-              {t.hero.description}
+              {t("description")}
             </motion.p>
 
             <motion.div
@@ -134,7 +124,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
                 onClick={() => handlePageChange("contact")}
                 className="group relative flex items-center justify-center rounded-xl bg-gradient-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-4 text-white transition-all hover:shadow-2xl hover:shadow-blue-500/50 hover:rounded-xl "
               >
-                <span className="relative z-10">{t.hero.ctaPrimary}</span>
+                <span className="relative z-10">{t("ctaPrimary")}</span>
                 <ArrowRight
                   size={20}
                   className={`${isRTL ? "mr-2 group-hover:mr-3" : "ml-2 group-hover:ml-3"} relative z-10 transition-all`}
@@ -145,7 +135,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
                 onClick={() => handlePageChange("solutions")}
                 className="rounded-xl border-2 border-[#0F4C81] px-8 py-4 text-[#0F4C81] transition-all hover:bg-blue-50"
               >
-                {t.hero.ctaSecondary}
+                {t("ctaSecondary")}
               </button>
             </motion.div>
           </motion.div>
@@ -154,7 +144,7 @@ export default function Hero3D({ locale, t, onPageChange }: Hero3DProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className={`${isRTL ? "lg:order-1" : "lg:order-2"} relative`}
+            className="relative w-full lg:w-1/2"
             style={{ perspective: "1200px" }}
           >
             <div className="relative flex h-[600px] w-full items-center justify-center">

@@ -1,0 +1,319 @@
+{
+  "nav": {
+    "solutions": "Solutions",
+    "caseStudies": "Case Studies",
+    "services": "Services",
+    "contact": "Contact",
+    "about": "About"
+  },
+  "home": {
+    "hero": {
+      "trustBadge": "Trusted by leading businesses across the Middle East",
+      "headline": "ERP Solutions That Fit Your Business",
+      "subHeadline": "Not the Other Way Around",
+      "description": "Implementation, customization, and support that give you real-time visibility and control over your entire operation.",
+      "ctaPrimary": "Request a Demo",
+      "ctaSecondary": "Explore Solutions"
+    },
+    "highlights": {
+      "items": [
+        {
+          "title": "Faster Operations",
+          "description": "Streamline processes and reduce manual work across teams.",
+          "icon": "gauge"
+        },
+        {
+          "title": "Real-Time Reporting",
+          "description": "Track KPIs, cash flow, and inventory with live dashboards.",
+          "icon": "lineChart"
+        },
+        {
+          "title": "Scalable Integrations",
+          "description": "Connect seamlessly with your existing tools and systems.",
+          "icon": "database"
+        }
+      ]
+    },
+    "why": {
+      "title": "Why 4S Systems?",
+      "subtitle": "Built for businesses that demand more from their ERP.",
+      "items": [
+        {
+          "title": "Proven Implementation",
+          "description": "Delivering successful ERP deployments across industries."
+        },
+        {
+          "title": "Full Customization",
+          "description": "Tailored workflows that align with your exact business model."
+        },
+        {
+          "title": "Local Expertise",
+          "description": "Deep understanding of compliance, taxes, and regional needs."
+        },
+        {
+          "title": "24/7 Support",
+          "description": "Dedicated team available around the clock for your success."
+        }
+      ]
+    },
+    "modules": {
+      "title": "Core ERP Modules",
+      "subtitle": "Everything you need to run your business, all in one platform.",
+      "cta": "Explore All Modules",
+      "items": [
+        {
+          "title": "Finance & Accounting",
+          "description": "Automate AP/AR, cash flow, and compliance.",
+          "icon": "dollar"
+        },
+        {
+          "title": "Inventory Management",
+          "description": "Track stock, warehouses, and replenishment in real time.",
+          "icon": "package"
+        },
+        {
+          "title": "Sales & CRM",
+          "description": "Pipeline visibility with quotes, orders, and customer history.",
+          "icon": "trending"
+        },
+        {
+          "title": "Procurement",
+          "description": "Streamline purchase requests, approvals, and suppliers.",
+          "icon": "cart"
+        },
+        {
+          "title": "Human Resources",
+          "description": "Manage people, payroll, and performance from one hub.",
+          "icon": "users"
+        },
+        {
+          "title": "Manufacturing",
+          "description": "Plan production, track costs, and improve efficiency.",
+          "icon": "settings"
+        },
+        {
+          "title": "Business Intelligence",
+          "description": "Dashboards and KPIs for smarter decisions.",
+          "icon": "chart"
+        },
+        {
+          "title": "Integrations",
+          "description": "Connect with your existing tools and services.",
+          "icon": "zap"
+        }
+      ]
+    },
+    "video": {
+      "kicker": "Product Tour",
+      "title": "See 4S in Action",
+      "subtitle": "A quick walkthrough of the ERP experience.",
+      "description": "Watch how finance, inventory, and reporting connect in real time.",
+      "features": [
+        "Unified dashboards across teams",
+        "Automated approvals and alerts",
+        "Live inventory and cash flow visibility"
+      ],
+      "primaryButton": "Watch the demo",
+      "secondaryButton": "Download overview",
+      "duration": "2-min tour",
+      "statLabel": "Avg. rollout time",
+      "statValue": "12 weeks"
+    },
+    "techStack": {
+      "subtitle": "Our Stack",
+      "title": "Technology Stack",
+      "description": "Built for security, scale, and performance. Beyond ERP and CRM, we also design and build modern websites tailored to your brand.",
+      "technologies": [
+        {
+          "name": "Java",
+          "description": "Reliable backend foundations for enterprise systems."
+        },
+        {
+          "name": "JavaScript",
+          "description": "Interactive interfaces and seamless user flows."
+        },
+        {
+          "name": ".NET",
+          "description": "Stable frameworks for large-scale business apps."
+        },
+        {
+          "name": "Oracle",
+          "description": "High-availability database systems for core operations."
+        },
+        {
+          "name": "SQL Server",
+          "description": "Robust data management and reporting."
+        },
+        {
+          "name": "APIs",
+          "description": "Flexible integrations through RESTful services."
+        },
+        {
+          "name": "React",
+          "description": "Component-driven UI for fast, scalable interfaces."
+        },
+        {
+          "name": "Next.js",
+          "description": "SEO-ready web experiences with server rendering."
+        }
+      ],
+      "highlights": [
+        {
+          "title": "API-First Architecture",
+          "description": "RESTful APIs for seamless integrations",
+          "icon": "api"
+        },
+        {
+          "title": "Cloud-Ready",
+          "description": "Deploy on-premise or in the cloud",
+          "icon": "cloud"
+        },
+        {
+          "title": "Enterprise-Grade Security",
+          "description": "Bank-level encryption & compliance",
+          "icon": "security"
+        }
+      ]
+    },
+    "industries": {
+      "title": "Industries We Serve",
+      "subtitle": "Specialized solutions for your sector.",
+      "items": [
+        {
+          "title": "Manufacturing",
+          "description": "End-to-end solutions for performance and compliance."
+        },
+        {
+          "title": "Retail & Distribution",
+          "description": "End-to-end solutions for performance and compliance."
+        },
+        {
+          "title": "Professional Services",
+          "description": "End-to-end solutions for performance and compliance."
+        },
+        {
+          "title": "Healthcare",
+          "description": "End-to-end solutions for performance and compliance."
+        }
+      ]
+    },
+    "process": {
+      "title": "How We Work",
+      "subtitle": "A proven methodology for successful ERP implementation.",
+      "steps": [
+        {
+          "title": "Discovery & Analysis",
+          "description": "We map your workflows, data, and growth goals."
+        },
+        {
+          "title": "Implementation",
+          "description": "Configure modules, migrate data, and integrate systems."
+        },
+        {
+          "title": "Training",
+          "description": "Hands-on enablement to ensure confident adoption."
+        },
+        {
+          "title": "Go-Live & Support",
+          "description": "Continuous optimization after launch."
+        }
+      ]
+    },
+    "caseStudies": {
+      "title": "Success Stories",
+      "subtitle": "Real results from real businesses.",
+      "badge": "Case Study",
+      "items": [
+        {
+          "title": "Manufacturing Company",
+          "description": "Reduced production delays and improved on-time delivery.",
+          "stats": ["-35% lead time", "-28% waste", "99.2% accuracy"]
+        },
+        {
+          "title": "Retail Group",
+          "description": "Unified inventory across 32 locations and cut stockouts.",
+          "stats": ["12 weeks rollout", "98% adoption", "-60% stockouts"]
+        },
+        {
+          "title": "Distribution Firm",
+          "description": "Automated procurement and improved supplier performance.",
+          "stats": ["+45% efficiency", "4.8/5 satisfaction", "18mo ROI"]
+        }
+      ]
+    },
+    "testimonials": {
+      "title": "What Our Clients Say",
+      "subtitle": "Trusted by leaders across industries.",
+      "items": [
+        {
+          "author": "Operations Director",
+          "quote": "4S Systems transformed our processes, giving us real-time visibility and confident decision-making."
+        },
+        {
+          "author": "CFO",
+          "quote": "The reporting suite and automation saved us weeks of manual work every quarter."
+        },
+        {
+          "author": "General Manager",
+          "quote": "Implementation was smooth, and the support team is always available."
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Modernize Your Operations?",
+      "description": "Join hundreds of businesses that trust 4S Systems for their ERP needs.",
+      "buttons": [
+        { "label": "Schedule a Consultation", "variant": "primary" },
+        { "label": "Download the Brochure", "variant": "secondary" }
+      ]
+    }
+  },
+  "notFound": {
+    "number": "404",
+    "title": "Page not found",
+    "subtitle": "Sorry, the page you are looking for does not exist or has been moved.",
+    "search": {
+      "placeholder": "Search the site...",
+      "label": "Search",
+      "noResults": "No results found."
+    },
+    "actions": {
+      "primary": "Go to Homepage",
+      "secondary": "Contact Support",
+      "goBack": "Go Back"
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "subtitle": "Jump to a popular section.",
+      "links": [
+        {
+          "title": "Solutions",
+          "description": "Explore ERP modules and features.",
+          "page": "solutions"
+        },
+        {
+          "title": "Case Studies",
+          "description": "See how teams succeed with 4S.",
+          "page": "case-studies"
+        },
+        {
+          "title": "Services",
+          "description": "Implementation, training, and support.",
+          "page": "services"
+        },
+        {
+          "title": "Contact",
+          "description": "Talk to our team.",
+          "page": "contact"
+        }
+      ]
+    },
+    "helpText": "Need help? Our team is ready to assist you."
+  },
+  "not-found": {
+    "oops": "Oops!",
+    "page-not-found": "Page not found",
+    "not-found-desc": "The page you're looking for doesn't exist",
+    "go-home": "Go Home"
+  }
+}

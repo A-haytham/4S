@@ -36,7 +36,7 @@ export default function FAQsAccordion({ faqs, initialOpenIndex = 0 }: FAQsAccord
             <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
             <ChevronDown
               size={22}
-              className={`flex-shrink-0 text-[#0F4C81] transition-transform duration-300 ${
+              className={`shrink-0 text-[#0F4C81] transition-transform duration-300 ${
                 openIndex === index ? "rotate-180" : ""
               }`}
             />

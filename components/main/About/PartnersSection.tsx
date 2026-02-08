@@ -20,7 +20,7 @@ export default function PartnersSection() {
           {partners.map((partner) => (
             <div
               key={partner}
-              className="flex items-center justify-center rounded-xl border border-gray-200 bg-gradient-to-br from-gray-50 to-white p-6 text-center transition-all hover:shadow-lg"
+              className="flex items-center justify-center rounded-xl border border-gray-200 bg-linear-to-br from-gray-50 to-white p-6 text-center transition-all hover:shadow-lg"
             >
               <div>
                 <Shield size={32} className="mx-auto mb-3 text-[#0F4C81]" />

@@ -37,7 +37,7 @@ export default function ServicesListSection() {
                   <div className="mb-8 space-y-3">
                     {service.process.map((step) => (
                       <div key={step} className="flex items-start space-x-3 rtl:space-x-reverse">
-                        <CheckCircle size={20} className="mt-1 flex-shrink-0 text-green-500" />
+                        <CheckCircle size={20} className="mt-1 shrink-0 text-green-500" />
                         <span className="text-gray-700">{step}</span>
                       </div>
                     ))}
@@ -65,12 +65,12 @@ export default function ServicesListSection() {
                             key={`${service.title}-${step}`}
                             className="flex items-center space-x-3 rtl:space-x-reverse"
                           >
-                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-[#0F4C81] text-sm font-semibold text-white">
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0F4C81] text-sm font-semibold text-white">
                               {stepIndex + 1}
                             </div>
                             <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
                               <div
-                                className="h-full bg-gradient-to-r from-[#0F4C81] to-[#2B7CB3]"
+                                className="h-full bg-linear-to-r from-[#0F4C81] to-[#2B7CB3]"
                                 style={{ width: `${100 - stepIndex * 20}%` }}
                               />
                             </div>
@@ -96,9 +96,9 @@ export default function ServicesListSection() {
                 {t("bridge.description")}
               </p>
               <div className="mt-8 flex items-center justify-center">
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#0F4C81] to-transparent" />
+                <div className="h-px w-24 bg-linear-to-r from-transparent via-[#0F4C81] to-transparent" />
                 <Code2 className="mx-4 h-6 w-6 text-[#E67E22]" />
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-[#E67E22] to-transparent" />
+                <div className="h-px w-24 bg-linear-to-r from-transparent via-[#E67E22] to-transparent" />
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function ServicesListSection() {
             return (
               <div key={service.title} className="grid items-center gap-12 lg:grid-cols-2">
                 <div className={isOdd ? "lg:order-2" : ""}>
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#E67E22]/20 bg-gradient-to-r from-[#E67E22]/10 to-[#0F4C81]/10 px-4 py-2 text-sm font-medium">
+                  <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#E67E22]/20 bg-linear-to-r from-[#E67E22]/10 to-[#0F4C81]/10 px-4 py-2 text-sm font-medium">
                     <Code2 size={16} className="text-[#E67E22]" />
                     <span className="text-[#0F4C81]">{t("webBadge")}</span>
                   </div>
@@ -122,7 +122,7 @@ export default function ServicesListSection() {
                   <div className="mb-8 space-y-3">
                     {service.process.map((step) => (
                       <div key={step} className="flex items-start space-x-3 rtl:space-x-reverse">
-                        <CheckCircle size={20} className="mt-1 flex-shrink-0 text-[#E67E22]" />
+                        <CheckCircle size={20} className="mt-1 shrink-0 text-[#E67E22]" />
                         <span className="text-gray-700">{step}</span>
                       </div>
                     ))}
@@ -131,7 +131,7 @@ export default function ServicesListSection() {
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href="/contact-us"
-                      className="group inline-flex items-center rounded-xl bg-gradient-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-3 text-white transition-all hover:shadow-lg"
+                      className="group inline-flex items-center rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-3 text-white transition-all hover:shadow-lg"
                     >
                       <span>{service.cta}</span>
                       <ArrowRight
@@ -167,12 +167,12 @@ export default function ServicesListSection() {
                             key={`${service.title}-${step}`}
                             className="flex items-center space-x-3 rtl:space-x-reverse"
                           >
-                            <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-[#E67E22] to-[#0F4C81] text-sm font-semibold text-white">
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-linear-to-br from-[#E67E22] to-[#0F4C81] text-sm font-semibold text-white">
                               {stepIndex + 1}
                             </div>
                             <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
                               <div
-                                className="h-full bg-gradient-to-r from-[#E67E22] to-[#0F4C81]"
+                                className="h-full bg-linear-to-r from-[#E67E22] to-[#0F4C81]"
                                 style={{ width: `${100 - stepIndex * 20}%` }}
                               />
                             </div>

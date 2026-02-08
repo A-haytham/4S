@@ -25,18 +25,24 @@ const NotFoundPage = async () => {
   const isAr = locale === "ar";
   const localePrefix = locale === "en" ? "" : `/${locale}`;
 
-  const toLocalePath = (path: string) =>
-    `${localePrefix}${path === "/" ? "" : path}`;
+  const toLocalePath = (path: string) => {
+    if (path === "/") return localePrefix || "/";
+    return `${localePrefix}${path}`;
+  };
 
   const resolvePagePath = (page: string) => {
     if (page.startsWith("/")) return page;
     const map: Record<string, string> = {
       home: "/",
       solutions: "/solutions",
-      "case-studies": "/case-studies",
-      services: "/services",
+      "case-studies": "/",
+      services: "/our-services",
       contact: "/contact-us",
       about: "/about",
+      blog: "/blog",
+      faqs: "/faqs",
+      "our-services": "/our-services",
+      "our-product": "/our-product",
     };
     return map[page] ?? "/";
   };

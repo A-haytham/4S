@@ -37,7 +37,7 @@ export default function Footer() {
 
           {columns.map((column) => (
             <div key={column.title} className="ltr:text-left rtl:text-right">
-              <h4 className="mb-4 font-semibold">{column.title}</h4>
+              <h3 className="mb-4 font-semibold">{column.title}</h3>
               <ul className="space-y-3 text-sm text-gray-300">
                 {column.links.map((link) => (
                   <li key={link}>

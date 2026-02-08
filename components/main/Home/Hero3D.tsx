@@ -31,6 +31,12 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
   const t = useTranslations("home.hero");
   const locale = useLocale();
   const isRTL = locale === "ar";
+  const moduleLabels = t.raw("modules") as {
+    sales: string;
+    finance: string;
+    hr: string;
+    inventory: string;
+  };
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -81,7 +87,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 inline-flex items-center rounded-full border border-blue-200 bg-gradient-to-r from-blue-100 to-cyan-100 px-4 py-2 text-sm font-medium text-[#0F4C81]"
+              className="mb-6 inline-flex items-center rounded-full border border-blue-200 bg-linear-to-r from-blue-100 to-cyan-100 px-4 py-2 text-sm font-medium text-[#0F4C81]"
             >
               <Sparkles size={16} className={isRTL ? "ml-2" : "mr-2"} />
               {t("trustBadge")}
@@ -100,7 +106,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="mb-6 text-3xl font-bold text-transparent sm:text-4xl lg:text-5xl bg-clip-text bg-gradient-to-r from-[#0F4C81] via-[#2B7CB3] to-[#E67E22]"
+              className="mb-6 text-3xl font-bold text-transparent sm:text-4xl lg:text-5xl bg-clip-text bg-linear-to-r from-[#0F4C81] via-[#2B7CB3] to-[#E67E22]"
             >
               {t("subHeadline")}
             </motion.h2>
@@ -122,14 +128,14 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
             >
               <button
                 onClick={() => handlePageChange("contact")}
-                className="group relative flex items-center justify-center rounded-xl bg-gradient-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-4 text-white transition-all hover:shadow-2xl hover:shadow-blue-500/50 hover:rounded-xl "
+                className="group relative flex items-center justify-center rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-4 text-white transition-all hover:shadow-2xl hover:shadow-blue-500/50 hover:rounded-xl "
               >
                 <span className="relative z-10">{t("ctaPrimary")}</span>
                 <ArrowRight
                   size={20}
                   className={`${isRTL ? "mr-2 group-hover:mr-3" : "ml-2 group-hover:ml-3"} relative z-10 transition-all`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#E67E22] to-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-linear-to-r from-[#E67E22] to-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100" />
               </button>
               <button
                 onClick={() => handlePageChange("solutions")}
@@ -147,7 +153,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
             className="relative w-full lg:w-1/2"
             style={{ perspective: "1200px" }}
           >
-            <div className="relative flex h-[600px] w-full items-center justify-center">
+            <div className="relative flex h-150 w-full items-center justify-center">
               <motion.div
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{
@@ -162,25 +168,45 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                     className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-blue-500/70 to-cyan-500/70 backdrop-blur-sm"
                     style={{ transform: "translateZ(96px)" }}
                   >
-                    <Box size={48} className="text-white" />
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <Box size={42} className="text-white" />
+                      <span className="text-xs font-semibold text-white/90">
+                        {moduleLabels.sales}
+                      </span>
+                    </div>
                   </div>
                   <div
                     className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-purple-500/70 to-pink-500/70 backdrop-blur-sm"
                     style={{ transform: "translateZ(-96px) rotateY(180deg)" }}
                   >
-                    <Layers size={48} className="text-white" />
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <Layers size={42} className="text-white" />
+                      <span className="text-xs font-semibold text-white/90">
+                        {moduleLabels.finance}
+                      </span>
+                    </div>
                   </div>
                   <div
                     className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-green-500/70 to-emerald-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateY(90deg) translateZ(96px)" }}
                   >
-                    <Cpu size={48} className="text-white" />
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <Cpu size={42} className="text-white" />
+                      <span className="text-xs font-semibold text-white/90">
+                        {moduleLabels.hr}
+                      </span>
+                    </div>
                   </div>
                   <div
                     className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-orange-500/70 to-red-500/70 backdrop-blur-sm"
                     style={{ transform: "rotateY(-90deg) translateZ(96px)" }}
                   >
-                    <Network size={48} className="text-white" />
+                    <div className="flex flex-col items-center gap-2 text-center">
+                      <Network size={42} className="text-white" />
+                      <span className="text-xs font-semibold text-white/90">
+                        {moduleLabels.inventory}
+                      </span>
+                    </div>
                   </div>
                   <div
                     className="absolute h-48 w-48 border-2 border-white/50 bg-linear-to-br from-yellow-500/70 to-orange-500/70 backdrop-blur-sm"
@@ -235,7 +261,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               ))}
 
               <motion.div
-                className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2"
                 animate={{ rotateZ: [0, 360] }}
                 transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
               >

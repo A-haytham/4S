@@ -23,7 +23,13 @@
       "subHeadline": "Not the Other Way Around",
       "description": "Implementation, customization, and support that give you real-time visibility and control over your entire operation.",
       "ctaPrimary": "Request a Demo",
-      "ctaSecondary": "Explore Solutions"
+      "ctaSecondary": "Explore Solutions",
+      "modules": {
+        "sales": "Sales",
+        "finance": "Finance",
+        "hr": "Human Resources",
+        "inventory": "Inventory"
+      }
     },
     "highlights": {
       "items": [
@@ -341,6 +347,14 @@
           {
             "question": "Can I start with a few modules and expand later?",
             "answer": "Yes. The platform is modular so you can add capabilities as your business grows."
+          },
+          {
+            "question": "Is there a mobile app?",
+            "answer": "Yes, teams can access key workflows and dashboards from mobile devices."
+          },
+          {
+            "question": "Do you support Arabic and English?",
+            "answer": "Yes. The platform supports Arabic and English across the UI and reports."
           }
         ]
       },
@@ -360,6 +374,14 @@
           {
             "question": "How do you train our teams?",
             "answer": "Training is role-based with workshops, documentation, and post-launch enablement."
+          },
+          {
+            "question": "How long is the typical rollout?",
+            "answer": "Most projects complete in 8?16 weeks depending on scope and integrations."
+          },
+          {
+            "question": "Will you assign a project manager?",
+            "answer": "Yes. A dedicated project manager coordinates timelines, milestones, and training."
           }
         ]
       },
@@ -379,6 +401,14 @@
           {
             "question": "Do you offer backups and disaster recovery?",
             "answer": "Yes. We design backup, recovery, and continuity plans aligned to your SLA."
+          },
+          {
+            "question": "Who can access our data?",
+            "answer": "Access is role-based with audit logs to track activity."
+          },
+          {
+            "question": "Is data encrypted in transit and at rest?",
+            "answer": "Yes. We use industry-standard encryption for data protection."
           }
         ]
       },
@@ -398,6 +428,41 @@
           {
             "question": "Can we get a custom quote?",
             "answer": "Yes. Contact us for a tailored proposal based on your scope and timeline."
+          },
+          {
+            "question": "Do you offer monthly or annual billing?",
+            "answer": "We can structure billing to match your procurement process and timeline."
+          },
+          {
+            "question": "Can I start small and scale pricing later?",
+            "answer": "Yes. Pricing scales with modules and users as you grow."
+          }
+        ]
+      },
+      {
+        "id": "websites",
+        "name": "Websites",
+        "icon": "basics",
+        "faqs": [
+          {
+            "question": "Do you build modern websites?",
+            "answer": "Yes. We design and build modern, high-performance websites tailored to your brand."
+          },
+          {
+            "question": "What tech stack do you use for websites?",
+            "answer": "We build with Next.js and React, and choose the best tools for performance and SEO."
+          },
+          {
+            "question": "Can you handle design and development?",
+            "answer": "Absolutely. We cover discovery, UX/UI design, development, and launch."
+          },
+          {
+            "question": "Do you optimize for SEO and performance?",
+            "answer": "Yes. We focus on Core Web Vitals, clean code, and SEO best practices."
+          },
+          {
+            "question": "Can you maintain and update the website after launch?",
+            "answer": "Yes. We offer ongoing updates, content support, and improvements as needed."
           }
         ]
       }
@@ -992,5 +1057,40 @@
     "map": {
       "label": "Map location"
     }
+  },
+  "blogs": {
+    "hero": {
+      "title": "Insights & Resources",
+      "description": "Practical guides, trends, and case studies to help you lead with clarity."
+    },
+    "search": {
+      "placeholder": "Search articles..."
+    },
+    "filters": {
+      "title": "Filter by"
+    },
+    "categories": {
+      "all": "All",
+      "erp": "ERP",
+      "finance": "Finance",
+      "inventory": "Inventory",
+      "hr": "HR",
+      "integrations": "Integrations",
+      "caseStudies": "Case Studies"
+    },
+    "readMore": "Read more",
+    "minRead": "min read",
+    "loadMore": "Load more",
+    "noResults": "No articles found.",
+    "cta": {
+      "title": "Ready to modernize your operations?",
+      "description": "Talk to our team about the right ERP setup for your business.",
+      "button": "Request a Demo"
+    },
+    "postNotFound": "Blog post not found",
+    "backToBlogs": "Back to Blogs",
+    "tableOfContents": "Table of Contents",
+    "shareArticle": "Share this article",
+    "relatedPosts": "Related articles"
   }
 }

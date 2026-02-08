@@ -14,7 +14,7 @@ export default function SupportTiersSection() {
   const tiers = t.raw("tiers") as SupportTier[];
 
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-20">
+    <section className="bg-linear-to-b from-gray-50 to-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -54,7 +54,7 @@ export default function SupportTiersSection() {
                   >
                     <CheckCircle
                       size={20}
-                      className={`mt-0.5 flex-shrink-0 ${
+                      className={`mt-0.5 shrink-0 ${
                         tier.featured ? "text-green-300" : "text-green-500"
                       }`}
                     />

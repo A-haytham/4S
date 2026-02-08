@@ -122,7 +122,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
 
                   {isSubmitted ? (
                     <div className="mb-6 flex items-center space-x-3 rounded-xl border border-green-200 bg-green-50 p-4 rtl:space-x-reverse">
-                      <CheckCircle size={24} className="flex-shrink-0 text-green-500" />
+                      <CheckCircle size={24} className="shrink-0 text-green-500" />
                       <p className="text-green-700">{copy.form.success}</p>
                     </div>
                   ) : null}
@@ -258,7 +258,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
               </div>
 
               <div className="space-y-6">
-                <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 p-8">
+                <div className="rounded-2xl bg-linear-to-br from-blue-50 to-blue-100 p-8">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F4C81]">
                     <Phone size={24} className="text-white" />
                   </div>
@@ -284,7 +284,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-gradient-to-br from-green-50 to-green-100 p-8">
+                <div className="rounded-2xl bg-linear-to-br from-green-50 to-green-100 p-8">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-green-600">
                     <Mail size={24} className="text-white" />
                   </div>
@@ -310,7 +310,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-purple-100 p-8">
+                <div className="rounded-2xl bg-linear-to-br from-purple-50 to-purple-100 p-8">
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600">
                     <MapPin size={24} className="text-white" />
                   </div>

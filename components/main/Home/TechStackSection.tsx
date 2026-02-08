@@ -79,7 +79,7 @@ export default function TechStackSection() {
                 <h3 className="relative mb-1 text-lg font-semibold text-white">{tech.name}</h3>
                 <p className="relative text-sm text-gray-400">{tech.description}</p>
 
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#E67E22] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#E67E22] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
             );
           })}

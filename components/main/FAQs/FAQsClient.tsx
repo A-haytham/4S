@@ -157,7 +157,7 @@ export default function FAQsClient({ copy, isRTL }: FAQsClientProps) {
         </Reveal>
       </section>
 
-      <section className="sticky top-[184px] z-10 border-b border-gray-200 bg-white">
+      <section className="sticky top-46 z-10 border-b border-gray-200 bg-white">
         <Reveal>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex overflow-x-auto py-4">
@@ -221,7 +221,7 @@ export default function FAQsClient({ copy, isRTL }: FAQsClientProps) {
                           </h3>
                           <ChevronDown
                             size={22}
-                            className={`flex-shrink-0 text-[#0F4C81] transition-transform duration-300 ${
+                            className={`shrink-0 text-[#0F4C81] transition-transform duration-300 ${
                               isExpanded ? "rotate-180" : ""
                             }`}
                           />
@@ -229,12 +229,12 @@ export default function FAQsClient({ copy, isRTL }: FAQsClientProps) {
                         <div
                           className={`transition-all duration-300 ease-in-out ${
                             isExpanded
-                              ? "max-h-[1000px] opacity-100"
+                              ? "max-h-250 opacity-100"
                               : "max-h-0 opacity-0"
                           }`}
                           style={{ overflow: "hidden" }}
                         >
-                          <div className="px-6 pb-6 pt-2">
+                          <div className="px-6 pb-6 pt-4">
                             <p className="text-base leading-relaxed text-gray-700">
                               {faq.answer}
                             </p>

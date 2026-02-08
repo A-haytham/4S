@@ -7,6 +7,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import Reveal from "@/components/ui/Reveal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,7 +42,9 @@ export default async function RootLayout({
           <NextIntlClientProvider messages={messages}>
             <Navbar/>
             {children}
-            <Footer/>
+            <Reveal>
+              <Footer/>
+            </Reveal>
           </NextIntlClientProvider>
         </div>
       </body>

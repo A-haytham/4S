@@ -5,17 +5,32 @@ import PartnersSection from "./PartnersSection";
 import StorySection from "./StorySection";
 import TeamSection from "./TeamSection";
 import ValuesSection from "./ValuesSection";
+import Reveal from "@/components/ui/Reveal";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
-      <HeroSection />
-      <StorySection />
-      <MissionSection />
-      <ValuesSection />
-      <TeamSection />
-      <PartnersSection />
-      <CtaSection />
+      <Reveal>
+        <HeroSection />
+      </Reveal>
+      <Reveal>
+        <StorySection />
+      </Reveal>
+      <Reveal>
+        <MissionSection />
+      </Reveal>
+      <Reveal>
+        <ValuesSection />
+      </Reveal>
+      <Reveal>
+        <TeamSection />
+      </Reveal>
+      <Reveal>
+        <PartnersSection />
+      </Reveal>
+      <Reveal>
+        <CtaSection />
+      </Reveal>
     </main>
   );
 }

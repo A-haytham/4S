@@ -6,6 +6,7 @@ const links = [
   { key: "caseStudies", href: "/" },
   { key: "about", href: "/about" },
   { key: "solutions", href: "/solutions" },
+  { key: "faqs", href: "/faqs" },
   { key: "contact", href: "/contact-us" },
   { key: "blog", href: "/blog" },
   { key: "services", href: "/our-services" },

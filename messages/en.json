@@ -6,6 +6,7 @@
     "contact": "Contact",
     "about": "About",
     "blog": "Blog",
+    "faqs": "FAQs",
     "talkToUs": "Talk to us",
     "requestDemo": "Request a Demo",
     "brand": "4S Systems",
@@ -280,6 +281,25 @@
         }
       ]
     },
+    "faqsSection": {
+      "title": "Frequently Asked Questions",
+      "description": "Quick answers to the most common questions about our ERP platform.",
+      "viewAll": "View all FAQs",
+      "faqs": [
+        {
+          "question": "How long does an ERP implementation take?",
+          "answer": "Most projects go live in 8-16 weeks depending on scope, data readiness, and integrations."
+        },
+        {
+          "question": "Can 4S Systems integrate with our existing tools?",
+          "answer": "Yes. We support API integrations, data sync, and custom connectors based on your stack."
+        },
+        {
+          "question": "Do you provide training and ongoing support?",
+          "answer": "Absolutely. We offer onboarding, role-based training, and continuous support plans."
+        }
+      ]
+    },
     "cta": {
       "title": "Ready to Modernize Your Operations?",
       "description": "Join hundreds of businesses that trust 4S Systems for their ERP needs.",
@@ -293,6 +313,101 @@
           "variant": "secondary"
         }
       ]
+    }
+  },
+  "faqs": {
+    "hero": {
+      "title": "FAQs",
+      "description": "Everything you need to know about implementation, security, and pricing."
+    },
+    "search": {
+      "placeholder": "Search questions...",
+      "noResults": "No results found."
+    },
+    "categories": [
+      {
+        "id": "basics",
+        "name": "Getting Started",
+        "icon": "basics",
+        "faqs": [
+          {
+            "question": "What is 4S Systems?",
+            "answer": "4S Systems is an ERP platform and services team that helps businesses modernize operations and reporting."
+          },
+          {
+            "question": "Which industries do you serve?",
+            "answer": "We serve manufacturing, retail, distribution, services, and other operations-heavy businesses."
+          },
+          {
+            "question": "Can I start with a few modules and expand later?",
+            "answer": "Yes. The platform is modular so you can add capabilities as your business grows."
+          }
+        ]
+      },
+      {
+        "id": "implementation",
+        "name": "Implementation",
+        "icon": "implementation",
+        "faqs": [
+          {
+            "question": "What does the implementation process look like?",
+            "answer": "We start with discovery, configure modules, migrate data, train teams, and support go-live."
+          },
+          {
+            "question": "Do you handle data migration?",
+            "answer": "Yes. We plan, clean, and migrate data with validation and parallel testing."
+          },
+          {
+            "question": "How do you train our teams?",
+            "answer": "Training is role-based with workshops, documentation, and post-launch enablement."
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "Security",
+        "icon": "security",
+        "faqs": [
+          {
+            "question": "How is our data protected?",
+            "answer": "We use secure access controls, encryption, and best-practice monitoring."
+          },
+          {
+            "question": "Can we host on-premise or in the cloud?",
+            "answer": "Yes. We support both deployment models based on your requirements."
+          },
+          {
+            "question": "Do you offer backups and disaster recovery?",
+            "answer": "Yes. We design backup, recovery, and continuity plans aligned to your SLA."
+          }
+        ]
+      },
+      {
+        "id": "pricing",
+        "name": "Pricing",
+        "icon": "pricing",
+        "faqs": [
+          {
+            "question": "How is pricing structured?",
+            "answer": "Pricing depends on modules, users, and deployment. We provide clear tiered proposals."
+          },
+          {
+            "question": "Are there any setup or onboarding fees?",
+            "answer": "Implementation services are scoped separately so you only pay for what you need."
+          },
+          {
+            "question": "Can we get a custom quote?",
+            "answer": "Yes. Contact us for a tailored proposal based on your scope and timeline."
+          }
+        ]
+      }
+    ],
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "cta": {
+      "title": "Still have questions?",
+      "description": "Our team is ready to walk you through the best setup for your business.",
+      "button": "Talk to our team"
     }
   },
   "solutions": {
@@ -825,6 +940,57 @@
       "description": "Become part of the 4S Systems success story.",
       "primary": "Get Started",
       "secondary": "View Career Opportunities"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Talk to Our Team",
+      "description": "Tell us about your goals and we will help you choose the right ERP setup."
+    },
+    "form": {
+      "title": "Send us a message",
+      "success": "Thanks! We will get back to you shortly.",
+      "name": "Full name",
+      "company": "Company name",
+      "email": "Work email",
+      "phone": "Phone number",
+      "message": "Message",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "placeholders": {
+        "name": "Ahmed Haytham",
+        "company": "Company Name",
+        "email": "john@company.com",
+        "phone": "+966 XX XXX XXXX",
+        "message": "Tell us about your business needs..."
+      },
+      "errors": {
+        "name": "Name is required",
+        "company": "Company name is required",
+        "email": "Email is required",
+        "emailInvalid": "Invalid email format",
+        "phone": "Phone number is required",
+        "message": "Message is required"
+      }
+    },
+    "sales": {
+      "title": "Sales",
+      "description": "Talk to sales about demos, pricing, and onboarding.",
+      "email": "sales@4ssystems.com",
+      "phone": "+966 11 000 0000"
+    },
+    "support": {
+      "title": "Support",
+      "description": "Need help with your current system? Our team is here.",
+      "email": "support@4ssystems.com",
+      "phone": "+966 11 000 1111"
+    },
+    "location": {
+      "title": "Our office",
+      "address": "Dubai, UAE"
+    },
+    "map": {
+      "label": "Map location"
     }
   }
 }

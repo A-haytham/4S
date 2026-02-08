@@ -25,8 +25,145 @@ body {
   font-family: "Inter", sans-serif ;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 16px), 0);
+  transition-property: opacity, transform;
+  transition-duration: var(--reveal-duration, 600ms);
+  transition-delay: var(--reveal-delay, 0ms);
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.reveal--up {
+  --reveal-y: 16px;
+}
+
+.reveal--down {
+  --reveal-y: -16px;
+}
+
+.reveal--left {
+  --reveal-x: 16px;
+}
+
+.reveal--right {
+  --reveal-x: -16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-pulse-slow,
+  .animate-rotate-slow,
+  .animate-rotate-reverse,
+  .animate-fade-in,
+  .animate-fade-in-delayed {
+    animation: none !important;
+  }
+}
+
 .modal-scroll {
   scrollbar-width: auto;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 14s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 16s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.animate-pulse-slow {
+  animation: pulseSoft 10s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+
+.animate-rotate-reverse {
+  animation: rotateReverse 24s linear infinite;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 800ms ease-out forwards;
+}
+
+.animate-fade-in-delayed {
+  opacity: 0;
+  animation: fadeIn 900ms ease-out forwards;
+  animation-delay: 150ms;
 }
 
 @media (min-width: 1024px) {

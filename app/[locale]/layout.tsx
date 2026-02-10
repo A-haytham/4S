@@ -5,9 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import Reveal from "@/components/ui/Reveal";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,11 +38,7 @@ export default async function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <div className="min-h-svh">
           <NextIntlClientProvider messages={messages}>
-            <Navbar/>
-            {children}
-            <Reveal>
-              <Footer/>
-            </Reveal>
+            <SiteChrome>{children}</SiteChrome>
           </NextIntlClientProvider>
         </div>
       </body>

@@ -33,9 +33,9 @@ export default function Reveal({
     ["--reveal-delay" as string]: `${delay}ms`,
     ["--reveal-duration" as string]: `${duration}ms`,
     opacity: isInView ? 1 : 0,
-    transform: isInView ? "translate3d(0, 0, 0)" : hiddenTransforms[direction],
+    transform: isInView ? "none" : hiddenTransforms[direction],
     transition: `opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms`,
-    willChange: "opacity, transform",
+    willChange: isInView ? "auto" : "opacity, transform",
   };
 
   const classes = [

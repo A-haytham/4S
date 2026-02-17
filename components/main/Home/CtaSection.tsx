@@ -13,6 +13,16 @@ export default function HomeCtaSection({ title, description, buttons }: CtaSecti
   const resolvedTitle = title ?? t("title");
   const resolvedDescription = description ?? t("description");
   const resolvedButtons = buttons ?? (t.raw("buttons") as CtaButton[]);
+  // Ensure CTA buttons navigate somewhere by default:
+  // - primary (not 'secondary') -> contact page
+  // - secondary -> solutions/modules
+  const finalButtons = resolvedButtons.map((b) => {
+    if (b.href) return b;
+    return {
+      ...b,
+      href: b.variant === "secondary" ? "/solutions" : "/contact-us",
+    } as CtaButton;
+  });
 
   return (
     <CtaSection
@@ -21,7 +31,7 @@ export default function HomeCtaSection({ title, description, buttons }: CtaSecti
       size="md"
       title={resolvedTitle}
       description={resolvedDescription}
-      buttons={resolvedButtons}
+      buttons={finalButtons}
     />
   );
 }

@@ -10,6 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 const iconMap = {
   dollar: DollarSign,
@@ -54,13 +55,16 @@ export default function ModulesSection() {
             );
           })}
         </div>
-        <button className="group mt-10 inline-flex items-center rounded-xl bg-[#0F4C81] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#083A61] hover:shadow-lg">
+        <Link
+          href="/solutions"
+          className="group mt-10 inline-flex items-center rounded-xl bg-[#0F4C81] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#083A61] hover:shadow-lg"
+        >
           {t("cta")}
           <ArrowRight
             size={18}
             className="ml-2 transition-transform group-hover:translate-x-1 rtl:ml-0 rtl:mr-2 rtl:rotate-180 rtl:group-hover:-translate-x-1"
           />
-        </button>
+        </Link>
       </div>
     </section>
   );

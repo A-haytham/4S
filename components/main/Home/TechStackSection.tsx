@@ -1,4 +1,4 @@
-import { Blocks, Cloud, Code2, Database, Server, Zap } from "lucide-react";
+import { Blocks, Cloud, Code2, Database, Server, Zap, Apple } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const techIcons: Record<string, { icon: typeof Code2; color: string }> = {
@@ -10,6 +10,9 @@ const techIcons: Record<string, { icon: typeof Code2; color: string }> = {
   APIs: { icon: Zap, color: "from-green-500 to-emerald-600" },
   React: { icon: Blocks, color: "from-sky-400 to-cyan-600" },
   "Next.js": { icon: Code2, color: "from-slate-600 to-slate-900" },
+  iOS: { icon: Apple, color: "from-slate-600 to-slate-800" },
+  Flutter: { icon: Blocks, color: "from-cyan-400 to-blue-500" },
+  Android: { icon: Code2, color: "from-green-400 to-green-600" },
 };
 
 const highlightStyles = {

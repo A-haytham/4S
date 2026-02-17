@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Box, Cpu, Layers, Network, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
 const particles = [
@@ -126,17 +127,17 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
               transition={{ delay: 0.6 }}
               className="flex flex-col gap-4 sm:flex-row"
             >
-              <button
-                onClick={() => handlePageChange("contact")}
-                className="group relative flex items-center justify-center rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-4 text-white transition-all hover:shadow-2xl hover:shadow-blue-500/50 hover:rounded-xl "
+              <Link
+                href="/contact-us"
+                className="group relative flex items-center justify-center rounded-xl overflow-hidden bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-8 py-4 text-white transition-all hover:shadow-2xl hover:shadow-blue-500/50"
               >
                 <span className="relative z-10">{t("ctaPrimary")}</span>
                 <ArrowRight
                   size={20}
                   className={`${isRTL ? "mr-2 group-hover:mr-3" : "ml-2 group-hover:ml-3"} relative z-10 transition-all`}
                 />
-                <div className="absolute inset-0 bg-linear-to-r from-[#E67E22] to-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100" />
-              </button>
+                <div className="absolute inset-0 rounded-xl bg-linear-to-r from-[#E67E22] to-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100" />
+              </Link>
               <button
                 onClick={() => handlePageChange("solutions")}
                 className="rounded-xl border-2 border-[#0F4C81] px-8 py-4 text-[#0F4C81] transition-all hover:bg-blue-50"

@@ -172,6 +172,19 @@
           "name": "Next.js",
           "description": "SEO-ready web experiences with server rendering."
         }
+        ,
+        {
+          "name": "iOS",
+          "description": "Native iOS development for performant mobile experiences."
+        },
+        {
+          "name": "Flutter",
+          "description": "Cross-platform apps with a single codebase for iOS and Android."
+        },
+        {
+          "name": "Android",
+          "description": "Native Android solutions for device-specific integrations."
+        }
       ],
       "highlights": [
         {
@@ -315,7 +328,7 @@
           "variant": "primary"
         },
         {
-          "label": "Download the Brochure",
+          "label": "Explore Our Solutions",
           "variant": "secondary"
         }
       ]

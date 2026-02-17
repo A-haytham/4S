@@ -8,8 +8,8 @@ export default function Footer() {
   return (
     <footer className="bg-linear-to-br from-gray-900 via-[#0F4C81] to-gray-900 text-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-6">
-          <div className="lg:col-span-2">
+        <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-6">
+          <div className="col-span-2 lg:col-span-2">
             <div className="mb-4 flex items-center gap-2 rtl:gap-0 rtl:space-x-reverse">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
                 <span className="text-xl font-bold text-[#0F4C81]">4S</span>

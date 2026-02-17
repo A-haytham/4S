@@ -172,6 +172,19 @@
           "name": "Next.js",
           "description": "تجارب ويب سريعة مع تحسين SEO وSSR."
         }
+         ,
+        {
+    "name": "iOS",
+    "description": "تطوير iOS أصلي لتجارب موبايل سريعة وعالية الأداء."
+  },
+  {
+    "name": "Flutter",
+    "description": "تطبيقات متعددة المنصات بقاعدة كود واحدة لـ iOS وAndroid."
+  },
+  {
+    "name": "Android",
+    "description": "حلول Android أصلية لدمج خصائص الجهاز والتكاملات الخاصة به."
+  }
       ],
       "highlights": [
         {
@@ -315,7 +328,7 @@
           "variant": "primary"
         },
         {
-          "label": "تحميل الكتيب",
+          "label": "استكشف حلولنا",
           "variant": "secondary"
         }
       ]
@@ -1087,10 +1100,10 @@
       "description": "تحدث مع فريقنا لاختيار إعداد نظام ERP المناسب لعملك.",
       "button": "اطلب عرضًا توضيحيًا"
     },
-    "postNotFound": "?????? ??? ?????",
-    "backToBlogs": "?????? ??? ???????",
-    "tableOfContents": "??????? ??????",
-    "shareArticle": "?????? ??????",
-    "relatedPosts": "?????? ??? ???"
+      "postNotFound": "لم يتم العثور على المقال",
+  "backToBlogs": "العودة إلى المدونة",
+  "tableOfContents": "جدول المحتويات",
+  "shareArticle": "شارك هذا المقال",
+  "relatedPosts": "مقالات ذات صلة"
   }
 }

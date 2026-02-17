@@ -24,7 +24,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 shadow-sm backdrop-blur">
+    <header
+      className="sticky top-0 z-50 border-b border-gray-100 shadow-sm backdrop-blur"
+      style={{ backgroundColor: "color-mix(in oklab, #ffffff00 90%, transparent)" }}
+    >
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center">
@@ -63,12 +66,18 @@ export default function Navbar() {
           >
             {switchLabel}
           </Link>
-          <button className="hidden rounded-lg px-4 py-2 text-sm text-[#0F4C81] transition-colors hover:bg-gray-50 md:inline-flex">
+          <Link
+            href="/contact-us"
+            className="hidden rounded-lg px-4 py-2 text-sm text-[#0F4C81] transition-colors hover:bg-gray-50 md:inline-flex"
+          >
             {t("talkToUs")}
-          </button>
-          <button className="rounded-lg bg-[#0F4C81] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#083A61] hover:shadow-lg">
+          </Link>
+          <Link
+            href="/contact-us"
+            className="rounded-lg bg-[#0F4C81] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-[#083A61] hover:shadow-lg"
+          >
             {t("requestDemo")}
-          </button>
+          </Link>
           <button
             type="button"
             aria-label={isOpen ? "Close menu" : "Open menu"}

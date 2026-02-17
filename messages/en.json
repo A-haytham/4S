@@ -52,23 +52,23 @@
     },
     "why": {
       "title": "Why 4S Systems?",
-      "subtitle": "Built for businesses that demand more from their ERP.",
+      "subtitle": "Built for companies looking to get greater performance and capabilities from their ERP system.",
       "items": [
         {
-          "title": "Proven Implementation",
-          "description": "Delivering successful ERP deployments across industries."
+          "title": "Implementation",
+          "description": "We have an expert team, so we help you set up your system and run it on time and within budget."
         },
         {
-          "title": "Full Customization",
-          "description": "Tailored workflows that align with your exact business model."
+          "title": "Customization",
+          "description": "We know you have unique business requirements, so we translate them into your ERP system."
         },
         {
-          "title": "Local Expertise",
-          "description": "Deep understanding of compliance, taxes, and regional needs."
+          "title": "Development",
+          "description": "Development of functionalities and additional modules for ERP."
         },
         {
-          "title": "24/7 Support",
-          "description": "Dedicated team available around the clock for your success."
+          "title": "Support",
+          "description": "We will be with you 24/7. If you face any issue with your ERP, we solve it as soon as possible."
         }
       ]
     },

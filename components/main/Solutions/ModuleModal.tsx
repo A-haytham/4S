@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Play, X } from "lucide-react";
+import { CheckCircle2, FileText, Play, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
@@ -68,10 +68,12 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
   const embedUrl = videoUrl
     ? `${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1`
     : "";
+  const modulePdfHref =
+    "/modules-pdf/%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%89.pdf";
 
   return (
     <div
-      className="fixed inset-0 z-[100] overflow-y-auto bg-black/60 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 p-4 backdrop-blur-sm"
       onClick={onClose}
       dir={isRTL ? "rtl" : "ltr"}
     >
@@ -169,6 +171,15 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
             </div>
 
             <div className="flex flex-wrap gap-4 border-t border-gray-200 pt-6 ltr:justify-start rtl:justify-end">
+              <a
+                href={modulePdfHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-all hover:border-[#0F4C81] hover:text-[#0F4C81]"
+              >
+                <FileText className="h-4 w-4" />
+                <span>Open Module PDF</span>
+              </a>
               <Link
                 href="/contact-us"
                 onClick={onClose}

@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { AlertCircle } from "lucide-react";
+import { loginAdmin } from "./blogsApi";
 
 type AdminLoginProps = {
-  onLogin: () => void;
+  onLogin: (token: string) => void;
 };
 
 export function AdminLogin({ onLogin }: AdminLoginProps) {
@@ -13,19 +14,19 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError("");
     setLoading(true);
 
-    window.setTimeout(() => {
-      if (email === "admin@4ssystems.com" && password === "admin123") {
-        onLogin();
-      } else {
-        setError("Invalid email or password");
-      }
+    try {
+      const token = await loginAdmin(email, password);
+      onLogin(token);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Invalid email or password");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -138,9 +139,9 @@ export function AdminLogin({ onLogin }: AdminLoginProps) {
           </form>
 
           <div className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
-            <p className="mb-1 text-xs font-medium text-blue-800">Demo Credentials:</p>
-            <p className="text-xs text-blue-700">Email: admin@4ssystems.com</p>
-            <p className="text-xs text-blue-700">Password: admin123</p>
+            <p className="text-xs text-blue-800">
+              Use your backend admin credentials to authenticate and manage blogs.
+            </p>
           </div>
         </div>
       </div>

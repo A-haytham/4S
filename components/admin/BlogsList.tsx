@@ -5,18 +5,21 @@ import { Edit2, Plus, Search, Trash2 } from "lucide-react";
 
 export type Blog = {
   id: string;
-  title: string;
   slug: string;
-  excerpt: string;
-  content: string;
-  category: string;
+  titleEn: string;
+  titleAr: string;
+  briefEn: string;
+  briefAr: string;
+  contentEn: string;
+  contentAr: string;
   coverImage: string;
+  category: string;
   status: "draft" | "published";
   publishDate: string;
-  metaTitle: string;
-  metaDescription: string;
-  author: string;
-  readTime: string;
+  metaTitleEn: string;
+  metaTitleAr: string;
+  metaDescriptionEn: string;
+  metaDescriptionAr: string;
 };
 
 type BlogsListProps = {
@@ -32,11 +35,19 @@ export function BlogsList({ blogs, onEdit, onDelete, onCreateNew }: BlogsListPro
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   const itemsPerPage = 10;
-  const filteredBlogs = blogs.filter(
-    (blog) =>
-      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const query = searchQuery.toLowerCase();
+  const filteredBlogs = blogs.filter((blog) => {
+    const titleEn = blog.titleEn.toLowerCase();
+    const titleAr = blog.titleAr.toLowerCase();
+    const briefEn = blog.briefEn.toLowerCase();
+    const briefAr = blog.briefAr.toLowerCase();
+    return (
+      titleEn.includes(query) ||
+      titleAr.includes(query) ||
+      briefEn.includes(query) ||
+      briefAr.includes(query)
+    );
+  });
   const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / itemsPerPage));
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedBlogs = filteredBlogs.slice(startIndex, startIndex + itemsPerPage);
@@ -73,7 +84,7 @@ export function BlogsList({ blogs, onEdit, onDelete, onCreateNew }: BlogsListPro
           <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search blogs by title or category..."
+            placeholder="Search blogs by title..."
             value={searchQuery}
             onChange={(event) => {
               setSearchQuery(event.target.value);
@@ -124,9 +135,6 @@ export function BlogsList({ blogs, onEdit, onDelete, onCreateNew }: BlogsListPro
                       Title
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
-                      Category
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Status
                     </th>
                     <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
@@ -144,19 +152,21 @@ export function BlogsList({ blogs, onEdit, onDelete, onCreateNew }: BlogsListPro
                         <div className="flex items-start gap-3">
                           <img
                             src={blog.coverImage}
-                            alt={blog.title}
+                            alt={blog.titleEn || blog.titleAr}
                             className="h-12 w-12 flex-shrink-0 rounded-lg object-cover"
                           />
                           <div className="min-w-0">
-                            <p className="truncate font-medium text-gray-900">{blog.title}</p>
-                            <p className="truncate text-sm text-gray-500">{blog.excerpt}</p>
+                            <p className="truncate font-medium text-gray-900">
+                              {blog.titleEn || blog.titleAr}
+                            </p>
+                            <p className="truncate text-sm text-gray-600">
+                              {blog.titleAr || blog.titleEn}
+                            </p>
+                            <p className="truncate text-sm text-gray-500">
+                              {blog.briefEn || blog.briefAr}
+                            </p>
                           </div>
                         </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
-                          {blog.category}
-                        </span>
                       </td>
                       <td className="px-6 py-4">
                         <span

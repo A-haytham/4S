@@ -1,11 +1,9 @@
-
-
-function page() {
+function OurProductPage() {
   return (
     <div>
       
     </div>
-  )
+  );
 }
 
-export default page
+export default OurProductPage;

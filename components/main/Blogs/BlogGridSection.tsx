@@ -93,6 +93,8 @@ type BlogCardProps = {
   };
 };
 
+const isImageUrl = (value: string) => /^(https?:\/\/|\/)/i.test(value.trim());
+
 function BlogCard({ post, locale, isRTL, labels }: BlogCardProps) {
   const title = post.title[locale] ?? post.title.en ?? "";
   const excerpt = post.excerpt[locale] ?? post.excerpt.en ?? "";
@@ -110,9 +112,21 @@ function BlogCard({ post, locale, isRTL, labels }: BlogCardProps) {
     <article className="group overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl">
       <Link href={`/blog/${post.slug}`} className="block w-full text-left">
         <div className="relative h-48 overflow-hidden bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
-          <div className="absolute inset-0 flex items-center justify-center text-white/80">
-            <span className="text-sm font-medium">{post.image}</span>
-          </div>
+          {isImageUrl(post.image) ? (
+            <img
+              src={post.image}
+              alt={title}
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              loading="lazy"
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-white/80">
+              <span className="text-sm font-medium">{post.image}</span>
+            </div>
+          )}
           <div className="absolute left-4 top-4">
             <span className="rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-[#0F4C81] backdrop-blur-sm">
               {categoryLabel}

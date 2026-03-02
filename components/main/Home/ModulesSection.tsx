@@ -1,3 +1,5 @@
+"use client";
+
 import {
   ArrowRight,
   BarChart,
@@ -11,6 +13,8 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useState } from "react";
+import ModuleModal from "../Solutions/ModuleModal";
 
 const iconMap = {
   dollar: DollarSign,
@@ -23,6 +27,17 @@ const iconMap = {
   zap: Zap,
 };
 
+const iconToModuleKey = {
+  dollar: "finance",
+  package: "inventory",
+  trending: "sales",
+  cart: "procurement",
+  users: "hr",
+  settings: "manufacturing",
+  chart: "reporting",
+  zap: "integrations",
+} as const;
+
 type ModuleItem = {
   title: string;
   description: string;
@@ -32,6 +47,8 @@ type ModuleItem = {
 export default function ModulesSection() {
   const t = useTranslations("home.modules");
   const items = t.raw("items") as ModuleItem[];
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const fallbackKey = iconToModuleKey[items[0]?.icon] ?? "finance";
 
   return (
     <section id="solutions" className="bg-linear-to-br from-gray-50 to-white py-20">
@@ -41,9 +58,13 @@ export default function ModulesSection() {
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {items.map((module) => {
             const Icon = iconMap[module.icon] ?? Settings;
+            const moduleKey = iconToModuleKey[module.icon] ?? fallbackKey;
+
             return (
-              <div
+              <button
                 key={module.title}
+                type="button"
+                onClick={() => setSelectedKey(moduleKey)}
                 className="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0F4C81] hover:shadow-xl ltr:text-left rtl:text-right"
               >
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-[#0F4C81] transition-colors group-hover:bg-[#0F4C81] group-hover:text-white rtl:ml-auto">
@@ -51,7 +72,7 @@ export default function ModulesSection() {
                 </div>
                 <h3 className="text-base font-semibold text-gray-900">{module.title}</h3>
                 <p className="mt-2 text-sm text-gray-600">{module.description}</p>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -66,6 +87,12 @@ export default function ModulesSection() {
           />
         </Link>
       </div>
+
+      <ModuleModal
+        isOpen={selectedKey !== null}
+        onClose={() => setSelectedKey(null)}
+        moduleKey={selectedKey ?? fallbackKey}
+      />
     </section>
   );
 }

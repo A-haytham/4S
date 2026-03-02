@@ -4,9 +4,15 @@ type DashboardOverviewProps = {
   blogsCount: number;
   faqsCount: number;
   contactsCount: number;
+  onQuickAction: (page: "blogs-edit" | "faqs-edit" | "contacts") => void;
 };
 
-export function DashboardOverview({ blogsCount, faqsCount, contactsCount }: DashboardOverviewProps) {
+export function DashboardOverview({
+  blogsCount,
+  faqsCount,
+  contactsCount,
+  onQuickAction,
+}: DashboardOverviewProps) {
   const stats = [
     {
       id: "blogs",
@@ -89,7 +95,7 @@ export function DashboardOverview({ blogsCount, faqsCount, contactsCount }: Dash
     <div className="space-y-6">
       <div className="rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] p-8 text-white">
         <h1 className="mb-2 text-3xl font-bold">Welcome back, Admin!</h1>
-        <p className="text-blue-100">Here's what's happening with your content today.</p>
+        <p className="text-blue-100">Here&apos;s what&apos;s happening with your content today.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -139,21 +145,33 @@ export function DashboardOverview({ blogsCount, faqsCount, contactsCount }: Dash
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <div className="group cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-[#0F4C81]">
+        <button
+          type="button"
+          onClick={() => onQuickAction("blogs-edit")}
+          className="group rounded-xl border border-gray-200 bg-white p-6 text-left transition-colors hover:border-[#0F4C81]"
+        >
           <FileText className="mb-3 h-8 w-8 text-[#0F4C81] transition-transform group-hover:scale-110" />
           <h3 className="mb-1 font-bold text-gray-900">Create New Blog</h3>
           <p className="text-sm text-gray-600">Start writing a new blog post</p>
-        </div>
-        <div className="group cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-[#0F4C81]">
+        </button>
+        <button
+          type="button"
+          onClick={() => onQuickAction("faqs-edit")}
+          className="group rounded-xl border border-gray-200 bg-white p-6 text-left transition-colors hover:border-[#0F4C81]"
+        >
           <HelpCircle className="mb-3 h-8 w-8 text-[#0F4C81] transition-transform group-hover:scale-110" />
           <h3 className="mb-1 font-bold text-gray-900">Add New FAQ</h3>
           <p className="text-sm text-gray-600">Help your customers with new answers</p>
-        </div>
-        <div className="group cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-[#0F4C81]">
+        </button>
+        <button
+          type="button"
+          onClick={() => onQuickAction("contacts")}
+          className="group rounded-xl border border-gray-200 bg-white p-6 text-left transition-colors hover:border-[#0F4C81]"
+        >
           <Mail className="mb-3 h-8 w-8 text-[#0F4C81] transition-transform group-hover:scale-110" />
           <h3 className="mb-1 font-bold text-gray-900">View Contact Leads</h3>
           <p className="text-sm text-gray-600">Check new inquiries from customers</p>
-        </div>
+        </button>
       </div>
     </div>
   );

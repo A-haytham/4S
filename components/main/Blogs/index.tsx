@@ -2,11 +2,13 @@ import { getLocale, getTranslations } from "next-intl/server";
 import Reveal from "@/components/ui/Reveal";
 import BlogsClient from "./BlogsClient";
 import HeroSection from "./HeroSection";
-import { blogCategories, blogPosts } from "./blogData";
+import { getBlogCategories, getBlogPosts } from "./blogApi";
 
 export default async function BlogsPage() {
   const t = await getTranslations("blogs");
   const locale = await getLocale();
+  const posts = await getBlogPosts();
+  const categories = getBlogCategories(posts);
 
   const copy = {
     hero: {
@@ -44,7 +46,7 @@ export default async function BlogsPage() {
       <Reveal>
         <HeroSection title={copy.hero.title} description={copy.hero.description} />
       </Reveal>
-      <BlogsClient locale={locale} posts={blogPosts} categories={blogCategories} copy={copy} />
+      <BlogsClient locale={locale} posts={posts} categories={categories} copy={copy} />
     </main>
   );
 }

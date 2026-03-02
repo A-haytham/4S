@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   title: "4S Systems | ERP Solutions",
   description: "ERP solutions tailored to your business with real-time visibility and control.",
 };
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }

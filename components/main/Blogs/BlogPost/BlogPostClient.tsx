@@ -52,6 +52,8 @@ type BlogPostClientProps = {
   labels: Labels;
 };
 
+const isImageUrl = (value: string) => /^(https?:\/\/|\/)/i.test(value.trim());
+
 export default function BlogPostClient({
   locale,
   isRTL,
@@ -109,9 +111,13 @@ export default function BlogPostClient({
 
       <Reveal>
         <div className="relative h-80 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
-          <div className="absolute inset-0 flex items-center justify-center text-white/80">
-            <span className="text-lg font-medium">{post.image}</span>
-          </div>
+          {isImageUrl(post.image) ? (
+            <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-white/80">
+              <span className="text-lg font-medium">{post.image}</span>
+            </div>
+          )}
         </div>
       </Reveal>
 
@@ -232,9 +238,13 @@ export default function BlogPostClient({
                   >
                     <Link href={`/blog/${related.slug}`} className="block w-full text-left">
                       <div className="relative h-40 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
-                        <div className="absolute inset-0 flex items-center justify-center text-white/80">
-                          <span className="text-sm font-medium">{related.image}</span>
-                        </div>
+                        {isImageUrl(related.image) ? (
+                          <img src={related.image} alt={related.title} className="h-full w-full object-cover" />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center text-white/80">
+                            <span className="text-sm font-medium">{related.image}</span>
+                          </div>
+                        )}
                       </div>
                       <div className="p-6">
                         <h3

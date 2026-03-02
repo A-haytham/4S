@@ -8,10 +8,9 @@ export type ContactLead = {
   name: string;
   email: string;
   phone?: string;
-  company?: string;
+  subject?: string;
   message: string;
   date: string;
-  status: "new" | "read" | "replied";
 };
 
 type ContactLeadsListProps = {
@@ -28,23 +27,12 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
     (lead) =>
       lead.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lead.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      lead.company?.toLowerCase().includes(searchQuery.toLowerCase())
+      lead.subject?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const totalPages = Math.max(1, Math.ceil(filteredLeads.length / itemsPerPage));
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedLeads = filteredLeads.slice(startIndex, startIndex + itemsPerPage);
-
-  const getStatusColor = (status: ContactLead["status"]) => {
-    switch (status) {
-      case "new":
-        return "bg-blue-50 text-blue-700 border-blue-200";
-      case "read":
-        return "bg-gray-50 text-gray-700 border-gray-200";
-      case "replied":
-        return "bg-green-50 text-green-700 border-green-200";
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -67,7 +55,7 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
           <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by name, email, or company..."
+            placeholder="Search by name, email, or subject..."
             value={searchQuery}
             onChange={(event) => {
               setSearchQuery(event.target.value);
@@ -78,28 +66,10 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-1">
         <div className="rounded-lg border border-gray-200 bg-white p-4">
           <p className="text-sm text-gray-600">Total Leads</p>
           <p className="mt-1 text-2xl font-bold text-gray-900">{leads.length}</p>
-        </div>
-        <div className="rounded-lg border border-gray-200 bg-white p-4">
-          <p className="text-sm text-gray-600">New</p>
-          <p className="mt-1 text-2xl font-bold text-blue-600">
-            {leads.filter((lead) => lead.status === "new").length}
-          </p>
-        </div>
-        <div className="rounded-lg border border-gray-200 bg-white p-4">
-          <p className="text-sm text-gray-600">Read</p>
-          <p className="mt-1 text-2xl font-bold text-gray-600">
-            {leads.filter((lead) => lead.status === "read").length}
-          </p>
-        </div>
-        <div className="rounded-lg border border-gray-200 bg-white p-4">
-          <p className="text-sm text-gray-600">Replied</p>
-          <p className="mt-1 text-2xl font-bold text-green-600">
-            {leads.filter((lead) => lead.status === "replied").length}
-          </p>
         </div>
       </div>
 
@@ -132,9 +102,6 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
                     <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Date
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-700">
-                      Status
-                    </th>
                     <th className="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-700">
                       Actions
                     </th>
@@ -146,7 +113,7 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
                       <td className="px-6 py-4">
                         <div>
                           <p className="font-medium text-gray-900">{lead.name}</p>
-                          {lead.company ? <p className="text-sm text-gray-500">{lead.company}</p> : null}
+                          {lead.subject ? <p className="text-sm text-gray-500">{lead.subject}</p> : null}
                         </div>
                       </td>
                       <td className="px-6 py-4">
@@ -172,13 +139,6 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
                             day: "numeric",
                           })}
                         </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`rounded-full border px-3 py-1 text-xs font-semibold ${getStatusColor(lead.status)}`}
-                        >
-                          {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
-                        </span>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-end">
@@ -258,10 +218,10 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
                     <p className="font-medium text-gray-900">{selectedLead.phone}</p>
                   </div>
                 ) : null}
-                {selectedLead.company ? (
+                {selectedLead.subject ? (
                   <div>
-                    <p className="mb-1 text-sm text-gray-500">Company</p>
-                    <p className="font-medium text-gray-900">{selectedLead.company}</p>
+                    <p className="mb-1 text-sm text-gray-500">Subject</p>
+                    <p className="font-medium text-gray-900">{selectedLead.subject}</p>
                   </div>
                 ) : null}
                 <div>
@@ -275,16 +235,6 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
                       minute: "2-digit",
                     })}
                   </p>
-                </div>
-                <div>
-                  <p className="mb-1 text-sm text-gray-500">Status</p>
-                  <span
-                    className={`rounded-full border px-3 py-1 text-xs font-semibold ${getStatusColor(
-                      selectedLead.status
-                    )}`}
-                  >
-                    {selectedLead.status.charAt(0).toUpperCase() + selectedLead.status.slice(1)}
-                  </span>
                 </div>
               </div>
               <div>

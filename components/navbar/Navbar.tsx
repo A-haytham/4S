@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center">
             <Image
-              src="/4s-logo.svg"
+              src="/logo.svg"
               alt="4S Technology"
               width={40}
               height={40}

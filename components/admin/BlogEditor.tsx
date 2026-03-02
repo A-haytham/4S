@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, Image as ImageIcon, Save } from "lucide-react";
 import type { Blog } from "./BlogsList";
 
@@ -10,60 +10,26 @@ type BlogEditorProps = {
   onCancel: () => void;
 };
 
-const categories = [
-  "ERP",
-  "Digital Transformation",
-  "Cloud Computing",
-  "Business",
-  "Technology",
-  "Industry News",
-];
-
 export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
-  const [formData, setFormData] = useState<Partial<Blog>>({
-    title: blog?.title || "",
+  const [formData, setFormData] = useState<Partial<Blog>>(() => ({
+    titleEn: blog?.titleEn || "",
+    titleAr: blog?.titleAr || "",
     slug: blog?.slug || "",
-    excerpt: blog?.excerpt || "",
-    content: blog?.content || "",
-    category: blog?.category || "ERP",
+    briefEn: blog?.briefEn || "",
+    briefAr: blog?.briefAr || "",
+    contentEn: blog?.contentEn || "",
+    contentAr: blog?.contentAr || "",
     coverImage: blog?.coverImage || "",
+    category: blog?.category || "General",
     status: blog?.status || "draft",
     publishDate: blog?.publishDate || new Date().toISOString(),
-    metaTitle: blog?.metaTitle || "",
-    metaDescription: blog?.metaDescription || "",
-    author: blog?.author || "Admin",
-    readTime: blog?.readTime || "5 min read",
-  });
+    metaTitleEn: blog?.metaTitleEn || "",
+    metaTitleAr: blog?.metaTitleAr || "",
+    metaDescriptionEn: blog?.metaDescriptionEn || "",
+    metaDescriptionAr: blog?.metaDescriptionAr || "",
+  }));
 
   const [imagePreview, setImagePreview] = useState(blog?.coverImage || "");
-
-  useEffect(() => {
-    setFormData({
-      title: blog?.title || "",
-      slug: blog?.slug || "",
-      excerpt: blog?.excerpt || "",
-      content: blog?.content || "",
-      category: blog?.category || "ERP",
-      coverImage: blog?.coverImage || "",
-      status: blog?.status || "draft",
-      publishDate: blog?.publishDate || new Date().toISOString(),
-      metaTitle: blog?.metaTitle || "",
-      metaDescription: blog?.metaDescription || "",
-      author: blog?.author || "Admin",
-      readTime: blog?.readTime || "5 min read",
-    });
-    setImagePreview(blog?.coverImage || "");
-  }, [blog]);
-
-  useEffect(() => {
-    if (!blog && formData.title) {
-      const slug = formData.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-      setFormData((prev) => ({ ...prev, slug }));
-    }
-  }, [formData.title, blog]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -74,6 +40,21 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
     const url = event.target.value;
     setFormData((prev) => ({ ...prev, coverImage: url }));
     setImagePreview(url);
+  };
+
+  const handleTitleEnChange = (titleEn: string) => {
+    setFormData((prev) => {
+      if (blog) {
+        return { ...prev, titleEn };
+      }
+
+      const slug = titleEn
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+
+      return { ...prev, titleEn, slug };
+    });
   };
 
   return (
@@ -110,18 +91,37 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6">
-              <div>
-                <label htmlFor="title" className="text-gray-700">
-                  Blog Title <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="title"
-                  value={formData.title || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, title: event.target.value }))}
-                  placeholder="Enter blog title..."
-                  required
-                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
+              <h3 className="font-bold text-gray-900">Titles (EN / AR)</h3>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="titleEn" className="text-gray-700">
+                    Title EN <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="titleEn"
+                    value={formData.titleEn || ""}
+                    onChange={(event) => handleTitleEnChange(event.target.value)}
+                    placeholder="Enter English title..."
+                    required
+                    className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="titleAr" className="text-gray-700">
+                    Title AR <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="titleAr"
+                    value={formData.titleAr || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, titleAr: event.target.value }))}
+                    placeholder="ادخل العنوان بالعربي..."
+                    required
+                    dir="rtl"
+                    className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-right text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
               </div>
 
               <div>
@@ -135,72 +135,154 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   placeholder="blog-post-url"
                   className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
                 />
-                <p className="mt-1 text-xs text-gray-500">URL-friendly version of the title</p>
+                <p className="mt-1 text-xs text-gray-500">URL-friendly version of the English title</p>
               </div>
-
-              <div>
-                <label htmlFor="excerpt" className="text-gray-700">
-                  Excerpt <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="excerpt"
-                  value={formData.excerpt || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, excerpt: event.target.value }))}
-                  placeholder="Brief description of your blog post..."
-                  required
-                  rows={3}
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
-              </div>
-            </div>
-
-            <div className="rounded-xl border border-gray-200 bg-white p-6">
-              <label htmlFor="content" className="text-gray-700">
-                Content <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                id="content"
-                value={formData.content || ""}
-                onChange={(event) => setFormData((prev) => ({ ...prev, content: event.target.value }))}
-                placeholder="Write your blog content here... (supports HTML)"
-                required
-                rows={20}
-                className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-              />
-              <p className="mt-2 text-xs text-gray-500">You can use HTML tags for formatting</p>
             </div>
 
             <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6">
-              <h3 className="font-bold text-gray-900">SEO Settings</h3>
+              <h3 className="font-bold text-gray-900">Brief (EN / AR)</h3>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="briefEn" className="text-gray-700">
+                    Brief EN <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="briefEn"
+                    value={formData.briefEn || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, briefEn: event.target.value }))}
+                    placeholder="Brief description in English..."
+                    required
+                    rows={4}
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="metaTitle" className="text-gray-700">
-                  Meta Title
-                </label>
-                <input
-                  id="metaTitle"
-                  value={formData.metaTitle || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, metaTitle: event.target.value }))}
-                  placeholder="SEO title for search engines"
-                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
+                <div>
+                  <label htmlFor="briefAr" className="text-gray-700">
+                    Brief AR <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="briefAr"
+                    value={formData.briefAr || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, briefAr: event.target.value }))}
+                    placeholder="نبذة مختصرة بالعربي..."
+                    required
+                    rows={4}
+                    dir="rtl"
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-right text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6">
+              <h3 className="font-bold text-gray-900">Content (EN / AR)</h3>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="contentEn" className="text-gray-700">
+                    Content EN <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="contentEn"
+                    value={formData.contentEn || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, contentEn: event.target.value }))}
+                    placeholder="Write English content here... (supports HTML)"
+                    required
+                    rows={16}
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contentAr" className="text-gray-700">
+                    Content AR <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="contentAr"
+                    value={formData.contentAr || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, contentAr: event.target.value }))}
+                    placeholder="اكتب المحتوى العربي هنا... (يدعم HTML)"
+                    required
+                    rows={16}
+                    dir="rtl"
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-right font-mono text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
+              </div>
+              <p className="text-xs text-gray-500">You can use HTML tags for formatting</p>
+            </div>
+
+            <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6">
+              <h3 className="font-bold text-gray-900">SEO Settings (EN / AR)</h3>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="metaTitleEn" className="text-gray-700">
+                    Meta Title EN
+                  </label>
+                  <input
+                    id="metaTitleEn"
+                    value={formData.metaTitleEn || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, metaTitleEn: event.target.value }))}
+                    placeholder="SEO title in English"
+                    className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="metaTitleAr" className="text-gray-700">
+                    Meta Title AR
+                  </label>
+                  <input
+                    id="metaTitleAr"
+                    value={formData.metaTitleAr || ""}
+                    onChange={(event) => setFormData((prev) => ({ ...prev, metaTitleAr: event.target.value }))}
+                    placeholder="عنوان SEO بالعربي"
+                    dir="rtl"
+                    className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-right text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                </div>
               </div>
 
-              <div>
-                <label htmlFor="metaDescription" className="text-gray-700">
-                  Meta Description
-                </label>
-                <textarea
-                  id="metaDescription"
-                  value={formData.metaDescription || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, metaDescription: event.target.value }))}
-                  placeholder="SEO description for search engines"
-                  rows={3}
-                  className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  {(formData.metaDescription || "").length} / 160 characters
-                </p>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <label htmlFor="metaDescriptionEn" className="text-gray-700">
+                    Meta Description EN
+                  </label>
+                  <textarea
+                    id="metaDescriptionEn"
+                    value={formData.metaDescriptionEn || ""}
+                    onChange={(event) =>
+                      setFormData((prev) => ({ ...prev, metaDescriptionEn: event.target.value }))
+                    }
+                    placeholder="SEO description in English"
+                    rows={3}
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    {(formData.metaDescriptionEn || "").length} / 160 characters
+                  </p>
+                </div>
+
+                <div>
+                  <label htmlFor="metaDescriptionAr" className="text-gray-700">
+                    Meta Description AR
+                  </label>
+                  <textarea
+                    id="metaDescriptionAr"
+                    value={formData.metaDescriptionAr || ""}
+                    onChange={(event) =>
+                      setFormData((prev) => ({ ...prev, metaDescriptionAr: event.target.value }))
+                    }
+                    placeholder="وصف SEO بالعربي"
+                    rows={3}
+                    dir="rtl"
+                    className="mt-2 w-full rounded-lg border border-gray-300 px-4 py-3 text-right text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                  />
+                  <p className="mt-1 text-xs text-gray-500">
+                    {(formData.metaDescriptionAr || "").length} / 160 characters
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -227,6 +309,19 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                 />
               </div>
 
+              <div>
+                <label htmlFor="category" className="text-gray-700">
+                  Category
+                </label>
+                <input
+                  id="category"
+                  value={formData.category || ""}
+                  onChange={(event) => setFormData((prev) => ({ ...prev, category: event.target.value }))}
+                  placeholder="General"
+                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                />
+              </div>
+
               <div className="space-y-3 border-t border-gray-200 pt-4">
                 <button
                   type="submit"
@@ -246,50 +341,11 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
             </div>
 
             <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-6">
-              <h3 className="font-bold text-gray-900">Details</h3>
-
-              <div>
-                <label htmlFor="category" className="text-gray-700">
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={formData.category || "ERP"}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, category: event.target.value }))}
-                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="author" className="text-gray-700">
-                  Author
-                </label>
-                <input
-                  id="author"
-                  value={formData.author || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, author: event.target.value }))}
-                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="readTime" className="text-gray-700">
-                  Read Time
-                </label>
-                <input
-                  id="readTime"
-                  value={formData.readTime || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, readTime: event.target.value }))}
-                  placeholder="e.g., 5 min read"
-                  className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
-                />
-              </div>
+              <h3 className="font-bold text-gray-900">Contract Fields</h3>
+              <p className="text-sm text-gray-600">
+                This editor sends bilingual fields (`*En` / `*Ar`) and publish settings to the backend
+                admin endpoints.
+              </p>
             </div>
 
             <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-6">

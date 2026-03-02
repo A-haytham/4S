@@ -1,7 +1,8 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import BlogPostClient from "./BlogPostClient";
-import { blogPosts } from "../blogData";
+import { getBlogPosts } from "../blogApi";
+import type { BlogPost } from "../blogData";
 
 type HeadingItem = {
   id: string;
@@ -26,13 +27,13 @@ const extractHeadings = (content: string) => {
   return { html, headings };
 };
 
-const getRelatedPosts = (slug: string) => {
-  const current = blogPosts.find((post) => post.slug === slug);
+const getRelatedPosts = (posts: BlogPost[], slug: string) => {
+  const current = posts.find((post) => post.slug === slug);
   if (!current) return [];
-  const sameCategory = blogPosts.filter(
+  const sameCategory = posts.filter(
     (post) => post.slug !== slug && post.category === current.category
   );
-  const fallback = blogPosts.filter(
+  const fallback = posts.filter(
     (post) => post.slug !== slug && post.category !== current.category
   );
   return [...sameCategory, ...fallback].slice(0, 3);
@@ -41,8 +42,9 @@ const getRelatedPosts = (slug: string) => {
 export default async function BlogPostPage({ slug }: BlogPostPageProps) {
   const locale = await getLocale();
   const t = await getTranslations("blogs");
+  const posts = await getBlogPosts();
 
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = posts.find((item) => item.slug === slug);
   if (!post) {
     return (
       <div className="min-h-screen bg-white px-4 py-24 text-center">
@@ -58,7 +60,7 @@ export default async function BlogPostPage({ slug }: BlogPostPageProps) {
 
   const content = post.content[locale] ?? post.content.en;
   const { html, headings } = extractHeadings(content);
-  const relatedPosts = getRelatedPosts(slug).map((related) => ({
+  const relatedPosts = getRelatedPosts(posts, slug).map((related) => ({
     slug: related.slug,
     title: related.title[locale] ?? related.title.en,
     readTime: related.readTime,

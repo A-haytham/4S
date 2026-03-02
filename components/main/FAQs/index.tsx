@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import FAQsClient from "./FAQsClient";
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
+import { getFaqCategoriesFromApi } from "./faqsApi";
 
 type FaqItem = {
   question: string;
@@ -19,6 +20,7 @@ export default async function FAQsPage() {
   const t = await getTranslations("faqs");
   const locale = await getLocale();
   const isRTL = locale === "ar";
+  const categoriesFromApi = await getFaqCategoriesFromApi(locale);
 
   const copy = {
     hero: {
@@ -29,7 +31,7 @@ export default async function FAQsPage() {
       placeholder: t("search.placeholder"),
       noResults: t("search.noResults"),
     },
-    categories: t.raw("categories") as Category[],
+    categories: categoriesFromApi as Category[],
     expandAll: t("expandAll"),
     collapseAll: t("collapseAll"),
     cta: {

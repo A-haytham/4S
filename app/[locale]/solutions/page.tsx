@@ -1,7 +1,13 @@
-
-
 import SolutionsPage from "../../../components/main/Solutions";
+import { setRequestLocale } from "next-intl/server";
 
-export default function Solutions() {
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function SolutionsRoutePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return <SolutionsPage />;
 }

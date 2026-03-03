@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Image as ImageIcon, Save } from "lucide-react";
+import { ArrowLeft, Image as ImageIcon, Save, Copy } from "lucide-react";
 import type { Blog } from "./BlogsList";
 
 type BlogEditorProps = {
@@ -30,6 +30,25 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
   }));
 
   const [imagePreview, setImagePreview] = useState(blog?.coverImage || "");
+  const [uploadStatus, setUploadStatus] = useState<string>("");
+
+  // contract template state editable and copyable
+  const initialTemplate = `<h1>عنوان المقال الرئيسي</h1>
+
+<p>مقدمة قصيرة (2–4 سطور) تلخص المقال وتشد القارئ.</p>
+
+<h2>العنوان الفرعي الأول</h2>
+<p>فقرة تشرح الفكرة الأساسية تحت العنوان.</p>
+<p>فقرة ثانية لو محتاج تفاصيل أو مثال.</p>
+
+<h2>العنوان الفرعي الثاني</h2>
+<p>فقرة تشرح النقطة الثانية.</p>
+
+<h2>العنوان الفرعي الثالث</h2>
+<p>فقرة تلخص أو تقدم خطوات/نصايح داخل نص عادي.</p>
+
+<p>خاتمة قصيرة: تلخيص سريع + جملة نهائية.</p>`;
+  const [template, setTemplate] = useState(initialTemplate);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -40,6 +59,36 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
     const url = event.target.value;
     setFormData((prev) => ({ ...prev, coverImage: url }));
     setImagePreview(url);
+    setUploadStatus("");
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setUploadStatus("Please select an image file.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = typeof reader.result === "string" ? reader.result : "";
+      if (!result) {
+        setUploadStatus("Could not read the selected file.");
+        return;
+      }
+
+      setFormData((prev) => ({ ...prev, coverImage: result }));
+      setImagePreview(result);
+      setUploadStatus(`Uploaded: ${file.name}`);
+    };
+    reader.onerror = () => {
+      setUploadStatus("Failed to upload image from device.");
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleTitleEnChange = (titleEn: string) => {
@@ -70,9 +119,13 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
             <ArrowLeft className="h-5 w-5" />
           </button>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{blog ? "Edit Blog" : "Create New Blog"}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              {blog ? "Edit Blog" : "Create New Blog"}
+            </h1>
             <p className="mt-1 text-gray-600">
-              {blog ? "Update your blog post" : "Write and publish your blog post"}
+              {blog
+                ? "Update your blog post"
+                : "Write and publish your blog post"}
             </p>
           </div>
         </div>
@@ -101,7 +154,9 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <input
                     id="titleEn"
                     value={formData.titleEn || ""}
-                    onChange={(event) => handleTitleEnChange(event.target.value)}
+                    onChange={(event) =>
+                      handleTitleEnChange(event.target.value)
+                    }
                     placeholder="Enter English title..."
                     required
                     className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
@@ -115,7 +170,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <input
                     id="titleAr"
                     value={formData.titleAr || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, titleAr: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        titleAr: event.target.value,
+                      }))
+                    }
                     placeholder="ادخل العنوان بالعربي..."
                     required
                     dir="rtl"
@@ -131,11 +191,18 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                 <input
                   id="slug"
                   value={formData.slug || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, slug: event.target.value }))}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      slug: event.target.value,
+                    }))
+                  }
                   placeholder="blog-post-url"
                   className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
                 />
-                <p className="mt-1 text-xs text-gray-500">URL-friendly version of the English title</p>
+                <p className="mt-1 text-xs text-gray-500">
+                  URL-friendly version of the English title
+                </p>
               </div>
             </div>
 
@@ -149,7 +216,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <textarea
                     id="briefEn"
                     value={formData.briefEn || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, briefEn: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        briefEn: event.target.value,
+                      }))
+                    }
                     placeholder="Brief description in English..."
                     required
                     rows={4}
@@ -164,7 +236,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <textarea
                     id="briefAr"
                     value={formData.briefAr || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, briefAr: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        briefAr: event.target.value,
+                      }))
+                    }
                     placeholder="نبذة مختصرة بالعربي..."
                     required
                     rows={4}
@@ -185,7 +262,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <textarea
                     id="contentEn"
                     value={formData.contentEn || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, contentEn: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        contentEn: event.target.value,
+                      }))
+                    }
                     placeholder="Write English content here... (supports HTML)"
                     required
                     rows={16}
@@ -200,7 +282,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <textarea
                     id="contentAr"
                     value={formData.contentAr || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, contentAr: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        contentAr: event.target.value,
+                      }))
+                    }
                     placeholder="اكتب المحتوى العربي هنا... (يدعم HTML)"
                     required
                     rows={16}
@@ -209,11 +296,15 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   />
                 </div>
               </div>
-              <p className="text-xs text-gray-500">You can use HTML tags for formatting</p>
+              <p className="text-xs text-gray-500">
+                You can use HTML tags for formatting
+              </p>
             </div>
 
             <div className="space-y-6 rounded-xl border border-gray-200 bg-white p-6">
-              <h3 className="font-bold text-gray-900">SEO Settings (EN / AR)</h3>
+              <h3 className="font-bold text-gray-900">
+                SEO Settings (EN / AR)
+              </h3>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div>
@@ -223,7 +314,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <input
                     id="metaTitleEn"
                     value={formData.metaTitleEn || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, metaTitleEn: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        metaTitleEn: event.target.value,
+                      }))
+                    }
                     placeholder="SEO title in English"
                     className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
                   />
@@ -236,7 +332,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   <input
                     id="metaTitleAr"
                     value={formData.metaTitleAr || ""}
-                    onChange={(event) => setFormData((prev) => ({ ...prev, metaTitleAr: event.target.value }))}
+                    onChange={(event) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        metaTitleAr: event.target.value,
+                      }))
+                    }
                     placeholder="عنوان SEO بالعربي"
                     dir="rtl"
                     className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-right text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
@@ -253,7 +354,10 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                     id="metaDescriptionEn"
                     value={formData.metaDescriptionEn || ""}
                     onChange={(event) =>
-                      setFormData((prev) => ({ ...prev, metaDescriptionEn: event.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        metaDescriptionEn: event.target.value,
+                      }))
                     }
                     placeholder="SEO description in English"
                     rows={3}
@@ -272,7 +376,10 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                     id="metaDescriptionAr"
                     value={formData.metaDescriptionAr || ""}
                     onChange={(event) =>
-                      setFormData((prev) => ({ ...prev, metaDescriptionAr: event.target.value }))
+                      setFormData((prev) => ({
+                        ...prev,
+                        metaDescriptionAr: event.target.value,
+                      }))
                     }
                     placeholder="وصف SEO بالعربي"
                     rows={3}
@@ -316,7 +423,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                 <input
                   id="category"
                   value={formData.category || ""}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, category: event.target.value }))}
+                  onChange={(event) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      category: event.target.value,
+                    }))
+                  }
                   placeholder="General"
                   className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
                 />
@@ -325,10 +437,12 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
               <div className="space-y-3 border-t border-gray-200 pt-4">
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-gradient-to-r from-[#0F4C81] to-[#2B7CB3] px-4 py-2 text-sm font-semibold text-white transition-all hover:from-[#083A61] hover:to-[#1E5F9E]"
+                  className="inline-flex w-full items-center justify-center rounded-lg bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-4 py-2 text-sm font-semibold text-white transition-all hover:from-[#083A61] hover:to-[#1E5F9E]"
                 >
                   <Save className="mr-2 h-4 w-4" />
-                  {formData.status === "published" ? "Publish" : "Save as Draft"}
+                  {formData.status === "published"
+                    ? "Publish"
+                    : "Save as Draft"}
                 </button>
                 <button
                   type="button"
@@ -343,9 +457,36 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
             <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-6">
               <h3 className="font-bold text-gray-900">Contract Fields</h3>
               <p className="text-sm text-gray-600">
-                This editor sends bilingual fields (`*En` / `*Ar`) and publish settings to the backend
-                admin endpoints.
+                This editor sends bilingual fields (`*En` / `*Ar`) and publish
+                settings to the backend admin endpoints.
               </p>
+              <div className="mt-2">
+                <textarea
+                  value={template}
+                  onChange={(e) => setTemplate(e.target.value)}
+                  rows={14}
+                  className="w-full rounded-lg border border-gray-300 bg-gray-50 p-3 font-mono text-xs text-gray-800"
+                />
+                <div className="mt-1 flex items-center space-x-2 rtl:space-x-reverse">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(template);
+                      setUploadStatus("Template copied to clipboard");
+                      setTimeout(() => setUploadStatus(""), 3000);
+                    }}
+                    className="inline-flex items-center justify-center rounded-full bg-[#0F4C81] p-2 text-white hover:bg-[#083A61]"
+                    aria-label="Copy template"
+                  >
+                    <Copy className="h-4 w-4" />
+                  </button>
+                  <span className="text-xs text-gray-500">
+                    {uploadStatus === "Template copied to clipboard"
+                      ? uploadStatus
+                      : ""}
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-6">
@@ -362,6 +503,22 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
                   placeholder="https://example.com/image.jpg"
                   className="mt-2 h-12 w-full rounded-lg border border-gray-300 px-4 text-sm text-gray-900 focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="coverImageFile" className="text-gray-700">
+                  Upload from device
+                </label>
+                <input
+                  id="coverImageFile"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="mt-2 block w-full cursor-pointer rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 file:mr-3 file:cursor-pointer file:rounded-md file:border-0 file:bg-[#0F4C81] file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-[#083A61] focus:border-[#0F4C81] focus:outline-none focus:ring-2 focus:ring-[#0F4C81]/20"
+                />
+                {uploadStatus ? (
+                  <p className="mt-2 text-xs text-gray-500">{uploadStatus}</p>
+                ) : null}
               </div>
 
               {imagePreview ? (

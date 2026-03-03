@@ -1,7 +1,14 @@
 "use client";
 
 import { useMemo } from "react";
-import { ArrowLeft, Calendar, Clock, Share2, User, BookOpen } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  Share2,
+  User,
+  BookOpen,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import Reveal from "@/components/ui/Reveal";
 import CtaSection from "@/components/ui/CtaSection";
@@ -52,7 +59,11 @@ type BlogPostClientProps = {
   labels: Labels;
 };
 
-const isImageUrl = (value: string) => /^(https?:\/\/|\/)/i.test(value.trim());
+const isImageUrl = (value: string) => {
+  const trimmed = value.trim();
+  // recognize http(s), absolute paths, and data URI images
+  return /^(https?:\/\/|\/|data:image\/[a-zA-Z]+;base64,)/i.test(trimmed);
+};
 
 export default function BlogPostClient({
   locale,
@@ -66,12 +77,15 @@ export default function BlogPostClient({
 }: BlogPostClientProps) {
   const formattedDate = useMemo(
     () =>
-      new Date(post.date).toLocaleDateString(locale === "ar" ? "ar-EG" : "en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-    [post.date, locale]
+      new Date(post.date).toLocaleDateString(
+        locale === "ar" ? "ar-EG" : "en-US",
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        },
+      ),
+    [post.date, locale],
   );
 
   const scrollToSection = (id: string) => {
@@ -112,7 +126,11 @@ export default function BlogPostClient({
       <Reveal>
         <div className="relative h-80 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
           {isImageUrl(post.image) ? (
-            <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
+            <img
+              src={post.image}
+              alt={post.title}
+              className="h-full w-full object-contain"
+            />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-white/80">
               <span className="text-lg font-medium">{post.image}</span>
@@ -124,7 +142,9 @@ export default function BlogPostClient({
       <div className="mx-auto max-w-7xl px-4 py-12">
         <div className="grid gap-8 lg:grid-cols-12">
           {headings.length > 0 ? (
-            <aside className={`hidden lg:block lg:col-span-3 ${isRTL ? "lg:order-2" : ""}`}>
+            <aside
+              className={`hidden lg:block lg:col-span-3 ${isRTL ? "lg:order-2" : ""}`}
+            >
               <Reveal>
                 <div className="sticky top-24">
                   <div className="rounded-xl bg-gray-50 p-6">
@@ -134,7 +154,9 @@ export default function BlogPostClient({
                       }`}
                     >
                       <BookOpen size={20} className="text-[#0F4C81]" />
-                      <h3 className="font-bold text-gray-900">{labels.tableOfContents}</h3>
+                      <h3 className="font-bold text-gray-900">
+                        {labels.tableOfContents}
+                      </h3>
                     </div>
                     <nav className="space-y-2">
                       {headings.map((heading) => (
@@ -178,15 +200,21 @@ export default function BlogPostClient({
                     isRTL ? "flex-row-reverse" : ""
                   }`}
                 >
-                  <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+                  <div
+                    className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
+                  >
                     <User size={18} />
                     <span>{post.author}</span>
                   </div>
-                  <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+                  <div
+                    className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
+                  >
                     <Calendar size={18} />
                     <span>{formattedDate}</span>
                   </div>
-                  <div className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
+                  <div
+                    className={`flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}
+                  >
                     <Clock size={18} />
                     <span>
                       {post.readTime} {labels.minRead}
@@ -214,7 +242,9 @@ export default function BlogPostClient({
                 }`}
               >
                 <Share2 size={20} className="text-gray-700" />
-                <span className="font-medium text-gray-700">{labels.shareArticle}</span>
+                <span className="font-medium text-gray-700">
+                  {labels.shareArticle}
+                </span>
               </div>
             </Reveal>
           </article>
@@ -236,13 +266,22 @@ export default function BlogPostClient({
                     key={related.slug}
                     className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
                   >
-                    <Link href={`/blog/${related.slug}`} className="block w-full text-left">
+                    <Link
+                      href={`/blog/${related.slug}`}
+                      className="block w-full text-left"
+                    >
                       <div className="relative h-40 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
                         {isImageUrl(related.image) ? (
-                          <img src={related.image} alt={related.title} className="h-full w-full object-cover" />
+                          <img
+                            src={related.image}
+                            alt={related.title}
+                            className="h-full w-full object-cover"
+                          />
                         ) : (
                           <div className="absolute inset-0 flex items-center justify-center text-white/80">
-                            <span className="text-sm font-medium">{related.image}</span>
+                            <span className="text-sm font-medium">
+                              {related.image}
+                            </span>
                           </div>
                         )}
                       </div>

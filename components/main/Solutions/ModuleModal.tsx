@@ -161,7 +161,7 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
                     key={benefit}
                     className="flex items-start gap-3 ltr:text-left rtl:flex-row-reverse rtl:text-right"
                   >
-                    <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[#E67E22]/10">
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E67E22]/10">
                       <CheckCircle2 className="h-4 w-4 text-[#E67E22]" />
                     </div>
                     <span className="flex-1 text-gray-700">{benefit}</span>

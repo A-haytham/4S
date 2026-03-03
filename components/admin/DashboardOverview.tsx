@@ -1,16 +1,99 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { Eye, FileText, HelpCircle, Mail } from "lucide-react";
+
+export type RecentActivityItem = {
+  id: string;
+  type: "blog" | "faq" | "contact";
+  action: string;
+  title: string;
+  occurredAt: string;
+};
 
 type DashboardOverviewProps = {
   blogsCount: number;
   faqsCount: number;
   contactsCount: number;
+  recentActivity: RecentActivityItem[];
   onQuickAction: (page: "blogs-edit" | "faqs-edit" | "contacts") => void;
 };
+
+function AnimatedCount({ value }: { value: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const currentValueRef = useRef(0);
+
+  useEffect(() => {
+    const startValue = currentValueRef.current;
+    if (startValue === value) {
+      return;
+    }
+
+    const totalDelta = Math.abs(value - startValue);
+    const direction = value > startValue ? 1 : -1;
+    const step = Math.max(1, Math.ceil(totalDelta / 18));
+
+    const intervalId = setInterval(() => {
+      setDisplayValue((current) => {
+        const next = current + direction * step;
+        const reachedTarget =
+          (direction > 0 && next >= value) || (direction < 0 && next <= value);
+
+        if (reachedTarget) {
+          clearInterval(intervalId);
+          currentValueRef.current = value;
+          return value;
+        }
+
+        currentValueRef.current = next;
+        return next;
+      });
+    }, 25);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [value]);
+
+  return <>{displayValue}</>;
+}
+
+function formatTimeAgo(value: string) {
+  const date = new Date(value);
+  const time = date.getTime();
+
+  if (Number.isNaN(time)) {
+    return "Just now";
+  }
+
+  const diffMs = Math.max(0, Date.now() - time);
+  const minuteMs = 60 * 1000;
+  const hourMs = 60 * minuteMs;
+  const dayMs = 24 * hourMs;
+
+  if (diffMs < minuteMs) {
+    return "Just now";
+  }
+
+  if (diffMs < hourMs) {
+    const minutes = Math.floor(diffMs / minuteMs);
+    return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  }
+
+  if (diffMs < dayMs) {
+    const hours = Math.floor(diffMs / hourMs);
+    return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  }
+
+  const days = Math.floor(diffMs / dayMs);
+  return `${days} day${days === 1 ? "" : "s"} ago`;
+}
 
 export function DashboardOverview({
   blogsCount,
   faqsCount,
   contactsCount,
+  recentActivity,
   onQuickAction,
 }: DashboardOverviewProps) {
   const stats = [
@@ -60,37 +143,6 @@ export function DashboardOverview({
     },
   ];
 
-  const recentActivity = [
-    {
-      id: 1,
-      type: "blog",
-      action: "Published new blog",
-      title: "Digital Transformation in 2025",
-      time: "2 hours ago",
-    },
-    {
-      id: 2,
-      type: "contact",
-      action: "New contact lead",
-      title: "John Smith from ABC Corp",
-      time: "5 hours ago",
-    },
-    {
-      id: 3,
-      type: "faq",
-      action: "Updated FAQ",
-      title: "What is ERP?",
-      time: "1 day ago",
-    },
-    {
-      id: 4,
-      type: "blog",
-      action: "Draft created",
-      title: "Cloud Migration Best Practices",
-      time: "2 days ago",
-    },
-  ];
-
   return (
     <div className="space-y-6">
       <div className="rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] p-8 text-white">
@@ -118,7 +170,9 @@ export function DashboardOverview({
                   {stat.change}
                 </span>
               </div>
-              <h3 className="mb-1 text-2xl font-bold text-gray-900">{stat.value}</h3>
+              <h3 className="mb-1 text-2xl font-bold text-gray-900 tabular-nums">
+                {typeof stat.value === "number" ? <AnimatedCount value={stat.value} /> : stat.value}
+              </h3>
               <p className="text-sm text-gray-600">{stat.name}</p>
             </div>
           );
@@ -129,19 +183,25 @@ export function DashboardOverview({
         <div className="border-b border-gray-200 p-6">
           <h2 className="text-lg font-bold text-gray-900">Recent Activity</h2>
         </div>
-        <div className="divide-y divide-gray-200">
-          {recentActivity.map((activity) => (
-            <div key={activity.id} className="p-6 transition-colors hover:bg-gray-50">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                  <p className="mt-1 text-sm text-gray-600">{activity.title}</p>
+        {recentActivity.length === 0 ? (
+          <div className="p-6 text-sm text-gray-500">No recent activity yet.</div>
+        ) : (
+          <div className="divide-y divide-gray-200">
+            {recentActivity.map((activity) => (
+              <div key={activity.id} className="p-6 transition-colors hover:bg-gray-50">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900">{activity.action}</p>
+                    <p className="mt-1 text-sm text-gray-600">{activity.title}</p>
+                  </div>
+                  <span className="whitespace-nowrap text-xs text-gray-500">
+                    {formatTimeAgo(activity.occurredAt)}
+                  </span>
                 </div>
-                <span className="whitespace-nowrap text-xs text-gray-500">{activity.time}</span>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

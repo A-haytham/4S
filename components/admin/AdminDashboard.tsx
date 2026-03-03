@@ -1,9 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AdminLogin } from "./AdminLogin";
 import { AdminLayout } from "./AdminLayout";
-import { DashboardOverview } from "./DashboardOverview";
+import { DashboardOverview, type RecentActivityItem } from "./DashboardOverview";
 import { BlogsList, type Blog } from "./BlogsList";
 import { BlogEditor } from "./BlogEditor";
 import { FAQsList, type FAQ } from "./FAQsList";
@@ -196,6 +196,33 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
     }
   };
 
+  const recentActivity = useMemo<RecentActivityItem[]>(() => {
+    const blogActivity = blogs.map((blog) => ({
+      id: `blog-${blog.id}`,
+      type: "blog" as const,
+      action: blog.status === "published" ? "Published blog" : "Saved blog as draft",
+      title: blog.titleEn || blog.titleAr || blog.slug || "Untitled blog",
+      occurredAt: blog.publishDate,
+    }));
+
+    const contactActivity = contacts.map((lead) => ({
+      id: `contact-${lead.id}`,
+      type: "contact" as const,
+      action: "New contact lead",
+      title: lead.subject ? `${lead.name} - ${lead.subject}` : lead.name,
+      occurredAt: lead.date,
+    }));
+
+    const parseTime = (value: string) => {
+      const time = new Date(value).getTime();
+      return Number.isNaN(time) ? 0 : time;
+    };
+
+    return [...blogActivity, ...contactActivity]
+      .sort((a, b) => parseTime(b.occurredAt) - parseTime(a.occurredAt))
+      .slice(0, 8);
+  }, [blogs, contacts]);
+
   if (!isLoggedIn) {
     return <AdminLogin onLogin={handleLogin} />;
   }
@@ -208,6 +235,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
             blogsCount={blogs.length}
             faqsCount={faqs.length}
             contactsCount={contacts.length}
+            recentActivity={recentActivity}
             onQuickAction={handlePageChange}
           />
         );
@@ -248,6 +276,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
             blogsCount={blogs.length}
             faqsCount={faqs.length}
             contactsCount={contacts.length}
+            recentActivity={recentActivity}
             onQuickAction={handlePageChange}
           />
         );

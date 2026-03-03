@@ -10,51 +10,24 @@ import { FAQsList, type FAQ } from "./FAQsList";
 import { FAQEditor } from "./FAQEditor";
 import { ContactLeadsList, type ContactLead } from "./ContactLeadsList";
 import { createBlogInApi, deleteBlogInApi, fetchBlogsFromApi, updateBlogInApi } from "./blogsApi";
+import { fetchContactsFromApi } from "./contactsApi";
 import { createFaqInApi, deleteFaqInApi, fetchFaqsFromApi, updateFaqInApi } from "./faqsApi";
 import { AdminToast } from "./AdminToast";
 import { toast } from "./toast";
 
 type AdminPage = "dashboard" | "blogs" | "blogs-edit" | "faqs" | "faqs-edit" | "contacts";
 
-const mockContacts: ContactLead[] = [
-  {
-    id: "1",
-    name: "John Smith",
-    email: "john.smith@abccorp.com",
-    phone: "+1 (555) 123-4567",
-    subject: "ERP Pricing Inquiry",
-    message:
-      "We are interested in implementing an ERP solution for our manufacturing business. Could you provide more information about your services and pricing?",
-    date: "2025-02-09T14:30:00Z",
-  },
-  {
-    id: "2",
-    name: "Emma Wilson",
-    email: "emma.wilson@techstart.com",
-    phone: "+1 (555) 987-6543",
-    subject: "Cloud ERP Modules",
-    message: "Looking for a cloud-based ERP solution for our growing startup. What modules do you offer?",
-    date: "2025-02-08T10:15:00Z",
-  },
-  {
-    id: "3",
-    name: "Ahmed Hassan",
-    email: "ahmed.hassan@globaltech.ae",
-    phone: "+971 50 123 4567",
-    subject: "Implementation Support",
-    message:
-      "We need ERP implementation support for our Dubai office. Do you provide training and ongoing support?",
-    date: "2025-02-07T16:45:00Z",
-  },
-];
+type AdminDashboardProps = {
+  initialToken?: string;
+};
 
-export function AdminDashboard() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [authToken, setAuthToken] = useState("");
+export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(initialToken));
+  const [authToken, setAuthToken] = useState(initialToken);
   const [currentPage, setCurrentPage] = useState<AdminPage>("dashboard");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
-  const [contacts] = useState<ContactLead[]>(mockContacts);
+  const [contacts, setContacts] = useState<ContactLead[]>([]);
   const [editingBlog, setEditingBlog] = useState<Blog | undefined>(undefined);
   const [editingFaq, setEditingFaq] = useState<FAQ | undefined>(undefined);
 
@@ -75,6 +48,10 @@ export function AdminDashboard() {
   };
 
   const handleLogout = () => {
+    void fetch("/api/admin/auth/logout", { method: "POST" }).catch(() => {
+      // local logout still proceeds if cookie cleanup request fails
+    });
+
     setAuthToken("");
     setIsLoggedIn(false);
     setCurrentPage("dashboard");
@@ -90,11 +67,16 @@ export function AdminDashboard() {
 
     const loadInitialData = async () => {
       try {
-        const [fetchedBlogs, fetchedFaqs] = await Promise.all([fetchBlogsFromApi(), fetchFaqsFromApi()]);
+        const [fetchedBlogs, fetchedFaqs, fetchedContacts] = await Promise.all([
+          fetchBlogsFromApi(),
+          fetchFaqsFromApi(),
+          fetchContactsFromApi(authToken),
+        ]);
 
         if (mounted) {
           setBlogs(fetchedBlogs);
           setFaqs(fetchedFaqs);
+          setContacts(fetchedContacts);
         }
       } catch {
         if (mounted) {

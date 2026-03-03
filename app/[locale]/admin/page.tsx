@@ -1,5 +1,8 @@
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
+import { getToken } from "@/lib/utilities/auth";
 
-export default function AdminPage() {
-  return <AdminDashboard />;
+export default async function AdminPage() {
+  const initialToken = (await getToken()) ?? "";
+
+  return <AdminDashboard initialToken={initialToken} />;
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { CheckCircle, Mail, MapPin, Phone, Send } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
+import { createContactLead } from "./contactApi";
 
 type ContactCopy = {
   form: {
@@ -66,6 +67,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateForm = () => {
@@ -85,17 +87,32 @@ export default function ContactClient({ copy }: ContactClientProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!validateForm()) return;
+    if (!validateForm()) {
+      return;
+    }
 
+    setSubmitError("");
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      await createContactLead({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        subject: formData.company.trim(),
+        message: formData.message.trim(),
+      });
+
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: "", company: "", email: "", phone: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      setSubmitError(error instanceof Error ? error.message : "Failed to send your message.");
+    }
   };
 
   const handleChange = (
@@ -103,6 +120,9 @@ export default function ContactClient({ copy }: ContactClientProps) {
   ) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (submitError) {
+      setSubmitError("");
+    }
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -124,6 +144,12 @@ export default function ContactClient({ copy }: ContactClientProps) {
                     <div className="mb-6 flex items-center space-x-3 rounded-xl border border-green-200 bg-green-50 p-4 rtl:space-x-reverse">
                       <CheckCircle size={24} className="shrink-0 text-green-500" />
                       <p className="text-green-700">{copy.form.success}</p>
+                    </div>
+                  ) : null}
+
+                  {submitError ? (
+                    <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">
+                      {submitError}
                     </div>
                   ) : null}
 

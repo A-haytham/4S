@@ -36,7 +36,7 @@ export default function Navbar() {
               alt="4S Technology"
               width={40}
               height={40}
-              className="rounded-lg object-contain"
+              className=" object-contain"
               priority
             />
           </Link>

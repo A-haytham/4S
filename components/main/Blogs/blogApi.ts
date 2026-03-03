@@ -33,6 +33,7 @@ const DEFAULT_CATEGORY = "all";
 const READING_SPEED_WPM = 200;
 
 const normalizeText = (value: string | null | undefined) => value?.trim() ?? "";
+const normalizeStatus = (value: string | null | undefined) => value?.trim().toLowerCase() ?? "";
 
 const toLocalizedValue = (en: string | null | undefined, ar: string | null | undefined) => {
   const enValue = normalizeText(en);
@@ -53,6 +54,10 @@ const estimateReadTime = (htmlContent: string) => {
 };
 
 const mapApiItemToBlogPost = (item: BlogApiItem): BlogPost | null => {
+  if (normalizeStatus(item.status) !== "published") {
+    return null;
+  }
+
   const slug = normalizeText(item.slug);
   const title = toLocalizedValue(item.titleEn, item.titleAr);
   const excerpt = toLocalizedValue(item.briefEn, item.briefAr);
@@ -97,7 +102,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
   try {
     const response = await fetch(BLOGS_API_URL, {
-      next: { revalidate: 120 },
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -109,7 +114,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       .map(mapApiItemToBlogPost)
       .filter((item): item is BlogPost => item !== null);
 
-    return mappedPosts.length > 0 ? mappedPosts : blogPosts;
+    return mappedPosts;
   } catch {
     return blogPosts;
   }

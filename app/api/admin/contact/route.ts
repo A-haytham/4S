@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 
-const BACKEND_PUBLIC_BLOGS_API =
+// admin proxy only – public POST lives in app/api/contact/route.ts
+const BACKEND_ADMIN_CONTACTS_API =
+  process.env.ADMIN_CONTACTS_API_URL ??
+  "http://196.219.86.38:8080/api/admin/contact";
 
-  "http://196.219.86.38:8080/api/blogs";
-
-const BACKEND_ADMIN_BLOGS_API =
-
-  "http://196.219.86.38:8080/api/admin/blogs";
-
-async function proxyToBackend(url: string, method: "GET" | "POST", body?: unknown, authHeader?: string | null) {
+async function proxyToBackend(
+  url: string,
+  method: "GET" | "POST",
+  body?: unknown,
+  authHeader?: string | null,
+) {
   const headers: Record<string, string> = {};
   if (body) {
     headers["Content-Type"] = "application/json";
@@ -34,12 +36,18 @@ async function proxyToBackend(url: string, method: "GET" | "POST", body?: unknow
   return new NextResponse(payload, { status: response.status });
 }
 
-export async function GET() {
-  return proxyToBackend(BACKEND_PUBLIC_BLOGS_API, "GET");
+export async function GET(request: Request) {
+  const authHeader = request.headers.get("authorization");
+  return proxyToBackend(
+    BACKEND_ADMIN_CONTACTS_API,
+    "GET",
+    undefined,
+    authHeader,
+  );
 }
 
 export async function POST(request: Request) {
-  const payload = await request.json();
+  const body = await request.json().catch(() => null);
   const authHeader = request.headers.get("authorization");
-  return proxyToBackend(BACKEND_ADMIN_BLOGS_API, "POST", payload, authHeader);
+  return proxyToBackend(BACKEND_ADMIN_CONTACTS_API, "POST", body, authHeader);
 }

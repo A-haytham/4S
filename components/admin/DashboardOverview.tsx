@@ -20,8 +20,8 @@ type DashboardOverviewProps = {
 };
 
 function AnimatedCount({ value }: { value: number }) {
-  const [displayValue, setDisplayValue] = useState(0);
-  const currentValueRef = useRef(0);
+  const [displayValue, setDisplayValue] = useState(value);
+  const currentValueRef = useRef(value);
 
   useEffect(() => {
     const startValue = currentValueRef.current;
@@ -87,6 +87,44 @@ function formatTimeAgo(value: string) {
 
   const days = Math.floor(diffMs / dayMs);
   return `${days} day${days === 1 ? "" : "s"} ago`;
+}
+
+export function DashboardOverviewSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="rounded-xl bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] p-8">
+        <div className="mb-3 h-8 w-64 rounded-full bg-white/20" />
+        <div className="h-4 w-80 rounded-full bg-white/20" />
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[0, 1, 2, 3].map((item) => (
+          <div key={item} className="rounded-xl border border-gray-200 bg-white p-6">
+            <div className="mb-4 flex items-start justify-between">
+              <div className="h-12 w-12 rounded-lg bg-gray-100" />
+              <div className="h-4 w-12 rounded-full bg-gray-100" />
+            </div>
+            <div className="mb-2 h-8 w-20 rounded-full bg-gray-100" />
+            <div className="h-4 w-24 rounded-full bg-gray-100" />
+          </div>
+        ))}
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white">
+        <div className="border-b border-gray-200 p-6">
+          <div className="h-6 w-40 rounded-full bg-gray-100" />
+        </div>
+        <div className="space-y-0">
+          {[0, 1, 2, 3].map((item) => (
+            <div key={item} className="border-b border-gray-100 p-6 last:border-b-0">
+              <div className="mb-2 h-4 w-40 rounded-full bg-gray-100" />
+              <div className="h-4 w-64 rounded-full bg-gray-100" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function DashboardOverview({

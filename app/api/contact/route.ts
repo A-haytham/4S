@@ -7,15 +7,63 @@ const BACKEND_PUBLIC_CONTACT_API =
   process.env.NEXT_PUBLIC_CONTACTS_API_URL ??
   "http://196.219.86.38:8080/api/contact";
 
+type ContactRouteErrorSource = "request" | "backend" | "gateway";
+
+const buildErrorResponse = (
+  source: ContactRouteErrorSource,
+  message: string,
+  status: number,
+  details?: string,
+) =>
+  NextResponse.json(
+    {
+      source,
+      message,
+      details,
+    },
+    { status },
+  );
+
+const extractBackendErrorDetails = (error: unknown) => {
+  if (!(error instanceof Error)) {
+    return {
+      message: "Unknown contact backend error.",
+      details: undefined as string | undefined,
+    };
+  }
+
+  const cause =
+    "cause" in error && error.cause && typeof error.cause === "object"
+      ? (error.cause as {
+          code?: string;
+          errno?: number;
+          syscall?: string;
+          address?: string;
+          port?: number;
+          message?: string;
+        })
+      : null;
+
+  const detailParts = [
+    cause?.code,
+    cause?.syscall,
+    cause?.address,
+    typeof cause?.port === "number" ? String(cause.port) : undefined,
+    cause?.message && cause.message !== error.message ? cause.message : undefined,
+  ].filter(Boolean);
+
+  return {
+    message: error.message || "Unknown contact backend error.",
+    details: detailParts.length > 0 ? detailParts.join(" | ") : undefined,
+  };
+};
+
 export async function POST(request: Request) {
   let payload: unknown;
   try {
     payload = await request.json();
   } catch {
-    return NextResponse.json(
-      { message: "Invalid JSON body." },
-      { status: 400 },
-    );
+    return buildErrorResponse("request", "Invalid JSON body.", 400);
   }
 
   try {
@@ -31,12 +79,11 @@ export async function POST(request: Request) {
     const rawPayload = await response.text();
 
     if (response.status >= 500) {
-      return NextResponse.json(
-        {
-          message: `Contact backend returned status ${response.status}.`,
-          details: rawPayload.slice(0, 300) || undefined,
-        },
-        { status: 502 },
+      return buildErrorResponse(
+        "backend",
+        `Contact backend returned status ${response.status}.`,
+        502,
+        rawPayload.slice(0, 300) || undefined,
       );
     }
 
@@ -50,20 +97,22 @@ export async function POST(request: Request) {
           status: response.status,
         });
       } catch {
-        return NextResponse.json(
-          { message: "Invalid JSON response from contact backend." },
-          { status: 502 },
+        return buildErrorResponse(
+          "gateway",
+          "Invalid JSON response from contact backend.",
+          502,
         );
       }
     }
 
     return new NextResponse(rawPayload, { status: response.status });
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : "Unknown contact backend error.";
-    return NextResponse.json(
-      { message: `Failed to reach contact backend: ${errorMessage}` },
-      { status: 502 },
+    const { message, details } = extractBackendErrorDetails(error);
+    return buildErrorResponse(
+      "backend",
+      `Failed to reach contact backend: ${message}`,
+      502,
+      details,
     );
   }
 }

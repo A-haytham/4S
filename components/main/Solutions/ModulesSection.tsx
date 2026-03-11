@@ -2,9 +2,13 @@
 
 import {
   ArrowRight,
+  Archive,
   BarChart,
+  Banknote,
   CheckCircle,
+  ClipboardList,
   DollarSign,
+  Building2,
   MousePointer2,
   Package,
   Settings,
@@ -26,6 +30,10 @@ const iconMap = {
   settings: Settings,
   chart: BarChart,
   zap: Zap,
+  bank: Banknote,
+  realEstate: Building2,
+  assets: Archive,
+  administration: ClipboardList,
 };
 
 type ModuleDetail = {

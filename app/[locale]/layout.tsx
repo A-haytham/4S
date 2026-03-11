@@ -14,7 +14,8 @@ const inter = Inter({
 });
 export const metadata: Metadata = {
   title: "4S Systems | ERP Solutions",
-  description: "ERP solutions tailored to your business with real-time visibility and control.",
+  description:
+    "ERP solutions tailored to your business with real-time visibility and control.",
 };
 export const dynamicParams = false;
 
@@ -37,7 +38,10 @@ export default async function RootLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
   return (
     <html lang={locale} dir={dir}>
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${inter.className} antialiased`}
+        suppressHydrationWarning={true}
+      >
         <div className="min-h-svh">
           <NextIntlClientProvider messages={messages}>
             <SiteChrome>{children}</SiteChrome>

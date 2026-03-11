@@ -10,8 +10,17 @@ const CONTACTS_API = "/api/contact";
 
 const parseErrorMessage = async (response: Response) => {
   try {
-    const payload = (await response.json()) as { message?: string };
-    return payload.message || `Request failed with status ${response.status}`;
+    const payload = (await response.json()) as {
+      source?: string;
+      message?: string;
+      details?: string;
+    };
+
+    const parts = [payload.source ? `[${payload.source}]` : "", payload.message, payload.details]
+      .filter((value) => typeof value === "string" && value.trim().length > 0)
+      .join(" ");
+
+    return parts || `Request failed with status ${response.status}`;
   } catch {
     return `Request failed with status ${response.status}`;
   }

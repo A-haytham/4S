@@ -171,8 +171,7 @@
         {
           "name": "Next.js",
           "description": "SEO-ready web experiences with server rendering."
-        }
-        ,
+        },
         {
           "name": "iOS",
           "description": "Native iOS development for performant mobile experiences."
@@ -494,13 +493,13 @@
       "description": "Unify finance, operations, and people with a modular ERP platform designed for modern businesses."
     },
     "overview": {
-      "title": "One Platform. Every Department.",
-      "description": "4S Systems delivers a flexible ERP suite that connects teams, automates workflows, and provides real-time visibility.",
+      "title": "One Platform That Runs Every Department Efficiently",
+      "description": "4S Systems delivers a flexible, unified ERP suite that brings teams together, automates processes, and gives leadership a complete real-time view that supports confident, fast decision-making.",
       "features": [
-        "Cloud-native architecture for maximum flexibility",
-        "Mobile-first design for on-the-go access",
+        "Modern cloud architecture for maximum flexibility and high availability",
+        "Mobile-first design for full access from anywhere, at any time",
         "Enterprise-grade security and compliance",
-        "Scalable from 10 to 10,000+ users"
+        "Flexible scalability from 10 users to more than 10,000"
       ],
       "cta": "Request a Demo",
       "cards": [
@@ -655,6 +654,66 @@
               "Secure authentication and monitoring"
             ]
           }
+        },
+        {
+          "key": "banks",
+          "title": "Banks",
+          "description": "Manage bank accounts, cash positions, and reconciliations.",
+          "icon": "bank",
+          "details": {
+            "tagline": "Keep cash and banking operations fully in sync.",
+            "points": [
+              "Bank account management and signatories",
+              "Automated bank reconciliation and statements",
+              "Cash positioning and liquidity forecasts",
+              "Payment approvals and treasury controls"
+            ]
+          }
+        },
+        {
+          "key": "realEstate",
+          "title": "Real Estate",
+          "description": "Track properties, leases, and occupancy from one system.",
+          "icon": "realEstate",
+          "details": {
+            "tagline": "Visibility across assets, leases, and contracts.",
+            "points": [
+              "Property portfolio and unit management",
+              "Lease contracts, renewals, and billing",
+              "Maintenance requests and service schedules",
+              "Revenue tracking by property and unit"
+            ]
+          }
+        },
+        {
+          "key": "assets",
+          "title": "Assets",
+          "description": "Control fixed assets, depreciation, and lifecycle costs.",
+          "icon": "assets",
+          "details": {
+            "tagline": "Track asset value from acquisition to disposal.",
+            "points": [
+              "Asset registry with categories and locations",
+              "Depreciation schedules and book/value tracking",
+              "Transfers, disposals, and audits",
+              "Maintenance history and total cost of ownership"
+            ]
+          }
+        },
+        {
+          "key": "administration",
+          "title": "Administration",
+          "description": "Centralize approvals, policies, and internal services.",
+          "icon": "administration",
+          "details": {
+            "tagline": "Streamline administrative workflows and governance.",
+            "points": [
+              "Document control and policy management",
+              "Requests, approvals, and task routing",
+              "Facilities and service ticket tracking",
+              "Audit-ready logs and compliance workflows"
+            ]
+          }
         }
       ],
       "modal": {
@@ -672,7 +731,7 @@
     },
     "integrations": {
       "title": "Integrations That Fit Your Stack",
-      "description": "Connect 4S Systems with the tools you already use across finance, commerce, and operations.",
+      "description": "Seamlessly connect 4S Systems with the tools and platforms you already rely on across finance, commerce, and operations, ensuring unified data, streamlined workflows, and greater operational efficiency.",
       "categories": [
         {
           "title": "Finance & Banking",
@@ -727,21 +786,21 @@
     "list": [
       {
         "title": "ERP Implementation",
-        "description": "Structured delivery that keeps your rollout on time and on budget.",
+        "description": "A structured implementation methodology that keeps the project on schedule and within the approved budget.",
         "process": [
-          "Discovery and requirements alignment",
-          "System configuration and setup",
+          "Requirements analysis and alignment",
+          "System configuration and setup based on business needs",
           "Data migration and validation",
-          "Launch readiness and handover"
+          "Go-live readiness and final handover"
         ],
         "cta": "Talk to Implementation"
       },
       {
         "title": "Process Design & Optimization",
-        "description": "Map, standardize, and automate workflows to unlock efficiency.",
+        "description": "Map, standardize, and automate workflows to enhance operational efficiency and achieve better performance.",
         "process": [
           "Current-state process mapping",
-          "Gap analysis and improvement plan",
+          "Gap analysis and improvement planning",
           "Workflow automation design",
           "KPI alignment and governance"
         ],
@@ -749,10 +808,10 @@
       },
       {
         "title": "Customization & Integrations",
-        "description": "Tailor ERP modules and connect your existing systems.",
+        "description": "Tailor ERP modules and integrate them with your existing systems to meet your business needs precisely.",
         "process": [
           "Module customization roadmap",
-          "API and integration strategy",
+          "Integration strategy and APIs",
           "Testing and data synchronization",
           "Security and performance review"
         ],
@@ -760,23 +819,23 @@
       },
       {
         "title": "Training & Change Management",
-        "description": "Empower teams to adopt the system confidently.",
+        "description": "Enable teams to adopt the system with confidence and maximize its value.",
         "process": [
           "Role-based training plans",
-          "Hands-on workshops and labs",
-          "User adoption playbooks",
-          "Post-go-live enablement"
+          "Hands-on workshops and practical training",
+          "Guides and playbooks to drive user adoption",
+          "Post-go-live support and team enablement"
         ],
         "cta": "Book Training"
       },
       {
-        "title": "Web & Digital Experiences",
-        "description": "Design and build modern websites that reflect your brand and convert.",
+        "title": "Digital Experiences & Website Design",
+        "description": "Design and build modern websites that reflect your brand and drive high conversion rates.",
         "process": [
-          "Discovery and UX planning",
+          "Requirements analysis and UX planning",
           "Visual design and content systems",
-          "Responsive development",
-          "Performance and SEO optimization"
+          "Responsive development across all devices",
+          "Performance optimization and SEO"
         ],
         "cta": "Start a Project",
         "ctaSecondary": "View Portfolio"
@@ -784,9 +843,9 @@
     ],
     "bridge": {
       "title": "Digital Solutions Beyond ERP",
-      "description": "In addition to ERP, we craft modern digital experiences that strengthen your brand and grow demand."
+      "description": "In addition to ERP, we create modern digital experiences that strengthen your brand and increase demand for your products and services."
     },
-    "webBadge": "Web Development",
+    "webBadge": "Website Development",
     "supportTiers": {
       "title": "Support Plans",
       "subtitle": "Choose the support level that fits your needs.",
@@ -930,10 +989,10 @@
     },
     "story": {
       "title": "Our Story",
-      "content": "For over 15 years, 4S Systems has partnered with organizations across the Middle East to deliver ERP implementations that actually work. We focus on process clarity, data accuracy, and measurable outcomes.",
+      "content": "For over 30 years, 4S Systems has partnered with organizations across the Middle East to deliver ERP implementations that actually work. We focus on process clarity, data accuracy, and measurable outcomes.",
       "stats": [
         {
-          "value": "15+",
+          "value": "30+",
           "label": "Years Experience"
         },
         {
@@ -957,7 +1016,7 @@
     },
     "mission": {
       "title": "Our Mission",
-      "content": "To empower businesses with systems that simplify operations, connect teams, and enable smarter decisions."
+      "content": "We are committed to delivering a comprehensive portfolio of certified and recognized high-quality products and services that keep pace with evolving market needs and fulfill our clients' expectations, while continuously striving to exceed their satisfaction and achieve the best possible value with maximum efficiency and minimal cost."
     },
     "values": {
       "title": "Our Values",

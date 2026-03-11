@@ -235,18 +235,6 @@ export default function BlogPostClient({
               />
             </Reveal>
 
-            <Reveal>
-              <div
-                className={`mt-12 flex items-center gap-4 border-t border-gray-200 pt-8 ${
-                  isRTL ? "flex-row-reverse" : ""
-                }`}
-              >
-                <Share2 size={20} className="text-gray-700" />
-                <span className="font-medium text-gray-700">
-                  {labels.shareArticle}
-                </span>
-              </div>
-            </Reveal>
           </article>
         </div>
 

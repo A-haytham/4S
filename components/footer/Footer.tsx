@@ -1,5 +1,6 @@
-import { Linkedin, Twitter } from "lucide-react";
+import { Link, Linkedin, Twitter } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -11,8 +12,17 @@ export default function Footer() {
         <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-6">
           <div className="col-span-2 lg:col-span-2">
             <div className="mb-4 flex items-center gap-2 rtl:gap-0 rtl:space-x-reverse">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white">
-                <span className="text-xl font-bold text-[#0F4C81]">4S</span>
+              <div className="flex h-12 w-12 bg-amber-50 rounded-xl justify-center items-center">
+                  
+            <Image
+              src="/logo.svg"
+              alt="4S Technology"
+              width={70}
+              height={70}
+              className=" object-contain"
+              priority
+            />
+          
               </div>
               <span className="text-xl font-semibold">{t("brand")}</span>
             </div>

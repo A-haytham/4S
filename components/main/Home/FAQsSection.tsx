@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { getFaqCategoriesFromApi } from "@/components/main/FAQs/faqsApi";
 import FAQsAccordion from "./FAQsAccordion";
 
 type FaqItem = {
@@ -8,15 +9,25 @@ type FaqItem = {
   answer: string;
 };
 
-export default function FAQsSection() {
-  const t = useTranslations("home.faqsSection");
-  const faqs = t.raw("faqs") as FaqItem[];
+export default async function FAQsSection() {
+  const t = await getTranslations("home.faqsSection");
+  const locale = await getLocale();
+
+  const categories = await getFaqCategoriesFromApi(locale);
+  const apiFaqs = categories
+    .flatMap((category) => category.faqs)
+    .filter((item) => item.question.trim() && item.answer.trim());
+
+  const fallbackFaqs = t.raw("faqs") as FaqItem[];
+  const faqs = (apiFaqs.length > 0 ? apiFaqs : fallbackFaqs).slice(0, 4);
 
   return (
     <section className="bg-linear-to-b from-white to-gray-50 py-20">
       <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold text-gray-900 sm:text-4xl">{t("title")}</h2>
+          <h2 className="text-3xl font-semibold text-gray-900 sm:text-4xl">
+            {t("title")}
+          </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-gray-600 sm:text-lg">
             {t("description")}
           </p>

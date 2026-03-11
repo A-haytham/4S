@@ -3,7 +3,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AdminLogin } from "./AdminLogin";
 import { AdminLayout } from "./AdminLayout";
-import { DashboardOverview, type RecentActivityItem } from "./DashboardOverview";
+import {
+  DashboardOverview,
+  DashboardOverviewSkeleton,
+  type RecentActivityItem,
+} from "./DashboardOverview";
 import { BlogsList, type Blog } from "./BlogsList";
 import { BlogEditor } from "./BlogEditor";
 import { FAQsList, type FAQ } from "./FAQsList";
@@ -24,6 +28,7 @@ type AdminDashboardProps = {
 export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean(initialToken));
   const [authToken, setAuthToken] = useState(initialToken);
+  const [isDashboardLoading, setIsDashboardLoading] = useState(Boolean(initialToken));
   const [currentPage, setCurrentPage] = useState<AdminPage>("dashboard");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
@@ -42,6 +47,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   }, []);
 
   const handleLogin = (token: string) => {
+    setIsDashboardLoading(true);
     setAuthToken(token);
     setIsLoggedIn(true);
     toast.success("Welcome back, Admin!");
@@ -54,6 +60,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
 
     setAuthToken("");
     setIsLoggedIn(false);
+    setIsDashboardLoading(false);
     setCurrentPage("dashboard");
     toast.success("Logged out successfully");
   };
@@ -81,6 +88,10 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       } catch {
         if (mounted) {
           toast.error("Could not load dashboard data from API.");
+        }
+      } finally {
+        if (mounted) {
+          setIsDashboardLoading(false);
         }
       }
     };
@@ -230,7 +241,9 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   const renderContent = () => {
     switch (currentPage) {
       case "dashboard":
-        return (
+        return isDashboardLoading ? (
+          <DashboardOverviewSkeleton />
+        ) : (
           <DashboardOverview
             blogsCount={blogs.length}
             faqsCount={faqs.length}
@@ -271,7 +284,9 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       case "contacts":
         return <ContactLeadsList leads={contacts} />;
       default:
-        return (
+        return isDashboardLoading ? (
+          <DashboardOverviewSkeleton />
+        ) : (
           <DashboardOverview
             blogsCount={blogs.length}
             faqsCount={faqs.length}

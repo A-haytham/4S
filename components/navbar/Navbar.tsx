@@ -25,7 +25,7 @@ export default function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-gray-100 shadow-sm backdrop-blur"
+      className="sticky top-0 z-50  border-gray-100 shadow-sm backdrop-blur"
       style={{ backgroundColor: "color-mix(in oklab, #ffffff00 90%, transparent)" }}
     >
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@ export default function Navbar() {
             <Image
               src="/logo.svg"
               alt="4S Technology"
-              width={40}
+              width={70}
               height={40}
               className=" object-contain"
               priority

@@ -164,7 +164,7 @@ export async function fetchBlogsFromApi() {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to load blogs");
+    throw new Error(await parseErrorMessage(response));
   }
 
   const payload = (await response.json()) as unknown;

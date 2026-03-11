@@ -28,7 +28,7 @@ export default function BlogFiltersSection({
 }: BlogFiltersSectionProps) {
   return (
     <Reveal>
-      <section className="mx-auto -mt-8 max-w-7xl px-4">
+      <section className="mx-auto relative -mt-8 max-w-7xl px-4">
         <div className="rounded-2xl bg-white p-6 shadow-xl md:p-8">
           <div className="mb-6">
             <div className="relative">

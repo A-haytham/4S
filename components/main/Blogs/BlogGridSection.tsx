@@ -93,7 +93,10 @@ type BlogCardProps = {
   };
 };
 
-const isImageUrl = (value: string) => /^(https?:\/\/|\/)/i.test(value.trim());
+const isImageUrl = (value: string) => {
+  const trimmed = value.trim();
+  return /^(https?:\/\/|\/|data:image\/[a-zA-Z]+;base64,)/i.test(trimmed);
+};
 
 function BlogCard({ post, locale, isRTL, labels }: BlogCardProps) {
   const title = post.title[locale] ?? post.title.en ?? "";
@@ -116,7 +119,7 @@ function BlogCard({ post, locale, isRTL, labels }: BlogCardProps) {
             <img
               src={post.image}
               alt={title}
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               onError={(event) => {
                 event.currentTarget.style.display = "none";

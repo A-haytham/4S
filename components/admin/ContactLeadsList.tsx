@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, Download, Eye, Mail, Search } from "lucide-react";
+import { Calendar, Eye, Mail, Search } from "lucide-react";
 
 export type ContactLead = {
   id: string;
@@ -41,13 +41,6 @@ export function ContactLeadsList({ leads }: ContactLeadsListProps) {
           <h1 className="text-2xl font-bold text-gray-900">Contact Leads</h1>
           <p className="mt-1 text-gray-600">View and manage customer inquiries</p>
         </div>
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
-        >
-          <Download className="h-4 w-4" />
-          Export CSV
-        </button>
       </div>
 
       <div className="rounded-xl border border-gray-200 bg-white p-4">

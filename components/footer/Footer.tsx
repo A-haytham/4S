@@ -1,6 +1,58 @@
-import { Link, Linkedin, Twitter } from "lucide-react";
+import { Linkedin, Twitter } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+
+const getFooterHref = (columnIndex: number, linkIndex: number, label: string) => {
+  if (label.includes("@")) {
+    return `mailto:${label}`;
+  }
+
+  if (/^\+?[\d\s()-]+$/.test(label)) {
+    const compact = label.replace(/[^\d+]/g, "");
+    return `tel:${compact}`;
+  }
+
+  if (columnIndex === 0) {
+    const companyRoutes = ["/about#story", "/about#mission", "/about#values", "/about#team"];
+    return companyRoutes[linkIndex] ?? "/about";
+  }
+
+  if (columnIndex === 1) {
+    const solutionRoutes = [
+      "/solutions#overview",
+      "/solutions#modules",
+      "/solutions#integrations",
+      "/solutions#solutions-cta",
+    ];
+    return solutionRoutes[linkIndex] ?? "/solutions";
+  }
+
+  if (columnIndex === 2) {
+    const serviceRoutes = [
+      "/our-services#implementation",
+      "/our-services#process-design",
+      "/our-services#customization",
+      "/our-services#training",
+    ];
+    return serviceRoutes[linkIndex] ?? "/our-services";
+  }
+
+  if (columnIndex === 3) {
+    const contactRoutes = [
+      "/contact-us#contact-form",
+      "/contact-us#contact-sales",
+      "/contact-us#contact-support",
+      "/contact-us#contact-location",
+    ];
+    return contactRoutes[linkIndex] ?? "/contact-us";
+  }
+
+  return "";
+};
+
+const isExternalHref = (href: string) =>
+  href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("http");
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -45,15 +97,43 @@ export default function Footer() {
             </div>
           </div>
 
-          {columns.map((column) => (
+          {columns.map((column, columnIndex) => (
             <div key={column.title} className="ltr:text-left rtl:text-right">
               <h3 className="mb-4 font-semibold">{column.title}</h3>
               <ul className="space-y-3 text-sm text-gray-300">
-                {column.links.map((link) => (
-                  <li key={link}>
-                    <span className="transition-colors hover:text-white">{link}</span>
-                  </li>
-                ))}
+                {column.links.map((link, linkIndex) => {
+                  const href = getFooterHref(columnIndex, linkIndex, link);
+                  if (!href) {
+                    return (
+                      <li key={`${link}-${linkIndex}`}>
+                        <span className="transition-colors hover:text-white">{link}</span>
+                      </li>
+                    );
+                  }
+
+                  if (isExternalHref(href)) {
+                    return (
+                      <li key={`${link}-${linkIndex}`}>
+                        <a
+                          href={href}
+                          className="transition-colors hover:text-white"
+                          target={href.startsWith("http") ? "_blank" : undefined}
+                          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        >
+                          {link}
+                        </a>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li key={`${link}-${linkIndex}`}>
+                      <Link href={href} className="transition-colors hover:text-white">
+                        {link}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

@@ -677,6 +677,7 @@
           "icon": "realEstate",
           "details": {
             "tagline": "Visibility across assets, leases, and contracts.",
+            "videoUrl": "/modules-videos/real-estate.mp4",
             "points": [
               "Property portfolio and unit management",
               "Lease contracts, renewals, and billing",
@@ -897,37 +898,37 @@
       {
         "title": "Company",
         "links": [
-          "About Us",
-          "Careers",
-          "News",
-          "Partners"
+          "Our Story",
+          "Mission",
+          "Values",
+          "Team"
         ]
       },
       {
         "title": "Solutions",
         "links": [
-          "ERP Platform",
-          "Finance Suite",
-          "Manufacturing",
-          "Analytics"
+          "Overview",
+          "Modules",
+          "Integrations",
+          "Book a Demo"
         ]
       },
       {
         "title": "Services",
         "links": [
-          "Implementation",
-          "Training",
-          "Support",
-          "Consulting"
+          "ERP Implementation",
+          "Process Design & Optimization",
+          "Customization & Integrations",
+          "Training & Change Management"
         ]
       },
       {
         "title": "Contact",
         "links": [
-          "+1 (800) 555-0134",
-          "info@4ssystems.com",
-          "Dubai, UAE",
-          "Riyadh, KSA"
+          "Contact Form",
+          "Sales",
+          "Support",
+          "Locations"
         ]
       }
     ],
@@ -1098,7 +1099,7 @@
         "name": "Ahmed Haytham",
         "company": "Company Name",
         "email": "john@company.com",
-        "phone": "+966 XX XXX XXXX",
+        "phone": "+20 1159899904",
         "message": "Tell us about your business needs..."
       },
       "errors": {
@@ -1114,17 +1115,17 @@
       "title": "Sales",
       "description": "Talk to sales about demos, pricing, and onboarding.",
       "email": "sales@4ssystems.com",
-      "phone": "+966 11 000 0000"
+      "phone": "+20 1159899904"
     },
     "support": {
       "title": "Support",
       "description": "Need help with your current system? Our team is here.",
       "email": "support@4ssystems.com",
-      "phone": "+966 11 000 1111"
+      "phone": "+20 1159899904"
     },
     "location": {
-      "title": "Our office",
-      "address": "Dubai, UAE"
+      "title": "Our offices",
+      "address": "Riyadh, KSA\nCairo, Egypt"
     },
     "map": {
       "label": "Map location"

@@ -36,7 +36,7 @@ export default function Navbar() {
               alt="4S Technology"
               width={70}
               height={40}
-              className=" object-contain"
+              className=" object-contain h-auto"
               priority
             />
           </Link>

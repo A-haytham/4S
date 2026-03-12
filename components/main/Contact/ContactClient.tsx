@@ -131,7 +131,7 @@ export default function ContactClient({ copy }: ContactClientProps) {
   return (
     <div className="min-h-screen bg-white">
       <Reveal>
-        <section className="py-20">
+        <section id="contact-form" className="py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-12 lg:grid-cols-3">
               <div className="lg:col-span-2">
@@ -284,7 +284,10 @@ export default function ContactClient({ copy }: ContactClientProps) {
               </div>
 
               <div className="space-y-6">
-                <div className="rounded-2xl bg-linear-to-br from-blue-50 to-blue-100 p-8">
+                <div
+                  id="contact-sales"
+                  className="rounded-2xl bg-linear-to-br from-blue-50 to-blue-100 p-8"
+                >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F4C81]">
                     <Phone size={24} className="text-white" />
                   </div>
@@ -310,7 +313,10 @@ export default function ContactClient({ copy }: ContactClientProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-linear-to-br from-green-50 to-green-100 p-8">
+                <div
+                  id="contact-support"
+                  className="rounded-2xl bg-linear-to-br from-green-50 to-green-100 p-8"
+                >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-green-600">
                     <Mail size={24} className="text-white" />
                   </div>
@@ -336,23 +342,28 @@ export default function ContactClient({ copy }: ContactClientProps) {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-linear-to-br from-purple-50 to-purple-100 p-8">
+                <div
+                  id="contact-location"
+                  className="rounded-2xl bg-linear-to-br from-purple-50 to-purple-100 p-8"
+                >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600">
                     <MapPin size={24} className="text-white" />
                   </div>
                   <h3 className="mb-2 text-xl font-semibold text-gray-900">
                     {copy.location.title}
                   </h3>
-                  <p className="text-gray-600">{copy.location.address}</p>
+                  <p className="text-gray-600 whitespace-pre-line">{copy.location.address}</p>
                 </div>
 
                 <div className="h-64 overflow-hidden rounded-2xl bg-gray-100">
-                  <div className="flex h-full w-full items-center justify-center text-gray-400">
-                    <div className="text-center">
-                      <MapPin size={48} className="mx-auto mb-2" />
-                      <p className="text-sm">{copy.map.label}</p>
-                    </div>
-                  </div>
+                  <iframe
+                    title={copy.map.label}
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6637.138439446273!2d31.189428154514122!3d30.052047873788155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584149d2fe4fcf%3A0x66e343ffbfa12f44!2s4S%20Technology!5e1!3m2!1sen!2seg!4v1773330708331!5m2!1sen!2seg"
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
               </div>
             </div>

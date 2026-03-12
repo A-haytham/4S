@@ -10,7 +10,7 @@ export default function IntegrationsSection() {
   const categories = t.raw("categories") as IntegrationCategory[];
 
   return (
-    <section className="bg-white py-20">
+    <section id="integrations" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">

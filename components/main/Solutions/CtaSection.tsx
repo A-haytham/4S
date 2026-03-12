@@ -15,6 +15,7 @@ export default function SolutionsCtaSection() {
 
   return (
     <CtaSection
+      id="solutions-cta"
       title={t("title")}
       description={t("description")}
       buttons={buttons}

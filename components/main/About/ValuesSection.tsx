@@ -10,7 +10,7 @@ export default function ValuesSection() {
   const values = t.raw("values.list") as ValueItem[];
 
   return (
-    <section className="bg-white py-20">
+    <section id="values" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">{t("values.title")}</h2>

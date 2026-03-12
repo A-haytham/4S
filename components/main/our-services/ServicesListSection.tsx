@@ -15,6 +15,7 @@ export default function ServicesListSection() {
   const services = t.raw("list") as ServiceItem[];
   const primaryServices = services.slice(0, 4);
   const webServices = services.slice(4);
+  const primaryServiceAnchors = ["implementation", "process-design", "customization", "training"];
 
   return (
     <section className="py-20">
@@ -24,7 +25,11 @@ export default function ServicesListSection() {
             const isOdd = index % 2 === 1;
 
             return (
-              <div key={service.title} className="grid items-center gap-12 lg:grid-cols-2">
+              <div
+                key={service.title}
+                id={primaryServiceAnchors[index]}
+                className="grid items-center gap-12 lg:grid-cols-2"
+              >
                 <div className={isOdd ? "lg:order-2" : ""}>
                   <div className="mb-4 inline-flex rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-[#0F4C81]">
                     {t("listLabel", { index: index + 1 })}

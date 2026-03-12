@@ -15,7 +15,7 @@ export default function StorySection() {
   const awards = t.raw("story.awards") as string[];
 
   return (
-    <section className="bg-white py-20">
+    <section id="story" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="ltr:text-left rtl:text-right">

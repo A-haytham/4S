@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 type ModuleDetail = {
   tagline: string;
   points: string[];
+  videoUrl?: string;
 };
 
 type ModuleItem = {
@@ -30,7 +31,8 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
   const [isPlaying, setIsPlaying] = useState(false);
   const modules = t.raw("modules.items") as ModuleItem[];
   const activeModule = modules.find((item) => item.key === moduleKey) ?? modules[0];
-  const videoUrl = t("modules.modal.videoUrl");
+  const fallbackVideoUrl = t("modules.modal.videoUrl");
+  const videoUrl = activeModule.details.videoUrl ?? fallbackVideoUrl;
   const videoDuration = t("modules.modal.duration");
 
   useEffect(() => {
@@ -65,9 +67,11 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
     return null;
   }
 
-  const embedUrl = videoUrl
-    ? `${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1`
-    : "";
+  const isLocalVideo = Boolean(videoUrl) && (videoUrl.endsWith(".mp4") || videoUrl.startsWith("/"));
+  const embedUrl =
+    videoUrl && !isLocalVideo
+      ? `${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1`
+      : "";
   const modulePdfHref =
     "/modules-pdf/%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%89.pdf";
 
@@ -99,6 +103,13 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
             <div className="relative aspect-video">
               {!isPlaying ? (
                 <>
+                  <video
+                    className="h-full w-full"
+                    src={videoUrl}
+                    muted
+                    playsInline
+                    preload="metadata"
+                  />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
                       type="button"
@@ -112,8 +123,6 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
                     </button>
                   </div>
 
-                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAgTSAwIDIwIEwgNDAgMjAgTSAyMCAwIEwgMjAgNDAgTSAwIDMwIEwgNDAgMzAgTSAzMCAwIEwgMzAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30" />
-
                   <div
                     className={`absolute bottom-4 rounded bg-black/70 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm ${
                       isRTL ? "right-4" : "left-4"
@@ -122,6 +131,14 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
                     {videoDuration}
                   </div>
                 </>
+              ) : isLocalVideo ? (
+                <video
+                  className="h-full w-full"
+                  src={videoUrl}
+                  controls
+                  autoPlay
+                  playsInline
+                />
               ) : (
                 <iframe
                   className="h-full w-full"

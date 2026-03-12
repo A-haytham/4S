@@ -40,7 +40,7 @@ export default function OverviewSection() {
   const cards = t.raw("overview.cards") as OverviewCard[];
 
   return (
-    <section className="bg-white py-20">
+    <section id="overview" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>

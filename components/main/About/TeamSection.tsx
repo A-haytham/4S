@@ -8,7 +8,7 @@ export default function TeamSection() {
   const departments = t.raw("team.departments") as Department[];
 
   return (
-    <section className="bg-linear-to-br from-gray-50 to-white py-20">
+    <section id="team" className="bg-linear-to-br from-gray-50 to-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">{t("team.title")}</h2>

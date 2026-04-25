@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Image as ImageIcon, Save, Copy } from "lucide-react";
+import { ArrowLeft, Image as ImageIcon, Save, Copy, Loader2 } from "lucide-react";
 import type { Blog } from "./BlogsList";
 
 type BlogEditorProps = {
   blog?: Blog;
-  onSave: (blog: Partial<Blog>) => void;
+  onSave: (blog: Partial<Blog>) => Promise<void> | void;
   onCancel: () => void;
 };
 
@@ -31,6 +31,7 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
 
   const [imagePreview, setImagePreview] = useState(blog?.coverImage || "");
   const [uploadStatus, setUploadStatus] = useState<string>("");
+  const [isSaving, setIsSaving] = useState(false);
 
   // contract template state editable and copyable
   const initialTemplate = `<h1>عنوان المقال الرئيسي</h1>
@@ -50,9 +51,20 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
 <p>خاتمة قصيرة: تلخيص سريع + جملة نهائية.</p>`;
   const [template, setTemplate] = useState(initialTemplate);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSave(formData);
+
+    if (isSaving) {
+      return;
+    }
+
+    setIsSaving(true);
+
+    try {
+      await Promise.resolve(onSave(formData));
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -437,12 +449,25 @@ export function BlogEditor({ blog, onSave, onCancel }: BlogEditorProps) {
               <div className="space-y-3 border-t border-gray-200 pt-4">
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-lg bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-4 py-2 text-sm font-semibold text-white transition-all hover:from-[#083A61] hover:to-[#1E5F9E]"
+                  disabled={isSaving}
+                  aria-busy={isSaving}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-linear-to-r from-[#0F4C81] to-[#2B7CB3] px-4 py-2 text-sm font-semibold text-white transition-all hover:from-[#083A61] hover:to-[#1E5F9E] disabled:cursor-not-allowed disabled:opacity-80"
                 >
-                  <Save className="mr-2 h-4 w-4" />
-                  {formData.status === "published"
-                    ? "Publish"
-                    : "Save as Draft"}
+                  {isSaving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      {formData.status === "published"
+                        ? "Publishing..."
+                        : "Saving draft..."}
+                    </>
+                  ) : (
+                    <>
+                      <Save className="h-4 w-4" />
+                      {formData.status === "published"
+                        ? "Publish"
+                        : "Save as Draft"}
+                    </>
+                  )}
                 </button>
                 <button
                   type="button"

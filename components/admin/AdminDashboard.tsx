@@ -16,19 +16,24 @@ import { ContactLeadsList, type ContactLead } from "./ContactLeadsList";
 import { createBlogInApi, deleteBlogInApi, fetchBlogsFromApi, updateBlogInApi } from "./blogsApi";
 import { fetchContactsFromApi } from "./contactsApi";
 import { createFaqInApi, deleteFaqInApi, fetchFaqsFromApi, updateFaqInApi } from "./faqsApi";
+import { getAdminErrorMessage, isAdminAuthError } from "./apiError";
 import { AdminToast } from "./AdminToast";
 import { toast } from "./toast";
 
 type AdminPage = "dashboard" | "blogs" | "blogs-edit" | "faqs" | "faqs-edit" | "contacts";
+type AdminTheme = "light" | "dark";
 
 type AdminDashboardProps = {
   initialToken?: string;
 };
 
+const ADMIN_THEME_STORAGE_KEY = "4s-admin-theme";
+
 export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(Boolean(initialToken));
   const [authToken, setAuthToken] = useState(initialToken);
   const [isDashboardLoading, setIsDashboardLoading] = useState(Boolean(initialToken));
+  const [adminTheme, setAdminTheme] = useState<AdminTheme>("light");
   const [currentPage, setCurrentPage] = useState<AdminPage>("dashboard");
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
@@ -46,6 +51,49 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
     setFaqs(fetchedFaqs);
   }, []);
 
+  const resetAdminSession = useCallback(
+    (feedback?: { type: "success" | "error"; message: string }) => {
+      void fetch("/api/admin/auth/logout", { method: "POST" }).catch(() => {
+        // local logout still proceeds if cookie cleanup request fails
+      });
+
+      setAuthToken("");
+      setIsLoggedIn(false);
+      setIsDashboardLoading(false);
+      setCurrentPage("dashboard");
+      setEditingBlog(undefined);
+      setEditingFaq(undefined);
+      setBlogs([]);
+      setFaqs([]);
+      setContacts([]);
+
+      if (feedback) {
+        if (feedback.type === "success") {
+          toast.success(feedback.message);
+        } else {
+          toast.error(feedback.message);
+        }
+      }
+    },
+    [],
+  );
+
+  const handleAuthFailure = useCallback(
+    (error?: unknown) => {
+      const rawMessage = getAdminErrorMessage(error, "");
+      const shouldUseFallbackMessage =
+        !rawMessage ||
+        rawMessage === "Missing auth token." ||
+        /^Request failed with status (401|403)$/.test(rawMessage);
+
+      resetAdminSession({
+        type: "error",
+        message: shouldUseFallbackMessage ? "Your session expired. Please login again." : rawMessage,
+      });
+    },
+    [resetAdminSession],
+  );
+
   const handleLogin = (token: string) => {
     setIsDashboardLoading(true);
     setAuthToken(token);
@@ -54,16 +102,28 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   };
 
   const handleLogout = () => {
-    void fetch("/api/admin/auth/logout", { method: "POST" }).catch(() => {
-      // local logout still proceeds if cookie cleanup request fails
+    resetAdminSession({
+      type: "success",
+      message: "Logged out successfully",
     });
-
-    setAuthToken("");
-    setIsLoggedIn(false);
-    setIsDashboardLoading(false);
-    setCurrentPage("dashboard");
-    toast.success("Logged out successfully");
   };
+
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem(ADMIN_THEME_STORAGE_KEY);
+
+    if (storedTheme === "light" || storedTheme === "dark") {
+      setAdminTheme(storedTheme);
+      return;
+    }
+
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setAdminTheme("dark");
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(ADMIN_THEME_STORAGE_KEY, adminTheme);
+  }, [adminTheme]);
 
   useEffect(() => {
     if (!isLoggedIn || !authToken) {
@@ -74,20 +134,52 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
 
     const loadInitialData = async () => {
       try {
-        const [fetchedBlogs, fetchedFaqs, fetchedContacts] = await Promise.all([
+        const [fetchedBlogs, fetchedFaqs, fetchedContacts] = await Promise.allSettled([
           fetchBlogsFromApi(),
           fetchFaqsFromApi(),
           fetchContactsFromApi(authToken),
         ]);
 
         if (mounted) {
-          setBlogs(fetchedBlogs);
-          setFaqs(fetchedFaqs);
-          setContacts(fetchedContacts);
+          const failedRequests = [fetchedBlogs, fetchedFaqs, fetchedContacts].filter(
+            (result): result is PromiseRejectedResult => result.status === "rejected",
+          );
+          const authFailure = failedRequests.find((result) => isAdminAuthError(result.reason));
+
+          if (authFailure) {
+            handleAuthFailure(authFailure.reason);
+            return;
+          }
+
+          if (fetchedBlogs.status === "fulfilled") {
+            setBlogs(fetchedBlogs.value);
+          }
+
+          if (fetchedFaqs.status === "fulfilled") {
+            setFaqs(fetchedFaqs.value);
+          }
+
+          if (fetchedContacts.status === "fulfilled") {
+            setContacts(fetchedContacts.value);
+          }
+
+          if (failedRequests.length > 0) {
+            toast.error(
+              getAdminErrorMessage(
+                failedRequests[0].reason,
+                "Could not load dashboard data from API.",
+              ),
+            );
+          }
         }
-      } catch {
+      } catch (error) {
         if (mounted) {
-          toast.error("Could not load dashboard data from API.");
+          if (isAdminAuthError(error)) {
+            handleAuthFailure(error);
+            return;
+          }
+
+          toast.error(getAdminErrorMessage(error, "Could not load dashboard data from API."));
         }
       } finally {
         if (mounted) {
@@ -101,7 +193,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
     return () => {
       mounted = false;
     };
-  }, [isLoggedIn, authToken, reloadBlogs, reloadFaqs]);
+  }, [isLoggedIn, authToken, handleAuthFailure]);
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page as AdminPage);
@@ -121,7 +213,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
 
   const handleSaveBlog = async (blogData: Partial<Blog>) => {
     if (!authToken) {
-      toast.error("Please login again.");
+      handleAuthFailure();
       return;
     }
 
@@ -139,13 +231,18 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       setCurrentPage("blogs");
       setEditingBlog(undefined);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to save blog.");
+      if (isAdminAuthError(error)) {
+        handleAuthFailure(error);
+        return;
+      }
+
+      toast.error(getAdminErrorMessage(error, "Failed to save blog."));
     }
   };
 
   const handleDeleteBlog = async (id: string) => {
     if (!authToken) {
-      toast.error("Please login again.");
+      handleAuthFailure();
       return;
     }
 
@@ -154,7 +251,12 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       await reloadBlogs();
       toast.success("Blog deleted successfully");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to delete blog.");
+      if (isAdminAuthError(error)) {
+        handleAuthFailure(error);
+        return;
+      }
+
+      toast.error(getAdminErrorMessage(error, "Failed to delete blog."));
     }
   };
 
@@ -170,7 +272,7 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
 
   const handleSaveFaq = async (faqData: Partial<FAQ>) => {
     if (!authToken) {
-      toast.error("Please login again.");
+      handleAuthFailure();
       return;
     }
 
@@ -188,13 +290,18 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       setCurrentPage("faqs");
       setEditingFaq(undefined);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to save FAQ.");
+      if (isAdminAuthError(error)) {
+        handleAuthFailure(error);
+        return;
+      }
+
+      toast.error(getAdminErrorMessage(error, "Failed to save FAQ."));
     }
   };
 
   const handleDeleteFaq = async (id: string) => {
     if (!authToken) {
-      toast.error("Please login again.");
+      handleAuthFailure();
       return;
     }
 
@@ -203,7 +310,12 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       await reloadFaqs();
       toast.success("FAQ deleted successfully");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to delete FAQ.");
+      if (isAdminAuthError(error)) {
+        handleAuthFailure(error);
+        return;
+      }
+
+      toast.error(getAdminErrorMessage(error, "Failed to delete FAQ."));
     }
   };
 
@@ -233,10 +345,6 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
       .sort((a, b) => parseTime(b.occurredAt) - parseTime(a.occurredAt))
       .slice(0, 8);
   }, [blogs, contacts]);
-
-  if (!isLoggedIn) {
-    return <AdminLogin onLogin={handleLogin} />;
-  }
 
   const renderContent = () => {
     switch (currentPage) {
@@ -299,21 +407,29 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
   };
 
   return (
-    <>
-      <AdminLayout
-        activePage={
-          currentPage.startsWith("blogs")
-            ? "blogs"
-            : currentPage.startsWith("faqs")
-              ? "faqs"
-              : currentPage
-        }
-        onPageChange={handlePageChange}
-        onLogout={handleLogout}
-      >
-        {renderContent()}
-      </AdminLayout>
+    <div data-admin-theme={adminTheme} className="min-h-screen">
+      {isLoggedIn ? (
+        <AdminLayout
+          activePage={
+            currentPage.startsWith("blogs")
+              ? "blogs"
+              : currentPage.startsWith("faqs")
+                ? "faqs"
+                : currentPage
+          }
+          theme={adminTheme}
+          onThemeToggle={() =>
+            setAdminTheme((currentTheme) => (currentTheme === "dark" ? "light" : "dark"))
+          }
+          onPageChange={handlePageChange}
+          onLogout={handleLogout}
+        >
+          {renderContent()}
+        </AdminLayout>
+      ) : (
+        <AdminLogin onLogin={handleLogin} />
+      )}
       <AdminToast />
-    </>
+    </div>
   );
 }

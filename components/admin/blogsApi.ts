@@ -1,4 +1,5 @@
 import type { Blog } from "./BlogsList";
+import { createAdminApiError } from "./apiError";
 
 type BlogApiItem = {
   id: string;
@@ -164,7 +165,7 @@ export async function fetchBlogsFromApi() {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = (await response.json()) as unknown;
@@ -194,7 +195,7 @@ export async function loginAdmin(email: string, password: string) {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = (await response.json()) as LoginResponse;
@@ -212,7 +213,7 @@ export async function createBlogInApi(token: string, blogData: Partial<Blog>) {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = await parseJsonIfPresent<BlogApiItem>(response);
@@ -248,7 +249,7 @@ export async function updateBlogInApi(token: string, id: string, blogData: Parti
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = await parseJsonIfPresent<BlogApiItem>(response);
@@ -268,6 +269,6 @@ export async function deleteBlogInApi(token: string, id: string) {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 }

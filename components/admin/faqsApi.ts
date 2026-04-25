@@ -1,4 +1,5 @@
 import type { FAQ } from "./FAQsList";
+import { createAdminApiError } from "./apiError";
 
 type FaqApiItem = {
   id: string;
@@ -103,7 +104,7 @@ export async function fetchFaqsFromApi() {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = (await response.json()) as unknown;
@@ -123,7 +124,7 @@ export async function createFaqInApi(token: string, faqData: Partial<FAQ>) {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = await parseJsonIfPresent<FaqApiItem>(response);
@@ -146,7 +147,7 @@ export async function updateFaqInApi(token: string, id: string, faqData: Partial
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 
   const payload = await parseJsonIfPresent<FaqApiItem>(response);
@@ -166,6 +167,6 @@ export async function deleteFaqInApi(token: string, id: string) {
   });
 
   if (!response.ok) {
-    throw new Error(await parseErrorMessage(response));
+    throw createAdminApiError(await parseErrorMessage(response), response.status);
   }
 }

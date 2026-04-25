@@ -4,6 +4,7 @@ import { CheckCircle2, FileText, Play, X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
+import { moduleDocumentsByKey } from "./moduleDocuments";
 
 type ModuleDetail = {
   tagline: string;
@@ -34,10 +35,10 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
   const fallbackVideoUrl = t("modules.modal.videoUrl");
   const videoUrl = activeModule.details.videoUrl ?? fallbackVideoUrl;
   const videoDuration = t("modules.modal.duration");
+  const moduleDocuments = moduleDocumentsByKey[moduleKey] ?? [];
 
   useEffect(() => {
     if (!isOpen) {
-      setIsPlaying(false);
       return;
     }
 
@@ -57,12 +58,6 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
     };
   }, [isOpen, onClose]);
 
-  useEffect(() => {
-    if (isOpen) {
-      setIsPlaying(false);
-    }
-  }, [isOpen, moduleKey]);
-
   if (!isOpen || !activeModule) {
     return null;
   }
@@ -72,9 +67,6 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
     videoUrl && !isLocalVideo
       ? `${videoUrl}${videoUrl.includes("?") ? "&" : "?"}autoplay=1`
       : "";
-  const modulePdfHref =
-    "/modules-pdf/%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%89.pdf";
-
   return (
     <div
       className="fixed inset-0 z-50 overflow-y-auto bg-black/60 p-4 backdrop-blur-sm"
@@ -187,16 +179,30 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
               </ul>
             </div>
 
-            <div className="flex flex-wrap gap-4 border-t border-gray-200 pt-6 ltr:justify-start rtl:justify-end">
-              <a
-                href={modulePdfHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 transition-all hover:border-[#0F4C81] hover:text-[#0F4C81]"
-              >
-                <FileText className="h-4 w-4" />
-                <span>Open Module PDF</span>
-              </a>
+            <div className="border-t border-gray-200 pt-6">
+              {moduleDocuments.length > 0 ? (
+                <>
+                  <p className="mb-4 text-sm font-semibold text-gray-900 ltr:text-left rtl:text-right">
+                    {t("modules.modal.filesLabel")}
+                  </p>
+                  <div className="mb-6 flex flex-wrap gap-4 ltr:justify-start rtl:justify-end">
+                    {moduleDocuments.map((document) => (
+                      <a
+                        key={document.href}
+                        href={document.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-5 py-3 font-medium text-gray-700 transition-all hover:border-[#0F4C81] hover:text-[#0F4C81]"
+                      >
+                        <FileText className="h-4 w-4" />
+                        <span>{document.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                </>
+              ) : null}
+
+              <div className="flex flex-wrap gap-4 ltr:justify-start rtl:justify-end">
               <Link
                 href="/contact-us"
                 onClick={onClose}
@@ -211,6 +217,7 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
               >
                 {t("modules.modal.talkToSales")}
               </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ export default function BlogCtaSection({
 
   return (
     <Reveal>
-      <div className="overflow-hidden rounded-2xl mx-60 mb-10">
+      <div className="overflow-hidden rounded-2xl md:mx-48 lg:mx-60 mb-10">
         <CtaSection
           title={title}
           description={description}

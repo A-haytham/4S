@@ -9,6 +9,8 @@ import {
   ClipboardList,
   DollarSign,
   Building2,
+  FileText,
+  Leaf,
   MousePointer2,
   Package,
   Settings,
@@ -34,6 +36,8 @@ const iconMap = {
   realEstate: Building2,
   assets: Archive,
   administration: ClipboardList,
+  agriculture: Leaf,
+  extracts: FileText,
 };
 
 type ModuleDetail = {
@@ -117,6 +121,7 @@ export default function ModulesSection() {
       </div>
 
       <ModuleModal
+        key={selectedKey ?? fallbackKey}
         isOpen={selectedKey !== null}
         onClose={() => setSelectedKey(null)}
         moduleKey={selectedKey ?? fallbackKey}

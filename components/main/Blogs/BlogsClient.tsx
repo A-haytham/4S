@@ -96,12 +96,12 @@ export default function BlogsClient({ locale, posts, categories, copy }: BlogsCl
           categoryMap: copy.categories,
         }}
       />
-
+       
       <BlogCtaSection
         title={copy.cta.title}
         description={copy.cta.description}
         buttonLabel={copy.cta.button}
-      />
+      /> 
     </>
   );
 }

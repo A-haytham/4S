@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   title: "4S Systems | ERP Solutions",
   description:
     "ERP solutions tailored to your business with real-time visibility and control.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 export const dynamicParams = false;
 

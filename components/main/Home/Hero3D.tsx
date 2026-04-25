@@ -65,12 +65,12 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute top-40 -left-20 h-96 w-96 rounded-full bg-linear-to-br from-blue-200/40 to-cyan-200/40 blur-3xl"
-          animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
+          // animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute bottom-20 -right-20 h-125 w-125 rounded-full bg-linear-to-br from-purple-200/40 to-pink-200/40 blur-3xl"
-          animate={{ x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.15, 1] }}
+          // animate={{ x: [0, -80, 0], y: [0, 80, 0], scale: [1, 1.15, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(15,76,129,0.05)_1px,transparent_1px)] bg-size-[40px_40px]" />
@@ -164,7 +164,10 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                 animate={{ rotateY: [0, 360], rotateX: [0, 360] }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               >
-                <div className="h-48 w-48" style={{ transformStyle: "preserve-3d" }}>
+                <div
+                  className="h-48 w-48"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
                   <div
                     className="absolute flex h-48 w-48 items-center justify-center border-2 border-white/50 bg-linear-to-br from-blue-500/70 to-cyan-500/70 backdrop-blur-sm"
                     style={{ transform: "translateZ(96px)" }}
@@ -226,7 +229,11 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                   className="absolute left-1/2 top-1/2"
                   style={{ transformStyle: "preserve-3d" }}
                   animate={{ rotateZ: [angle, angle + 360] }}
-                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                 >
                   <motion.div
                     className="h-20 w-20"
@@ -235,7 +242,11 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                       transform: "translateX(200px) translateY(-10px)",
                     }}
                     animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <div
                       className={`absolute h-20 w-20 ${
@@ -270,7 +281,9 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                   <div
                     key={i}
                     className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-blue-300/20"
-                    style={{ transform: `rotateY(${i * 22.5}deg) rotateX(60deg)` }}
+                    style={{
+                      transform: `rotateY(${i * 22.5}deg) rotateX(60deg)`,
+                    }}
                   />
                 ))}
               </motion.div>

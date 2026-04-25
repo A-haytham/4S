@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Edit2, Plus, Search, Trash2 } from "lucide-react";
+import { Edit2, Image as ImageIcon, Plus, Search, Trash2 } from "lucide-react";
 
 export type Blog = {
   id: string;
@@ -146,72 +146,82 @@ export function BlogsList({ blogs, onEdit, onDelete, onCreateNew }: BlogsListPro
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {paginatedBlogs.map((blog) => (
-                    <tr key={blog.id} className="transition-colors hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <div className="flex items-start gap-3">
-                          <img
-                            src={blog.coverImage}
-                            alt={blog.titleEn || blog.titleAr}
-                            className="h-12 w-12 flex-shrink-0 rounded-lg object-cover"
-                          />
-                          <div className="min-w-0">
-                            <p className="truncate font-medium text-gray-900">
-                              {blog.titleEn || blog.titleAr}
-                            </p>
-                            <p className="truncate text-sm text-gray-600">
-                              {blog.titleAr || blog.titleEn}
-                            </p>
-                            <p className="truncate text-sm text-gray-500">
-                              {blog.briefEn || blog.briefAr}
-                            </p>
+                  {paginatedBlogs.map((blog) => {
+                    const coverImage = blog.coverImage.trim();
+
+                    return (
+                      <tr key={blog.id} className="transition-colors hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <div className="flex items-start gap-3">
+                            {coverImage ? (
+                              <img
+                                src={coverImage}
+                                alt={blog.titleEn || blog.titleAr}
+                                className="h-12 w-12 flex-shrink-0 rounded-lg object-cover"
+                              />
+                            ) : (
+                              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-400">
+                                <ImageIcon className="h-5 w-5" aria-hidden="true" />
+                              </div>
+                            )}
+                            <div className="min-w-0">
+                              <p className="truncate font-medium text-gray-900">
+                                {blog.titleEn || blog.titleAr}
+                              </p>
+                              <p className="truncate text-sm text-gray-600">
+                                {blog.titleAr || blog.titleEn}
+                              </p>
+                              <p className="truncate text-sm text-gray-500">
+                                {blog.briefEn || blog.briefAr}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`rounded-full border px-3 py-1 text-xs font-semibold ${
-                            blog.status === "published"
-                              ? "border-green-200 bg-green-50 text-green-700"
-                              : "border-orange-200 bg-orange-50 text-orange-700"
-                          }`}
-                        >
-                          {blog.status === "published" ? "Published" : "Draft"}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
-                        {new Date(blog.publishDate).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        })}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex items-center justify-end gap-2">
-                          <button
-                            type="button"
-                            onClick={() => onEdit(blog)}
-                            className="rounded-lg p-2 text-blue-600 transition-colors hover:bg-blue-50"
-                            title="Edit"
-                          >
-                            <Edit2 className="h-4 w-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => handleDelete(blog.id)}
-                            className={`rounded-lg p-2 transition-colors ${
-                              deleteConfirm === blog.id
-                                ? "bg-red-100 text-red-700"
-                                : "text-red-600 hover:bg-red-50"
+                        </td>
+                        <td className="px-6 py-4">
+                          <span
+                            className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                              blog.status === "published"
+                                ? "border-green-200 bg-green-50 text-green-700"
+                                : "border-orange-200 bg-orange-50 text-orange-700"
                             }`}
-                            title={deleteConfirm === blog.id ? "Click again to confirm" : "Delete"}
                           >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                            {blog.status === "published" ? "Published" : "Draft"}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {new Date(blog.publishDate).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              type="button"
+                              onClick={() => onEdit(blog)}
+                              className="rounded-lg p-2 text-blue-600 transition-colors hover:bg-blue-50"
+                              title="Edit"
+                            >
+                              <Edit2 className="h-4 w-4" />
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => handleDelete(blog.id)}
+                              className={`rounded-lg p-2 transition-colors ${
+                                deleteConfirm === blog.id
+                                  ? "bg-red-100 text-red-700"
+                                  : "text-red-600 hover:bg-red-50"
+                              }`}
+                              title={deleteConfirm === blog.id ? "Click again to confirm" : "Delete"}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

@@ -715,11 +715,42 @@
               "Audit-ready logs and compliance workflows"
             ]
           }
+        },
+        {
+          "key": "agriculture",
+          "title": "Agriculture",
+          "description": "Manage farm operations, seasons, costs, and day-to-day execution.",
+          "icon": "agriculture",
+          "details": {
+            "tagline": "Keep agricultural planning and field execution aligned.",
+            "points": [
+              "Season planning and crop activity tracking",
+              "Operational cost and field task logging",
+              "Productivity and yield monitoring",
+              "Management-ready operational reporting"
+            ]
+          }
+        },
+        {
+          "key": "extracts",
+          "title": "Extracts",
+          "description": "Manage work extracts, claims, completion ratios, and approvals.",
+          "icon": "extracts",
+          "details": {
+            "tagline": "Track certified work values and financial claims with control.",
+            "points": [
+              "Periodic extract preparation and review",
+              "Completion tracking against work items",
+              "Approval workflows for financial claims",
+              "Detailed execution and billing reports"
+            ]
+          }
         }
       ],
       "modal": {
         "label": "Module Overview",
         "keyBenefits": "Key Benefits",
+        "filesLabel": "Available Files",
         "requestDemo": "Request a Demo",
         "talkToSales": "Talk to Sales",
         "playVideo": "Play video",

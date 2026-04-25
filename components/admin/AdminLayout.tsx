@@ -1,16 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { FileText, HelpCircle, LayoutDashboard, LogOut, Mail, Menu, X } from "lucide-react";
+import { FileText, HelpCircle, LayoutDashboard, LogOut, Mail, Menu, Moon, Sun, X } from "lucide-react";
 
 type AdminLayoutProps = {
   children: React.ReactNode;
   activePage: string;
+  theme: "light" | "dark";
+  onThemeToggle: () => void;
   onPageChange: (page: string) => void;
   onLogout: () => void;
 };
 
-export function AdminLayout({ children, activePage, onPageChange, onLogout }: AdminLayoutProps) {
+export function AdminLayout({
+  children,
+  activePage,
+  theme,
+  onThemeToggle,
+  onPageChange,
+  onLogout,
+}: AdminLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navigation = [
@@ -21,7 +30,7 @@ export function AdminLayout({ children, activePage, onPageChange, onLogout }: Ad
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 transition-colors duration-300">
       {sidebarOpen ? (
         <div
           className="fixed inset-0 z-40 bg-black/50 lg:hidden"
@@ -83,6 +92,14 @@ export function AdminLayout({ children, activePage, onPageChange, onLogout }: Ad
           <div className="border-t border-gray-200 p-4">
             <button
               type="button"
+              onClick={onThemeToggle}
+              className="mb-2 flex w-full items-center gap-3 rounded-lg border border-gray-200 px-4 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-[#0F4C81]"
+            >
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              <span>{theme === "dark" ? "Light Mode" : "Night Mode"}</span>
+            </button>
+            <button
+              type="button"
               onClick={onLogout}
               className="flex w-full items-center gap-3 rounded-lg px-4 py-3 font-medium text-red-600 transition-colors hover:bg-red-50"
             >
@@ -112,6 +129,15 @@ export function AdminLayout({ children, activePage, onPageChange, onLogout }: Ad
           </div>
 
           <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={onThemeToggle}
+              className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              <span className="hidden sm:inline">{theme === "dark" ? "Light mode" : "Night mode"}</span>
+            </button>
             <div className="hidden text-right sm:block">
               <p className="text-sm font-medium text-gray-900">Admin User</p>
               <p className="text-xs text-gray-500">admin@4ssystems.com</p>

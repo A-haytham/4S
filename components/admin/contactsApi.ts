@@ -1,4 +1,5 @@
 import type { ContactLead } from "./ContactLeadsList";
+import { createAdminApiError } from "./apiError";
 
 type ContactLeadApiItem = {
   id: string;
@@ -74,7 +75,7 @@ export type CreateContactLeadPayload = {
 export async function fetchContactsFromApi(token: string) {
   const normalizedToken = token.trim();
   if (!normalizedToken) {
-    throw new Error("Missing auth token.");
+    throw createAdminApiError("Missing auth token.", 401);
   }
 
   const response = await fetch(ADMIN_CONTACTS_API, {
@@ -89,7 +90,7 @@ export async function fetchContactsFromApi(token: string) {
   const payload = parseJsonSafely(rawPayload);
 
   if (!response.ok) {
-    throw new Error(parseErrorMessage(payload, response.status));
+    throw createAdminApiError(parseErrorMessage(payload, response.status), response.status);
   }
 
   if (!payload) {
@@ -120,6 +121,6 @@ export async function createContactLeadInApi(contactData: CreateContactLeadPaylo
   const payload = parseJsonSafely(rawPayload);
 
   if (!response.ok) {
-    throw new Error(parseErrorMessage(payload, response.status));
+    throw createAdminApiError(parseErrorMessage(payload, response.status), response.status);
   }
 }

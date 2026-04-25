@@ -89,6 +89,7 @@ export default function ModulesSection() {
       </div>
 
       <ModuleModal
+        key={selectedKey ?? fallbackKey}
         isOpen={selectedKey !== null}
         onClose={() => setSelectedKey(null)}
         moduleKey={selectedKey ?? fallbackKey}

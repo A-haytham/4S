@@ -16,9 +16,12 @@ const inter = Inter({
 const title = "4S Systems | ERP Solutions";
 const description =
   "ERP solutions tailored to your business with real-time visibility and control.";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://4ssystems.com");
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://4ssystems.com"),
+  metadataBase: new URL(siteUrl),
   title,
   description,
   icons: {
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
         alt: "4S Systems ERP Solutions",
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/opengraph-image"],
+    images: ["/opengraph-image.png"],
   },
 };
 export const dynamicParams = false;

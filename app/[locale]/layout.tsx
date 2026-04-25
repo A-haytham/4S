@@ -12,13 +12,38 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
+
+const title = "4S Systems | ERP Solutions";
+const description =
+  "ERP solutions tailored to your business with real-time visibility and control.";
+
 export const metadata: Metadata = {
-  title: "4S Systems | ERP Solutions",
-  description:
-    "ERP solutions tailored to your business with real-time visibility and control.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://4ssystems.com"),
+  title,
+  description,
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
+  },
+  openGraph: {
+    title,
+    description,
+    siteName: "4S Systems",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "4S Systems ERP Solutions",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/opengraph-image"],
   },
 };
 export const dynamicParams = false;

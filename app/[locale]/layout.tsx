@@ -6,6 +6,7 @@ import { routing } from "@/i18n/routing";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import SiteChrome from "@/components/layout/SiteChrome";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -77,6 +78,7 @@ export default async function RootLayout({
         <div className="min-h-svh">
           <NextIntlClientProvider messages={messages}>
             <SiteChrome>{children}</SiteChrome>
+            <SpeedInsights />
           </NextIntlClientProvider>
         </div>
       </body>

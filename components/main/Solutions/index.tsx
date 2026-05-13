@@ -1,4 +1,5 @@
 import CtaSection from "./CtaSection";
+import EnterpriseSolutionsSection from "./EnterpriseSolutionsSection";
 import HeroSection from "./HeroSection";
 import IntegrationsSection from "./IntegrationsSection";
 import ModulesSection from "./ModulesSection";
@@ -13,6 +14,9 @@ export default function SolutionsPage() {
       </Reveal>
       <Reveal>
         <OverviewSection />
+      </Reveal>
+      <Reveal>
+        <EnterpriseSolutionsSection />
       </Reveal>
       <Reveal>
         <ModulesSection />

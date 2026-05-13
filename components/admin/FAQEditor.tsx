@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowLeft, Save } from "lucide-react";
 import type { FAQ } from "./FAQsList";
 
@@ -21,26 +21,17 @@ const categories = [
   "Integration",
 ];
 
-export function FAQEditor({ faq, onSave, onCancel }: FAQEditorProps) {
-  const [formData, setFormData] = useState<Partial<FAQ>>({
-    questionEn: faq?.questionEn || "",
-    answerEn: faq?.answerEn || "",
-    questionAr: faq?.questionAr || "",
-    answerAr: faq?.answerAr || "",
-    category: faq?.category || "General",
-    order: faq?.order || 1,
-  });
+const getInitialFormData = (faq?: FAQ): Partial<FAQ> => ({
+  questionEn: faq?.questionEn || "",
+  answerEn: faq?.answerEn || "",
+  questionAr: faq?.questionAr || "",
+  answerAr: faq?.answerAr || "",
+  category: faq?.category || "General",
+  order: faq?.order || 1,
+});
 
-  useEffect(() => {
-    setFormData({
-      questionEn: faq?.questionEn || "",
-      answerEn: faq?.answerEn || "",
-      questionAr: faq?.questionAr || "",
-      answerAr: faq?.answerAr || "",
-      category: faq?.category || "General",
-      order: faq?.order || 1,
-    });
-  }, [faq]);
+export function FAQEditor({ faq, onSave, onCancel }: FAQEditorProps) {
+  const [formData, setFormData] = useState<Partial<FAQ>>(() => getInitialFormData(faq));
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

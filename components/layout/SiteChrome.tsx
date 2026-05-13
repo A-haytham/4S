@@ -14,13 +14,11 @@ type SiteChromeProps = {
 export default function SiteChrome({ children }: SiteChromeProps) {
   const pathname = usePathname();
   const segments = pathname?.split("/").filter(Boolean) ?? [];
+  const firstSegment = segments[0] ?? "";
+  const isLocaleSegment = routing.locales.some((locale) => locale === firstSegment);
   const isAdminRoute =
     segments[0] === "admin" ||
-    (segments.length > 1 && routing.locales.includes(segments[0] as any) && segments[1] === "admin");
-
-  if (isAdminRoute) {
-    return <>{children}</>;
-  }
+    (segments.length > 1 && isLocaleSegment && segments[1] === "admin");
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -45,6 +43,10 @@ export default function SiteChrome({ children }: SiteChromeProps) {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
   }, [pathname]);
+
+  if (isAdminRoute) {
+    return <>{children}</>;
+  }
 
   return (
     <>

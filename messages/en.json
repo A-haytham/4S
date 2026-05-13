@@ -1235,6 +1235,7 @@
       "message": "Message",
       "submit": "Send message",
       "sending": "Sending...",
+      "submitError": "Sorry, we couldn’t send your message right now. Please try again later or contact us directly by email or phone.",
       "placeholders": {
         "name": "Ahmed Haytham",
         "company": "Company Name",
@@ -1265,7 +1266,7 @@
     },
     "location": {
       "title": "Our offices",
-      "address": "Riyadh, KSA\nCairo, Egypt"
+      "address": "Cairo, Egypt"
     },
     "map": {
       "label": "Map location"

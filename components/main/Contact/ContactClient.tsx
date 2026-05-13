@@ -16,6 +16,7 @@ type ContactCopy = {
     message: string;
     submit: string;
     sending: string;
+    submitError: string;
     placeholders: {
       name: string;
       company: string;
@@ -110,8 +111,9 @@ export default function ContactClient({ copy }: ContactClientProps) {
       setFormData({ name: "", company: "", email: "", phone: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
+      console.error("Contact form submission failed:", error);
       setIsSubmitting(false);
-      setSubmitError(error instanceof Error ? error.message : "Failed to send your message.");
+      setSubmitError(copy.form.submitError);
     }
   };
 

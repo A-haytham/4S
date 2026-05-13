@@ -5,10 +5,10 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
-  Share2,
   User,
   BookOpen,
 } from "lucide-react";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import Reveal from "@/components/ui/Reveal";
 import CtaSection from "@/components/ui/CtaSection";
@@ -126,9 +126,11 @@ export default function BlogPostClient({
       <Reveal>
         <div className="relative h-80 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
           {isImageUrl(post.image) ? (
-            <img
+            <Image
               src={post.image}
               alt={post.title}
+              fill
+              sizes="100vw"
               className="h-full w-full object-contain"
             />
           ) : (
@@ -260,9 +262,11 @@ export default function BlogPostClient({
                     >
                       <div className="relative h-40 bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
                         {isImageUrl(related.image) ? (
-                          <img
+                          <Image
                             src={related.image}
                             alt={related.title}
+                            fill
+                            sizes="(min-width: 768px) 33vw, 100vw"
                             className="h-full w-full object-cover"
                           />
                         ) : (

@@ -14,14 +14,15 @@ export default function useInView({
   threshold = 0.1,
 }: UseInViewOptions = {}) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [isInView, setIsInView] = useState(false);
+  const [isInView, setIsInView] = useState(
+    () => typeof window !== "undefined" && typeof IntersectionObserver === "undefined"
+  );
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
     if (typeof IntersectionObserver === "undefined") {
-      setIsInView(true);
       return;
     }
 

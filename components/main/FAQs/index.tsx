@@ -3,6 +3,7 @@ import FAQsClient from "./FAQsClient";
 import PageHero from "@/components/ui/PageHero";
 import Reveal from "@/components/ui/Reveal";
 import { getFaqCategoriesFromApi } from "./faqsApi";
+import { withFaqFallback } from "./faqFallback";
 
 type FaqItem = {
   question: string;
@@ -21,6 +22,8 @@ export default async function FAQsPage() {
   const locale = await getLocale();
   const isRTL = locale === "ar";
   const categoriesFromApi = await getFaqCategoriesFromApi(locale);
+  const fallbackCategories = t.raw("categories") as Category[];
+  const categories = withFaqFallback(categoriesFromApi, fallbackCategories);
 
   const copy = {
     hero: {
@@ -31,7 +34,7 @@ export default async function FAQsPage() {
       placeholder: t("search.placeholder"),
       noResults: t("search.noResults"),
     },
-    categories: categoriesFromApi as Category[],
+    categories,
     expandAll: t("expandAll"),
     collapseAll: t("collapseAll"),
     cta: {

@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import PageHero from "@/components/ui/PageHero";
+import { buildSeoMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -30,11 +31,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const t = await getTranslations({ locale, namespace: `serviceDetails.${serviceKey}` });
 
-  return {
+  return buildSeoMetadata({
+    locale,
+    path: `/our-services/${slug}`,
     title: t("title"),
     description: t("description"),
     keywords: t.raw("keywords") as string[],
-  };
+  });
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {

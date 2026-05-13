@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getFaqCategoriesFromApi } from "@/components/main/FAQs/faqsApi";
+import { withFaqFallback } from "@/components/main/FAQs/faqFallback";
 import FAQsAccordion from "./FAQsAccordion";
 
 type FaqItem = {
@@ -11,15 +12,21 @@ type FaqItem = {
 
 export default async function FAQsSection() {
   const t = await getTranslations("home.faqsSection");
+  const faqsT = await getTranslations("faqs");
   const locale = await getLocale();
 
   const categories = await getFaqCategoriesFromApi(locale);
-  const apiFaqs = categories
+  const fallbackCategories = faqsT.raw("categories") as {
+    id: string;
+    name: string;
+    icon: string;
+    faqs: FaqItem[];
+  }[];
+  const faqCategories = withFaqFallback(categories, fallbackCategories);
+  const faqs = faqCategories
     .flatMap((category) => category.faqs)
     .filter((item) => item.question.trim() && item.answer.trim());
-
-  const fallbackFaqs = t.raw("faqs") as FaqItem[];
-  const faqs = (apiFaqs.length > 0 ? apiFaqs : fallbackFaqs).slice(0, 4);
+  const displayedFaqs = faqs.slice(0, 4);
 
   return (
     <section className="bg-linear-to-b from-white to-gray-50 py-20">
@@ -33,7 +40,7 @@ export default async function FAQsSection() {
           </p>
         </div>
 
-        <FAQsAccordion faqs={faqs} />
+        <FAQsAccordion faqs={displayedFaqs} />
 
         <div className="mt-10 text-center">
           <Link

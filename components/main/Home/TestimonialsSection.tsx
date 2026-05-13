@@ -26,7 +26,7 @@ export default function TestimonialsSection() {
                   <Star key={index} size={18} className="fill-current" />
                 ))}
               </div>
-              <p className="mt-4 text-sm italic text-gray-700">"{testimonial.quote}"</p>
+              <p className="mt-4 text-sm italic text-gray-700">&quot;{testimonial.quote}&quot;</p>
               <p className="mt-4 text-xs font-semibold text-gray-700">{testimonial.author}</p>
             </div>
           ))}

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -10,6 +11,17 @@ import {
   Mail,
 } from "lucide-react";
 import styles from "./not-found.module.css";
+import { siteUrl } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: "Page not found | 4S Systems",
+  description: "The requested page could not be found.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 type QuickLink = {
   title: string;

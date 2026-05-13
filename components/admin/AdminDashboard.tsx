@@ -388,7 +388,14 @@ export function AdminDashboard({ initialToken = "" }: AdminDashboardProps) {
           />
         );
       case "faqs-edit":
-        return <FAQEditor faq={editingFaq} onSave={handleSaveFaq} onCancel={() => setCurrentPage("faqs")} />;
+        return (
+          <FAQEditor
+            key={editingFaq?.id ?? "new-faq"}
+            faq={editingFaq}
+            onSave={handleSaveFaq}
+            onCancel={() => setCurrentPage("faqs")}
+          />
+        );
       case "contacts":
         return <ContactLeadsList leads={contacts} />;
       default:

@@ -114,7 +114,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       .map(mapApiItemToBlogPost)
       .filter((item): item is BlogPost => item !== null);
 
-    return mappedPosts;
+    return mappedPosts.length > 0 ? mappedPosts : blogPosts;
   } catch {
     return blogPosts;
   }

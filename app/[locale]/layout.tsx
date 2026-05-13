@@ -7,6 +7,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import SiteChrome from "@/components/layout/SiteChrome";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { siteUrl } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,9 +18,7 @@ const inter = Inter({
 const title = "4S Systems | ERP Solutions";
 const description =
   "ERP solutions tailored to your business with real-time visibility and control.";
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://4ssystems.com");
+const ogImage = `${siteUrl.replace(/\/+$/, "")}/og-image.svg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: ogImage,
         width: 1200,
         height: 630,
         alt: "4S Systems ERP Solutions",
@@ -47,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/opengraph-image.png"],
+    images: [ogImage],
   },
 };
 export const dynamicParams = false;

@@ -18,6 +18,7 @@ type ContactCopy = {
     message: string;
     submit: string;
     sending: string;
+    submitError: string;
     placeholders: {
       name: string;
       company: string;
@@ -73,6 +74,7 @@ export default async function ContactPage() {
       message: t("form.message"),
       submit: t("form.submit"),
       sending: t("form.sending"),
+      submitError: t("form.submitError"),
       placeholders: {
         name: t("form.placeholders.name"),
         company: t("form.placeholders.company"),

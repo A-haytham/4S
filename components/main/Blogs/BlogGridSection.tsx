@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
 
@@ -116,11 +117,12 @@ function BlogCard({ post, locale, isRTL, labels }: BlogCardProps) {
       <Link href={`/blog/${post.slug}`} className="block w-full text-left">
         <div className="relative h-48 overflow-hidden bg-linear-to-br from-[#0F4C81] to-[#2B7CB3]">
           {isImageUrl(post.image) ? (
-            <img
+            <Image
               src={post.image}
               alt={title}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
               className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
               onError={(event) => {
                 event.currentTarget.style.display = "none";
               }}

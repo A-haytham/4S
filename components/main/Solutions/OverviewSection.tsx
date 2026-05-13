@@ -1,4 +1,13 @@
-import { ArrowRight, CheckCircle, Cloud, Code, Database, Smartphone } from "lucide-react";
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  CheckCircle,
+  Cloud,
+  Code,
+  Database,
+  MessageCircle,
+  Smartphone,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
@@ -7,12 +16,15 @@ const iconMap = {
   database: Database,
   smartphone: Smartphone,
   code: Code,
+  recruitment: BriefcaseBusiness,
+  chatbot: MessageCircle,
 };
 
 type OverviewCard = {
   title: string;
   description: string;
   icon: keyof typeof iconMap;
+  href?: string;
 };
 
 const cardThemes = [
@@ -72,14 +84,27 @@ export default function OverviewSection() {
               const theme = cardThemes[index % cardThemes.length];
               const offset = index % 2 === 1 ? "mt-12" : "";
 
-              return (
-                <div
-                  key={card.title}
-                  className={`rounded-2xl bg-linear-to-br ${theme.bg} p-6 ${offset}`}
-                >
+              const cardContent = (
+                <>
                   <Icon size={40} className={`${theme.icon} mb-4`} />
                   <h3 className="mb-2 font-semibold text-gray-900">{card.title}</h3>
                   <p className="text-sm text-gray-600">{card.description}</p>
+                </>
+              );
+
+              const className = `rounded-2xl bg-linear-to-br ${theme.bg} p-6 ${offset}`;
+
+              return card.href ? (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className={`${className} block transition-all hover:-translate-y-1 hover:shadow-lg`}
+                >
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={card.title} className={className}>
+                  {cardContent}
                 </div>
               );
             })}

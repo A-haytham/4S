@@ -81,9 +81,11 @@ export default function Footer() {
             <p className="mb-6 text-sm text-gray-300">{t("description")}</p>
             <div className="flex items-center gap-4 rtl:gap-1 rtl:space-x-reverse">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/4s-technology/"
                 aria-label="LinkedIn"
                 className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 transition-colors hover:bg-white/20"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Linkedin size={18} />
               </a>

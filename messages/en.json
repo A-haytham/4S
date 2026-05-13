@@ -52,7 +52,7 @@
     },
     "why": {
       "title": "Why 4S Systems?",
-      "subtitle": "Built for companies looking to get greater performance and capabilities from their ERP system.",
+      "subtitle": "ERP, enterprise software, recruitment services, and customer experience automation in one integrated partner.",
       "items": [
         {
           "title": "Implementation",
@@ -77,6 +77,24 @@
       "subtitle": "Everything you need to run your business, all in one platform.",
       "cta": "Explore All Modules",
       "openLabel": "Learn more",
+      "servicesTitle": "Additional Enterprise Solutions",
+      "servicesSubtitle": "ERP remains our core focus, supported by services that help enterprise teams hire, serve customers, and automate operations.",
+      "serviceItems": [
+        {
+          "title": "Recruitment Services",
+          "description": "Helping enterprises in Egypt and the GCC hire high-impact technical, ERP, and business talent through structured screening and curated shortlists.",
+          "cta": "Learn More",
+          "href": "/our-services/recruitment",
+          "icon": "recruitment"
+        },
+        {
+          "title": "Chatbot & WhatsApp Automation",
+          "description": "Automating customer journeys through chatbot and WhatsApp self-service channels, with API integrations, smart routing, and analytics.",
+          "cta": "Learn More",
+          "href": "/our-services/chatbot-whatsapp",
+          "icon": "chatbot"
+        }
+      ],
       "items": [
         {
           "title": "Finance & Accounting",
@@ -495,7 +513,7 @@
     },
     "overview": {
       "title": "One Platform That Runs Every Department Efficiently",
-      "description": "4S Systems delivers a flexible, unified ERP suite that brings teams together, automates processes, and gives leadership a complete real-time view that supports confident, fast decision-making.",
+      "description": "4S Systems delivers a flexible ERP suite as part of broader enterprise solutions covering software, recruitment services, and customer experience automation.",
       "features": [
         "Modern cloud architecture for maximum flexibility and high availability",
         "Mobile-first design for full access from anywhere, at any time",
@@ -519,13 +537,25 @@
           "description": "iOS & Android native",
           "icon": "smartphone"
         },
-        {
-          "title": "API First",
-          "description": "Integrate everything",
-          "icon": "code"
-        }
-      ]
-    },
+      {
+        "title": "API First",
+        "description": "Integrate everything",
+        "icon": "code"
+      },
+      {
+        "title": "Recruitment Services",
+        "description": "Structured screening and curated shortlists for technical, ERP, and business talent.",
+        "icon": "recruitment",
+        "href": "/our-services/recruitment"
+      },
+      {
+        "title": "Chatbot & WhatsApp Automation",
+        "description": "Self-service customer journeys with API integrations, smart routing, and analytics.",
+        "icon": "chatbot",
+        "href": "/our-services/chatbot-whatsapp"
+      }
+    ]
+  },
     "modules": {
       "title": "Core ERP Modules",
       "subtitle": "Choose the modules you need today and expand as you grow.",
@@ -872,11 +902,37 @@
         ],
         "cta": "Start a Project",
         "ctaSecondary": "View Portfolio"
+      },
+      {
+        "title": "Recruitment Services",
+        "description": "4S Recruitment Services helps leading enterprise organizations across Egypt and the GCC hire high-impact talent fast, accurately, and with strong role-fit.",
+        "process": [
+          "Structured requirements intake",
+          "Market mapping and curated shortlists",
+          "Technical screening and competency interviews",
+          "Reference checks and role-fit validation"
+        ],
+        "cta": "Explore Recruitment",
+        "badge": "Recruitment Services",
+        "detailHref": "/our-services/recruitment"
+      },
+      {
+        "title": "Chatbot & WhatsApp Self-Service Channels",
+        "description": "Design and automate end-to-end customer journeys across digital touchpoints, reducing routine workload while improving response speed and satisfaction.",
+        "process": [
+          "Journey design and conversation flows",
+          "WhatsApp and chatbot self-service automation",
+          "API-first enterprise integrations",
+          "Analytics dashboards and continuous optimization"
+        ],
+        "cta": "Explore CX Automation",
+        "badge": "CX Automation",
+        "detailHref": "/our-services/chatbot-whatsapp"
       }
     ],
     "bridge": {
       "title": "Digital Solutions Beyond ERP",
-      "description": "In addition to ERP, we create modern digital experiences that strengthen your brand and increase demand for your products and services."
+      "description": "4S Systems is an Enterprise Solutions Provider offering ERP, software solutions, recruitment services, and CX automation for growing organizations."
     },
     "webBadge": "Website Development",
     "supportTiers": {
@@ -921,6 +977,58 @@
       "title": "Need Help Choosing?",
       "description": "Our team can help you select the right services for your business.",
       "button": "Talk to an Expert"
+    }
+  },
+  "serviceDetails": {
+    "recruitment": {
+      "title": "Recruitment Services for Egypt & GCC",
+      "description": "Hire technical, ERP, business, and management talent with structured screening and strong role-fit.",
+      "paragraphs": [
+        "4S Recruitment Services helps leading enterprise organizations across Egypt and the GCC hire high-impact talent fast, accurately, and with strong role-fit. We recruit across technical roles including AI/ML, data, software engineering, cloud, cybersecurity, QA, and ERP specialists, as well as business and management functions such as program/project management, product, operations, finance, risk, CX, and transformation.",
+        "Our approach combines structured requirements intake, market mapping, rigorous shortlisting, technical screening, competency-based interviews, and reference checks. Clients receive a curated pipeline of candidates aligned with their capabilities roadmap, culture, and performance expectations."
+      ],
+      "highlightsTitle": "Recruitment Coverage",
+      "points": [
+        "AI/ML, data, software engineering, cloud, cybersecurity, QA, and ERP specialists",
+        "Program/project management, product, operations, finance, risk, CX, and transformation roles",
+        "Egypt and GCC hiring support",
+        "Technical screening, competency interviews, and reference checks"
+      ],
+      "cta": "Talk to Recruitment",
+      "keywords": [
+        "Recruitment Services Egypt",
+        "Recruitment Services GCC",
+        "Technical Recruitment",
+        "ERP Specialists Recruitment",
+        "AI ML Recruitment",
+        "Software Engineering Recruitment",
+        "GCC Hiring"
+      ]
+    },
+    "chatbotWhatsapp": {
+      "title": "Chatbot & WhatsApp Self-Service Channels",
+      "description": "Automate customer journeys through chatbot and WhatsApp channels with secure API-first integrations.",
+      "paragraphs": [
+        "4S Chatbot & WhatsApp Self-Service Channels enable organizations to design and automate end-to-end customer journeys across digital touchpoints, reducing routine workload while improving response speed and customer satisfaction. The service focuses on high-volume repeatable inquiries such as appointment booking, request/status tracking, FAQs, service requests, and guided forms, with smart routing and escalation to live agents when needed.",
+        "The solution integrates with existing systems through API-first integrations and secure enterprise practices, making the chatbot a practical extension of business operations, not a standalone tool. 4S also provides journey design, conversation flows, knowledge structuring, analytics dashboards, and continuous optimization to increase self-service adoption."
+      ],
+      "highlightsTitle": "Automation Scope",
+      "points": [
+        "Appointment booking, status tracking, FAQs, service requests, and guided forms",
+        "Smart routing and escalation to live agents",
+        "API-first integrations with existing enterprise systems",
+        "Journey design, knowledge structuring, analytics, and optimization"
+      ],
+      "cta": "Talk to CX Automation",
+      "keywords": [
+        "Chatbot Automation",
+        "WhatsApp Self-Service",
+        "CX Automation",
+        "Customer Experience Automation",
+        "WhatsApp Business Automation",
+        "Customer Service Chatbot",
+        "API Integration Chatbot"
+      ]
     }
   },
   "footer": {
@@ -1018,11 +1126,11 @@
   "about": {
     "hero": {
       "title": "About 4S Systems",
-      "description": "We build ERP and digital solutions that help teams operate with clarity, speed, and confidence."
+      "description": "4S Systems provides enterprise software solutions, ERP implementation, recruitment services, and customer experience automation through chatbot and WhatsApp self-service channels."
     },
     "story": {
       "title": "Our Story",
-      "content": "For over 30 years, 4S Systems has partnered with organizations across the Middle East to deliver ERP implementations that actually work. We focus on process clarity, data accuracy, and measurable outcomes.",
+      "content": "For over 30 years, 4S Systems has partnered with organizations across the Middle East to deliver enterprise software solutions, ERP implementation, recruitment services, and customer experience automation. We focus on process clarity, data accuracy, and measurable outcomes.",
       "stats": [
         {
           "value": "30+",

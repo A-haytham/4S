@@ -56,7 +56,6 @@ type ModuleItem = {
 export default function ModulesSection() {
   const t = useTranslations("solutions");
   const modules = t.raw("modules.items") as ModuleItem[];
-  const features = t.raw("modules.features") as string[];
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   const fallbackKey = modules[0]?.key ?? "finance";
@@ -99,7 +98,7 @@ export default function ModulesSection() {
 
                 <p className="mb-6 text-gray-600">{module.description}</p>
                 <ul className="space-y-2">
-                  {features.map((feature) => (
+                  {module.details.points.map((feature) => (
                     <li
                       key={feature}
                       className="flex items-start space-x-2 text-sm text-gray-700 rtl:space-x-reverse"

@@ -1,23 +1,83 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-type TestimonialItem = {
-  author: string;
-  quote: string;
-  role: string;
+type ClientLogo = {
+  name: string;
+  logo: string;
+  alt: string;
 };
 
-export default function TestimonialsSection() {
-  const t = useTranslations("home.testimonials");
+const logoFiles = [
+  "Annotation 2026-05-14 035016 (1).png",
+  "Annotation 2026-05-14 035016 (10).png",
+  "Annotation 2026-05-14 035016 (11).png",
+  "Annotation 2026-05-14 035016 (12).png",
+  "Annotation 2026-05-14 035016 (13).png",
+  "Annotation 2026-05-14 035016 (14).png",
+  "Annotation 2026-05-14 035016 (15).png",
+  "Annotation 2026-05-14 035016 (16).png",
+  "Annotation 2026-05-14 035016 (17).png",
+  "Annotation 2026-05-14 035016 (18).png",
+  "Annotation 2026-05-14 035016 (19).png",
+  "Annotation 2026-05-14 035016 (2).png",
+  "Annotation 2026-05-14 035016 (20).png",
+  "Annotation 2026-05-14 035016 (21).png",
+  "Annotation 2026-05-14 035016 (22).png",
+  "Annotation 2026-05-14 035016 (3).png",
+  "Annotation 2026-05-14 035016 (4).png",
+  "Annotation 2026-05-14 035016 (5).png",
+  "Annotation 2026-05-14 035016 (6).png",
+  "Annotation 2026-05-14 035016 (7).png",
+  "Annotation 2026-05-14 035016 (8).png",
+  "Annotation 2026-05-14 035016 (9).png",
+  "Annotation 2026-05-14 035016.png",
+  "as (1).png",
+  "as (10).png",
+  "as (11).png",
+  "as (12).png",
+  "as (13).png",
+  "as (14).png",
+  "as (15).png",
+  "as (2).png",
+  "as (3).png",
+  "as (4).png",
+  "as (5).png",
+  "as (6).png",
+  "as (7).png",
+  "as (8).png",
+  "as (9).png",
+  "as.png",
+];
+
+const formatLogoName = (fileName: string) =>
+  fileName
+    .replace(/\.[^.]+$/, "")
+    .replace(/[-_]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const clientLogos: ClientLogo[] = logoFiles.map((fileName) => {
+  const name = formatLogoName(fileName);
+
+  return {
+    name,
+    logo: encodeURI(`/factory-logos/${fileName}`),
+    alt: `${name} logo`,
+  };
+});
+
+export default function ClientsSection() {
+  const t = useTranslations("home.clients");
   const locale = useLocale();
-  const items = t.raw("items") as TestimonialItem[];
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     direction: locale === "ar" ? "rtl" : "ltr",
+    slidesToScroll: "auto",
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
@@ -62,29 +122,32 @@ export default function TestimonialsSection() {
       } else {
         emblaApi.scrollTo(0);
       }
-    }, 4000);
+    }, 3500);
 
     return () => window.clearInterval(intervalId);
   }, [emblaApi, scrollSnaps.length]);
 
   return (
-    <section className="bg-linear-to-br from-gray-50 to-white py-20">
+    <section className="bg-white py-20">
       <div className="mx-auto w-full max-w-6xl px-4 text-center">
         <h2 className="text-3xl font-semibold text-gray-900">{t("title")}</h2>
         <p className="mx-auto mt-3 max-w-3xl text-base text-gray-600">{t("subtitle")}</p>
         <div className="mt-8 overflow-hidden py-4" ref={emblaRef}>
-          <div className="-mx-3 flex py-1">
-            {items.map((testimonial) => (
-              <div key={testimonial.author} className="min-w-0 flex-[0_0_100%] px-3 md:flex-[0_0_50%]">
-                <article className="h-full rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ltr:text-left rtl:text-right">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F4C81]/10 text-[#0F4C81] rtl:mr-auto">
-                    <Quote size={20} />
-                  </div>
-                  <p className="mt-5 text-sm leading-6 text-gray-700">&quot;{testimonial.quote}&quot;</p>
-                  <div className="mt-6 border-t border-gray-100 pt-4">
-                    <p className="text-sm font-semibold text-gray-900">{testimonial.author}</p>
-                    <p className="mt-1 text-xs text-gray-500">{testimonial.role}</p>
-                  </div>
+          <div className="-mx-2 flex py-1 sm:-mx-3">
+            {clientLogos.map((client) => (
+              <div
+                key={client.logo}
+                className="min-w-0 flex-[0_0_50%] px-2 sm:flex-[0_0_33.333%] sm:px-3 lg:flex-[0_0_20%] xl:flex-[0_0_16.666%]"
+              >
+                <article className="flex h-28 items-center justify-center rounded-lg border border-gray-100 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                  <Image
+                    src={client.logo}
+                    alt={client.alt}
+                    width={180}
+                    height={80}
+                    className="max-h-16 w-full object-contain transition duration-300"
+                    sizes="(min-width: 1280px) 16vw, (min-width: 1024px) 20vw, (min-width: 640px) 33vw, 50vw"
+                  />
                 </article>
               </div>
             ))}

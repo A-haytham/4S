@@ -302,19 +302,59 @@
     },
     "testimonials": {
       "title": "What Our Clients Say",
-      "subtitle": "Trusted by leaders across industries.",
+      "subtitle": "Organizations across multiple industries rely on 4S Systems to improve operations, visibility, and decision-making.",
       "items": [
         {
-          "author": "Operations Director",
-          "quote": "4S Systems transformed our processes, giving us real-time visibility and confident decision-making."
+          "quote": "4S helped us improve visibility across departments and made daily operations easier to track and manage.",
+          "author": "Operations Team",
+          "role": "Real Estate Organization"
         },
         {
-          "author": "CFO",
-          "quote": "The reporting suite and automation saved us weeks of manual work every quarter."
+          "quote": "The system reduced manual work and gave our management team faster access to reporting and operational data.",
+          "author": "Finance & Administration Team",
+          "role": "Industrial Company"
         },
         {
-          "author": "General Manager",
-          "quote": "Implementation was smooth, and the support team is always available."
+          "quote": "The implementation process was structured, and the support team responded quickly whenever we needed assistance.",
+          "author": "Project Management Team",
+          "role": "Service Organization"
+        }
+      ],
+      "previous": "Previous testimonial",
+      "next": "Next testimonial",
+      "goTo": "Go to testimonial {number}"
+    },
+    "clients": {
+      "title": "Our Clients",
+      "subtitle": "Trusted by organizations across multiple sectors.",
+      "sectorLabel": "Client sector",
+      "previous": "Previous client logos",
+      "next": "Next client logos",
+      "goTo": "Go to client logos {number}",
+      "categories": [
+        {
+          "category": "Real Estate & Construction",
+          "clients": []
+        },
+        {
+          "category": "Industrial",
+          "clients": []
+        },
+        {
+          "category": "Food Industry",
+          "clients": []
+        },
+        {
+          "category": "Education",
+          "clients": []
+        },
+        {
+          "category": "Service Projects",
+          "clients": []
+        },
+        {
+          "category": "Government Sector",
+          "clients": []
         }
       ]
     },

@@ -1,4 +1,5 @@
 import CtaSection from "./CtaSection";
+import ClientsSection from "./ClientsSection";
 import FAQsSection from "./FAQsSection";
 import Hero3D from "./Hero3D";
 import HighlightsSection from "./HighlightsSection";
@@ -32,6 +33,9 @@ export default function Home() {
       <Reveal>
         <TechStackSection />
       </Reveal>
+         <Reveal>
+        <TestimonialsSection />
+      </Reveal>
       <Reveal>
         <StepsSection />
       </Reveal>
@@ -39,7 +43,7 @@ export default function Home() {
         <StoriesSection />
       </Reveal>
       <Reveal>
-        <TestimonialsSection />
+        <ClientsSection />
       </Reveal>
       <Reveal>
         <FAQsSection />

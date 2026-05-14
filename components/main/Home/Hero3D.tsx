@@ -6,24 +6,6 @@ import { ArrowRight, Box, Cpu, Layers, Network, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
-const particles = [
-  { id: 0, left: 24, top: 28, floatX: -6, duration: 4.6, delay: 0.2 },
-  { id: 1, left: 31, top: 62, floatX: 4, duration: 5.1, delay: 0.6 },
-  { id: 2, left: 38, top: 41, floatX: 8, duration: 6.2, delay: 0.9 },
-  { id: 3, left: 44, top: 55, floatX: -5, duration: 4.9, delay: 0.4 },
-  { id: 4, left: 52, top: 30, floatX: 6, duration: 5.7, delay: 1.2 },
-  { id: 5, left: 58, top: 48, floatX: -7, duration: 6.4, delay: 0.8 },
-  { id: 6, left: 63, top: 66, floatX: 5, duration: 5.3, delay: 0.1 },
-  { id: 7, left: 68, top: 36, floatX: -4, duration: 4.8, delay: 1.0 },
-  { id: 8, left: 72, top: 58, floatX: 7, duration: 6.0, delay: 0.7 },
-  { id: 9, left: 76, top: 44, floatX: -3, duration: 5.5, delay: 0.3 },
-  { id: 10, left: 28, top: 74, floatX: 6, duration: 5.8, delay: 1.3 },
-  { id: 11, left: 35, top: 24, floatX: -6, duration: 4.7, delay: 0.5 },
-  { id: 12, left: 49, top: 70, floatX: 3, duration: 6.1, delay: 1.1 },
-  { id: 13, left: 57, top: 22, floatX: -8, duration: 5.9, delay: 0.9 },
-  { id: 14, left: 66, top: 52, floatX: 5, duration: 4.5, delay: 0.2 },
-];
-
 export type Hero3DProps = {
   onPageChange?: (page: string) => void;
 };
@@ -223,55 +205,6 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                 </div>
               </motion.div>
 
-              {[0, 120, 240].map((angle, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute left-1/2 top-1/2"
-                  style={{ transformStyle: "preserve-3d" }}
-                  animate={{ rotateZ: [angle, angle + 360] }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  <motion.div
-                    className="h-20 w-20"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      transform: "translateX(200px) translateY(-10px)",
-                    }}
-                    animate={{ rotateX: [0, 360], rotateY: [0, 360] }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  >
-                    <div
-                      className={`absolute h-20 w-20 ${
-                        i === 0
-                          ? "bg-linear-to-br from-blue-400/80 to-cyan-400/80"
-                          : i === 1
-                            ? "bg-linear-to-br from-purple-400/80 to-pink-400/80"
-                            : "bg-linear-to-br from-green-400/80 to-emerald-400/80"
-                      } rounded-lg border border-white/60 backdrop-blur-sm shadow-xl`}
-                      style={{ transform: "translateZ(40px)" }}
-                    />
-                    <div
-                      className={`absolute h-20 w-20 ${
-                        i === 0
-                          ? "bg-linear-to-br from-cyan-400/80 to-blue-400/80"
-                          : i === 1
-                            ? "bg-linear-to-br from-pink-400/80 to-purple-400/80"
-                            : "bg-linear-to-br from-emerald-400/80 to-green-400/80"
-                      } rounded-lg border border-white/60 backdrop-blur-sm shadow-xl`}
-                      style={{ transform: "translateZ(-40px) rotateY(180deg)" }}
-                    />
-                  </motion.div>
-                </motion.div>
-              ))}
-
               <motion.div
                 className="absolute left-1/2 top-1/2 h-100 w-100 -translate-x-1/2 -translate-y-1/2"
                 animate={{ rotateZ: [0, 360] }}
@@ -287,25 +220,6 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
                   />
                 ))}
               </motion.div>
-
-              {particles.map((particle) => (
-                <motion.div
-                  key={particle.id}
-                  className="absolute h-3 w-3 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 shadow-lg"
-                  style={{ left: `${particle.left}%`, top: `${particle.top}%` }}
-                  animate={{
-                    y: [0, -40, 0],
-                    x: [0, particle.floatX, 0],
-                    opacity: [0.3, 1, 0.3],
-                    scale: [1, 1.3, 1],
-                  }}
-                  transition={{
-                    duration: particle.duration,
-                    repeat: Infinity,
-                    delay: particle.delay,
-                  }}
-                />
-              ))}
             </div>
           </motion.div>
         </div>

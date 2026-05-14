@@ -131,7 +131,9 @@ export default function ClientsSection() {
     <section className="bg-white py-20">
       <div className="mx-auto w-full max-w-6xl px-4 text-center">
         <h2 className="text-3xl font-semibold text-gray-900">{t("title")}</h2>
-        <p className="mx-auto mt-3 max-w-3xl text-base text-gray-600">{t("subtitle")}</p>
+        <p className="mx-auto mt-3 max-w-3xl text-base text-gray-600">
+          {t("subtitle")}
+        </p>
         <div className="mt-8 overflow-hidden py-4" ref={emblaRef}>
           <div className="-mx-2 flex py-1 sm:-mx-3">
             {clientLogos.map((client) => (
@@ -170,7 +172,9 @@ export default function ClientsSection() {
                 type="button"
                 onClick={() => emblaApi?.scrollTo(index)}
                 className={`h-2.5 rounded-full transition-all ${
-                  selectedIndex === index ? "w-8 bg-[#0F4C81]" : "w-2.5 bg-gray-300"
+                  selectedIndex === index
+                    ? "w-8 bg-[#0F4C81]"
+                    : "w-2.5 bg-gray-300"
                 }`}
                 aria-label={t("goTo", { number: index + 1 })}
               />

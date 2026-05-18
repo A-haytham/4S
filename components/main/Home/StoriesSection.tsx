@@ -24,11 +24,16 @@ export default function StoriesSection() {
               <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-[#0F4C81]">
                 {t("badge")}
               </span>
-              <h3 className="mt-4 text-base font-semibold text-gray-900">{story.title}</h3>
+              <h3 className="mt-4 text-base font-semibold text-gray-900">
+                {story.title}
+              </h3>
               <p className="mt-2 text-sm text-gray-600">{story.description}</p>
-              <div className="mt-5 grid grid-cols-3 gap-3 border-t border-gray-100 pt-5 text-xs font-semibold text-gray-700">
+              <div className="mt-5 grid grid-cols-3 gap-3 border-t border-gray-100 pt-5 text-[10px] font-semibold text-gray-700">
                 {story.stats.map((stat) => (
-                  <div key={stat} className="rounded-xl bg-gray-50 p-2 text-center">
+                  <div
+                    key={stat}
+                    className="rounded-xl bg-gray-50 p-1.5 text-center text-[9px]"
+                  >
                     {stat}
                   </div>
                 ))}

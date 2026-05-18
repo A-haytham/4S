@@ -83,14 +83,14 @@
         {
           "title": "Recruitment Services",
           "description": "Helping enterprises in Egypt and the GCC hire high-impact technical, ERP, and business talent through structured screening and curated shortlists.",
-          "cta": "Learn More",
+          "cta": "Explore Recruitment Services",
           "href": "/our-services/recruitment",
           "icon": "recruitment"
         },
         {
           "title": "Chatbot & WhatsApp Automation",
           "description": "Automating customer journeys through chatbot and WhatsApp self-service channels, with API integrations, smart routing, and analytics.",
-          "cta": "Learn More",
+          "cta": "Explore Chatbot & WhatsApp Automation",
           "href": "/our-services/chatbot-whatsapp",
           "icon": "chatbot"
         }

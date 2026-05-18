@@ -60,8 +60,8 @@ export default function Footer() {
 
   return (
     <footer className="bg-linear-to-br from-gray-900 via-[#0F4C81] to-gray-900 text-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-6">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mb-8 grid grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-6">
           <div className="col-span-2 lg:col-span-2">
             <div className="mb-4 flex items-center gap-2 rtl:gap-0 rtl:space-x-reverse">
               <div className="flex h-12 w-12 bg-amber-50 rounded-xl justify-center items-center">
@@ -78,7 +78,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-semibold">{t("brand")}</span>
             </div>
-            <p className="mb-6 text-sm text-gray-300">{t("description")}</p>
+            <p className="mb-4 text-sm text-gray-300">{t("description")}</p>
             <div className="flex items-center gap-4 rtl:gap-1 rtl:space-x-reverse">
               <a
                 href="https://www.linkedin.com/company/4s-technology/"
@@ -141,7 +141,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 pt-8">
+        <div className="border-t border-white/10 pt-5">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row">
             <p>{t("copyright")}</p>
             <p>{t("legal")}</p>

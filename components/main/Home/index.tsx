@@ -6,10 +6,10 @@ import HighlightsSection from "./HighlightsSection";
 import ModulesSection from "./ModulesSection";
 import ReasonsSection from "./ReasonsSection";
 import StepsSection from "./StepsSection";
-import StoriesSection from "./StoriesSection";
+// import StoriesSection from "./StoriesSection";
 import TestimonialsSection from "./TestimonialsSection";
 import TechStackSection from "./TechStackSection";
-import VideoSection from "./VideoSection";
+// import VideoSection from "./VideoSection";
 import Reveal from "@/components/ui/Reveal";
 
 export default function Home() {
@@ -27,21 +27,19 @@ export default function Home() {
       <Reveal>
         <ModulesSection />
       </Reveal>
-      <Reveal>
-        <VideoSection />
-      </Reveal>
+
       <Reveal>
         <TechStackSection />
       </Reveal>
-         <Reveal>
+      <Reveal>
         <TestimonialsSection />
       </Reveal>
       <Reveal>
         <StepsSection />
       </Reveal>
-      <Reveal>
+      {/* <Reveal>
         <StoriesSection />
-      </Reveal>
+      </Reveal> */}
       <Reveal>
         <ClientsSection />
       </Reveal>

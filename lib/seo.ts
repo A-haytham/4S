@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://4ssystems.com");
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://www.4s-systems.com");
 
 const trimSlash = (value: string) => value.replace(/\/+$/, "");
 

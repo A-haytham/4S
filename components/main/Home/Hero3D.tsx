@@ -133,7 +133,7 @@ export default function Hero3D({ onPageChange }: Hero3DProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative w-full lg:w-1/2"
+            className="hidden relative w-full md:block lg:w-1/2"
             style={{ perspective: "1200px" }}
           >
             <div className="relative flex h-150 w-full items-center justify-center">

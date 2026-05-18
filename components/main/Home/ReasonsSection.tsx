@@ -13,8 +13,8 @@ export default function ReasonsSection() {
   return (
     <section className="bg-white py-20">
       <div className="mx-auto w-full max-w-6xl px-4 text-center">
-        <h2 className="text-3xl font-semibold text-gray-900">{t("title")}</h2>
-        <p className="mt-3 text-base text-gray-600">{t("subtitle")}</p>
+        <h2 className="text-2xl font-semibold text-gray-900">{t("title")}</h2>
+        <p className="mt-3 text-sm text-gray-600">{t("subtitle")}</p>
         <div className="mt-10 grid gap-6 md:grid-cols-4">
           {items.map((reason) => (
             <div
@@ -24,7 +24,9 @@ export default function ReasonsSection() {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-[#0F4C81] to-[#2B7CB3] text-white shadow-lg rtl:ml-auto">
                 <CheckCircle size={22} />
               </div>
-              <h3 className="text-base font-semibold text-gray-900">{reason.title}</h3>
+              <h3 className="text-base font-semibold text-gray-900">
+                {reason.title}
+              </h3>
               <p className="mt-2 text-sm text-gray-600">{reason.description}</p>
             </div>
           ))}

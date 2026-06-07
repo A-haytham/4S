@@ -1,3 +1,5 @@
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
+
 type BackendFaqItem = {
   id: string;
   questionEn: string | null;
@@ -24,10 +26,7 @@ export type FaqCategory = {
   faqs: FaqItem[];
 };
 
-const FAQS_API_URL =
-  process.env.FAQS_API_URL ??
-  process.env.NEXT_PUBLIC_FAQS_API_URL ??
-  "http://196.219.86.38:8080/api/faqs";
+const FAQS_API_URL = BACKEND_ENDPOINTS.publicFaqs;
 
 const normalize = (value: string | null | undefined) => value?.trim() ?? "";
 

@@ -1,11 +1,7 @@
 import { NextResponse } from "next/server";
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
 
-const BACKEND_PUBLIC_CONTACT_API =
-  process.env.CONTACT_API_URL ??
-  process.env.CONTACTS_API_URL ??
-  process.env.NEXT_PUBLIC_CONTACT_API_URL ??
-  process.env.NEXT_PUBLIC_CONTACTS_API_URL ??
-  "http://196.219.86.38:8080/api/contact";
+const BACKEND_PUBLIC_CONTACT_API = BACKEND_ENDPOINTS.publicContact;
 
 type ContactRouteErrorSource = "request" | "backend" | "gateway";
 

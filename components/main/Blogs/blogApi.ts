@@ -1,4 +1,5 @@
 import { blogPosts, type BlogPost } from "./blogData";
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
 
 type BlogApiItem = {
   id: string;
@@ -23,10 +24,7 @@ type BlogApiResponse = {
   content?: BlogApiItem[];
 };
 
-const BLOGS_API_URL =
-  process.env.BLOGS_API_URL ??
-  process.env.NEXT_PUBLIC_BLOGS_API_URL ??
-  "http://196.219.86.38:8080/api/blogs";
+const BLOGS_API_URL = BACKEND_ENDPOINTS.publicBlogs;
 const DEFAULT_AUTHOR = { en: "4S Team", ar: "4S Team" };
 const DEFAULT_IMAGE_LABEL = "Blog cover";
 const DEFAULT_CATEGORY = "all";

@@ -1,9 +1,8 @@
 import { proxyBackendRequest } from "@/lib/utilities/backendProxy";
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
 
 // admin proxy only – public POST lives in app/api/contact/route.ts
-const BACKEND_ADMIN_CONTACTS_API =
-  process.env.ADMIN_CONTACTS_API_URL ??
-  "http://196.219.86.38:8080/api/admin/contact";
+const BACKEND_ADMIN_CONTACTS_API = BACKEND_ENDPOINTS.adminContact;
 
 export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");

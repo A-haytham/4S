@@ -1,8 +1,7 @@
 import { proxyBackendRequest } from "@/lib/utilities/backendProxy";
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
 
-const BACKEND_ADMIN_FAQS_API =
-  process.env.ADMIN_FAQS_API_URL ??
-  "http://196.219.86.38:8080/api/admin/faqs";
+const BACKEND_ADMIN_FAQS_API = BACKEND_ENDPOINTS.adminFaqs;
 
 type RouteContext = {
   params: Promise<{ id: string }>;

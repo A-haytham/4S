@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
 import { setToken } from "@/lib/utilities/auth";
 import { createBackendUnavailableResponse } from "@/lib/utilities/backendProxy";
+import { BACKEND_ENDPOINTS } from "@/lib/utilities/backendEndpoints";
 
-const BACKEND_LOGIN_API =
-  process.env.AUTH_API_URL ??
-  "http://196.219.86.38:8080/api/auth/login";
+const BACKEND_LOGIN_API = BACKEND_ENDPOINTS.authLogin;
 
 export async function POST(request: Request) {
   const payload = await request.json();

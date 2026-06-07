@@ -10,6 +10,7 @@ type ModuleDetail = {
   tagline: string;
   points: string[];
   videoUrl?: string;
+  videoUrls?: string[];
 };
 
 type ModuleItem = {
@@ -30,10 +31,14 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
   const locale = useLocale();
   const isRTL = locale === "ar";
   const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
   const modules = t.raw("modules.items") as ModuleItem[];
   const activeModule = modules.find((item) => item.key === moduleKey) ?? modules[0];
   const fallbackVideoUrl = t("modules.modal.videoUrl");
-  const videoUrl = activeModule.details.videoUrl ?? fallbackVideoUrl;
+  const videoUrls = activeModule.details.videoUrls ?? [
+    activeModule.details.videoUrl ?? fallbackVideoUrl,
+  ];
+  const videoUrl = videoUrls[selectedVideoIndex] ?? videoUrls[0] ?? fallbackVideoUrl;
   const videoDuration = t("modules.modal.duration");
   const moduleDocuments = moduleDocumentsByKey[moduleKey] ?? [];
 
@@ -141,6 +146,27 @@ export default function ModuleModal({ isOpen, onClose, moduleKey }: ModuleModalP
                 />
               )}
             </div>
+            {videoUrls.length > 1 ? (
+              <div className="flex flex-wrap gap-2 px-4 pb-4 pt-3 ltr:justify-start rtl:justify-end">
+                {videoUrls.map((item, index) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => {
+                      setSelectedVideoIndex(index);
+                      setIsPlaying(false);
+                    }}
+                    className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+                      selectedVideoIndex === index
+                        ? "bg-white text-[#0F4C81] shadow"
+                        : "bg-white/15 text-white hover:bg-white/25"
+                    }`}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <div className="p-8">

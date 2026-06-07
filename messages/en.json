@@ -613,6 +613,7 @@
           "icon": "dollar",
           "details": {
             "tagline": "Full visibility into financial performance.",
+            "videoUrl": "/modules-videos/%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%AD%D8%B3%D8%A7%D8%A8%D8%A7%D8%AA%204S.mp4",
             "points": [
               "Automated invoicing and collections",
               "Multi-entity and multi-currency accounting",
@@ -628,6 +629,7 @@
           "icon": "package",
           "details": {
             "tagline": "Optimize stock levels across locations.",
+            "videoUrl": "/modules-videos/%D9%85%D8%AE%D8%A7%D8%B2%D9%86%204S.mp4",
             "points": [
               "Real-time stock visibility",
               "Batch/serial tracking and valuation",
@@ -643,6 +645,7 @@
           "icon": "trending",
           "details": {
             "tagline": "Close deals faster with full customer context.",
+            "videoUrl": "/modules-videos/%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA%204S.mp4",
             "points": [
               "Lead, opportunity, and pipeline management",
               "Quotes, orders, and contracts",
@@ -658,6 +661,7 @@
           "icon": "cart",
           "details": {
             "tagline": "Control spend while improving supplier performance.",
+            "videoUrl": "/modules-videos/%D9%85%D8%B4%D8%AA%D8%B1%D9%8A%D8%A7%D8%AA%204S.mp4",
             "points": [
               "Purchase requests and approvals",
               "Supplier management and RFQs",
@@ -688,6 +692,7 @@
           "icon": "settings",
           "details": {
             "tagline": "Stay on time and on budget across the floor.",
+            "videoUrl": "/modules-videos/%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D8%A7%D8%AC%204S.mp4",
             "points": [
               "BOMs, routings, and work orders",
               "Production scheduling and capacity",
@@ -733,6 +738,7 @@
           "icon": "bank",
           "details": {
             "tagline": "Keep cash and banking operations fully in sync.",
+            "videoUrl": "/modules-videos/%D8%A7%D9%84%D9%86%D9%82%D8%AF%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A8%D9%86%D9%88%D9%83%204S%20.mp4",
             "points": [
               "Bank account management and signatories",
               "Automated bank reconciliation and statements",
@@ -748,7 +754,11 @@
           "icon": "realEstate",
           "details": {
             "tagline": "Visibility across assets, leases, and contracts.",
-            "videoUrl": "/modules-videos/real-estate.mp4",
+            "videoUrl": "/modules-videos/%D8%A7%D9%84%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A7%D9%84%D8%A7%D8%AE%D9%8A%D8%B1%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%20%D9%88%D9%8A%D8%A8%20%D8%B3%D8%A7%D9%8A%D8%AA.mp4",
+            "videoUrls": [
+              "/modules-videos/%D8%A7%D9%84%D8%AA%D8%B5%D9%85%D9%8A%D9%85%20%D8%A7%D9%84%D8%A7%D8%AE%D9%8A%D8%B1%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%B1%D9%8A%20%D9%88%D9%8A%D8%A8%20%D8%B3%D8%A7%D9%8A%D8%AA.mp4",
+              "/modules-videos/real-estate.mp4"
+            ],
             "points": [
               "Property portfolio and unit management",
               "Lease contracts, renewals, and billing",
@@ -764,6 +774,7 @@
           "icon": "assets",
           "details": {
             "tagline": "Track asset value from acquisition to disposal.",
+            "videoUrl": "/modules-videos/%D8%A7%D9%84%D8%A7%D8%B5%D9%88%D9%84%204S.mp4",
             "points": [
               "Asset registry with categories and locations",
               "Depreciation schedules and book/value tracking",
@@ -809,6 +820,7 @@
           "icon": "extracts",
           "details": {
             "tagline": "Track certified work values and financial claims with control.",
+            "videoUrl": "/modules-videos/%D9%85%D8%B3%D8%AA%D8%AE%D9%84%D8%B5%D8%A7%D8%AA%204S.mp4",
             "points": [
               "Periodic extract preparation and review",
               "Completion tracking against work items",

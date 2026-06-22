@@ -15,8 +15,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useState } from "react";
-import ModuleModal from "../Solutions/ModuleModal";
+import { moduleSlugByLegacyKey } from "@/app/data/modules";
 
 const iconMap = {
   dollar: DollarSign,
@@ -63,7 +62,6 @@ export default function ModulesSection() {
   const t = useTranslations("home.modules");
   const items = t.raw("items") as ModuleItem[];
   const serviceItems = t.raw("serviceItems") as ServiceItem[];
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
   const fallbackKey = iconToModuleKey[items[0]?.icon] ?? "finance";
 
   return (
@@ -118,10 +116,9 @@ export default function ModulesSection() {
             const moduleKey = iconToModuleKey[module.icon] ?? fallbackKey;
 
             return (
-              <button
+              <Link
                 key={module.title}
-                type="button"
-                onClick={() => setSelectedKey(moduleKey)}
+                href={`/solutions/modules/${moduleSlugByLegacyKey[moduleKey] ?? moduleSlugByLegacyKey[fallbackKey]}`}
                 aria-label={`${t("openLabel")}: ${module.title}`}
                 className="group relative flex min-h-48 flex-col rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0F4C81] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#0F4C81] focus:ring-offset-2 ltr:text-left rtl:text-right"
               >
@@ -141,7 +138,7 @@ export default function ModulesSection() {
                     className="ml-2 transition-transform group-hover:translate-x-1 rtl:ml-0 rtl:mr-2 rtl:rotate-180 rtl:group-hover:-translate-x-1"
                   />
                 </span>
-              </button>
+              </Link>
             );
           })}
         </div>
@@ -158,12 +155,6 @@ export default function ModulesSection() {
         </Link>
       </div>
 
-      <ModuleModal
-        key={selectedKey ?? fallbackKey}
-        isOpen={selectedKey !== null}
-        onClose={() => setSelectedKey(null)}
-        moduleKey={selectedKey ?? fallbackKey}
-      />
     </section>
   );
 }

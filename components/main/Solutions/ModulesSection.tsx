@@ -11,7 +11,6 @@ import {
   Building2,
   FileText,
   Leaf,
-  MousePointer2,
   Package,
   Settings,
   ShoppingCart,
@@ -20,8 +19,8 @@ import {
   Zap,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-import ModuleModal from "./ModuleModal";
+import { Link } from "@/i18n/navigation";
+import { moduleSlugByLegacyKey } from "@/app/data/modules";
 
 const iconMap = {
   dollar: DollarSign,
@@ -56,9 +55,6 @@ type ModuleItem = {
 export default function ModulesSection() {
   const t = useTranslations("solutions");
   const modules = t.raw("modules.items") as ModuleItem[];
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-
-  const fallbackKey = modules[0]?.key ?? "finance";
 
   return (
     <section id="modules" className="bg-linear-to-br from-gray-50 to-white py-20">
@@ -77,15 +73,12 @@ export default function ModulesSection() {
             const Icon = iconMap[module.icon] ?? Settings;
 
             return (
-              <button
+              <Link
                 key={module.key}
-                type="button"
-                onClick={() => setSelectedKey(module.key)}
+                href={`/solutions/modules/${moduleSlugByLegacyKey[module.key] ?? "finance-accounting"}`}
                 className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 text-left transition-all hover:border-[#0F4C81] hover:shadow-xl ltr:text-left rtl:text-right"
               >
-                <div className="absolute top-4 text-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100 ltr:right-4 rtl:left-4">
-                  <MousePointer2 className="h-5 w-5" />
-                </div>
+                <ArrowRight className="absolute top-4 h-5 w-5 text-[#0F4C81] opacity-0 transition-opacity group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:rotate-180" />
 
                 <div className="mb-4 flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[#0F4C81] transition-colors group-hover:bg-[#0F4C81] group-hover:text-white">
@@ -113,18 +106,11 @@ export default function ModulesSection() {
                   <span>{t("modules.clickLabel")}</span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1" />
                 </div>
-              </button>
+              </Link>
             );
           })}
         </div>
       </div>
-
-      <ModuleModal
-        key={selectedKey ?? fallbackKey}
-        isOpen={selectedKey !== null}
-        onClose={() => setSelectedKey(null)}
-        moduleKey={selectedKey ?? fallbackKey}
-      />
     </section>
   );
 }
